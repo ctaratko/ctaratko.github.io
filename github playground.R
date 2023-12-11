@@ -25,3 +25,5 @@ install.packages("hrbrthemes")
 data <- data %>% 
   mutate(LastCloseLag = lag(`Close/Last`),
          Chg_Close = LastCloseLag - `Close/Last`)
+
+getwd()
