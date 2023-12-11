@@ -21,3 +21,7 @@ write_csv(diamonds, "diamonds.csv") # to save data.frame as a csv file
 
 install.packages('ggthemes')
 install.packages("hrbrthemes")
+
+data <- data %>% 
+  mutate(LastCloseLag = lag(`Close/Last`),
+         Chg_Close = LastCloseLag - `Close/Last`)
