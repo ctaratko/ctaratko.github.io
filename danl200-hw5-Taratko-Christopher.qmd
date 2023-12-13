@@ -1,0 +1,25 @@
+---
+title: "danl200-hw5-Taratko-Christopher.qmd"
+format: html
+editor: visual
+---
+
+# Question 1:
+
+```{r}
+#| echo: true
+
+
+
+
+
+```
+
+# Question 2:
+## Word
+```{r}
+#| echo: true
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
