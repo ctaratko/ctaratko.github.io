@@ -53,7 +53,7 @@ The goal intended of the research and analysis of the stocks performed was to he
 
 # Data
 
-The data set comes `data` comes from kaggle.com from 20
+The data set comes `data` comes from kaggle.com from July 18th, 2023, where the code explores a variety of stocks from www.nasdaq.com to give you an easy comparison, but is still fairly broad with what they give you
 
 ## Summary Statistics
 

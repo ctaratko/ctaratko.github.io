@@ -27,3 +27,4 @@ data <- data %>%
          Chg_Close = LastCloseLag - `Close/Last`)
 
 getwd()
+
