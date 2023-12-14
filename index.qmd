@@ -9,13 +9,13 @@ about:
   links:
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://linkedin.com/in/christopher-taratko-63a59524a/
     - icon: instagram
       text: Instagram
-      href: https://instagram.com
+      href: https://instagram.com/ctaratko/
     - icon: github
       text: GitHub
-      href: https://github.com
+      href: https://github.com/ctaratko
     - icon: file-earmark-pdf
       text: Resumé
       href: https://ctaratko.github.io/resume-example.pdf
