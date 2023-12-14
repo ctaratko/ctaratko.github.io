@@ -58,18 +58,19 @@ The data set comes `data` comes from kaggle.com from July 18th, 2023, where the 
 ## Summary Statistics
 
 ```{r}
-mpg <- ggplot2::mpg
+Stocks <- data
 ```
 
 ```{r}
 #| results: asis
 #| echo: false
-rmarkdown::paged_table(mpg) 
+rmarkdown::paged_table(data) 
+rmarkdown::paged_table(mpg)
 ```
 
 ```{r}
-skim(mpg) %>% 
-  select(-n_missing)
+skim(Stocks) %>% 
+  select(-`Close/Last`)
 ```
 
 ## MPG and a Type of Cars

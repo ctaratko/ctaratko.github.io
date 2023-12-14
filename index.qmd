@@ -18,7 +18,7 @@ about:
       href: https://github.com/ctaratko
     - icon: file-earmark-pdf
       text: Resumé
-      href: https://ctaratko.github.io/resume-example.pdf
+      href: ChristopherTaratkoResume.pdf
     - icon: mailbox
       text: Email
       href: mailto:cmt101@geneseo.edu
