@@ -22,20 +22,14 @@ about:
     - icon: mailbox
       text: Email
       href: mailto:cmt101@geneseo.edu
-
 ---
-
 
 Christopher Taratko majors in Accounting & Economics, with a Minor in Data Analytics at SUNY Geneseo. When not working on college assignments, Christopher enjoys Sailing, Snowboarding, zip-lining, and gaming.
 
 ## Education
 
-State University of New York at Geneseo | Geneseo, NY <br>
-B.S in Accounting & Economics | Aug 2022 - May 2026 <br>
-Minor in Data Analytics
+State University of New York at Geneseo \| Geneseo, NY <br> B.S in Accounting & Economics \| Aug 2022 - May 2026 <br> Minor in Data Analytics
 
 ## Experience
 
-N/A 
-
-
+N/A
