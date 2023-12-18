@@ -30,6 +30,7 @@ library(tidyverse)
 library(skimr)
 library(ggthemes)
 library(hrbrthemes)
+library(corrplot)
 
 
 
@@ -181,9 +182,39 @@ ggplot(stocks, aes(y = PercentageChange, x = log10(Volume))) +
     legend.position = "none"  # Remove legend for better clarity
   )
 
+```
+```{r}
+# Different graph --------------------------------------------------------------
+
+correlation_by_group <- stocks %>%
+  group_by(Company) %>%
+  summarise(correlation = cor(PercentageChange, Volume))
+
+ggplot(correlation_by_group, aes(x=Company, y=correlation))+
+  geom_col()+
+  labs(title= "How strongly does Volume and Percentage Change in Price Correlate?")
 
 ```
 
 ### The change in volume does not appear to have any effect on the stock's price
+
+# John Christanis - How are the Individual Stocks Correlated?
+```{r}
+StocksJ <- StocksUpdated2 %>% 
+  mutate(Change=`Close/Last`-Open) %>% 
+  mutate(PercentageChange = ((`Close/Last` - Open) / Open) * 100)
+
+StockJ <- StocksJ %>% 
+  select(Company|PercentageChange|Date) %>% 
+  pivot_wider(names_from = "Company", values_from = "PercentageChange")
+
+
+correlation_matrix <- cor(StockJ[, sapply(StockJ, is.numeric)], use = "pairwise.complete.obs")
+
+print(correlation_matrix)
+
+corrplot(correlation_matrix, method = "circle", type = "upper", tl.col = "black", tl.srt = 45)
+
+```
 
 # Conclusion:

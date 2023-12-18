@@ -9,5 +9,5 @@ image: "image.jpg"
 This is a post with executable code.
 
 ```{r}
-1 + 1
+StockPost <- read_csv("/Users/christophertaratko/Documents/ctaratko.github.io/StocksUpdated2.csv")
 ```

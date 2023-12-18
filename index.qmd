@@ -2,7 +2,7 @@
 title: "Christopher Taratko"
 about:
   template: trestles  # jolla  trestles  solana  marquee  broadside
-  image: img/BubblesAndI.JPG
+  image: img/CoolKid.jpg
   image-width: 15em
   image-shape: round # rectangle  round  rounded
   
@@ -22,6 +22,12 @@ about:
     - icon: mailbox
       text: Email
       href: mailto:cmt101@geneseo.edu
+    - text: Jack Katz
+      href: https://jackatzecon.github.io
+    - text: Aaron Zalen
+      href: https://1Aaronz.github.io
+    - text: John Christanis
+      href: https://JohnChristanis227.github.io
 ---
 
 Christopher Taratko majors in Accounting & Economics, with a Minor in Data Analytics at SUNY Geneseo. When not working on college assignments, Christopher enjoys Sailing, Snowboarding, zip-lining, and gaming.

@@ -148,7 +148,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#christopher-taratko---which-stocks-are-better-short-term-investments-vs-long-term-investments" id="toc-christopher-taratko---which-stocks-are-better-short-term-investments-vs-long-term-investments" class="nav-link" data-scroll-target="#christopher-taratko---which-stocks-are-better-short-term-investments-vs-long-term-investments"><span class="header-section-number">3</span> Christopher Taratko - Which Stocks are Better Short Term Investments vs Long Term Investments?</a></li>
   <li><a href="#aaron-zalen---does-higher-volume-correlate-with-a-larger-increase-in-price" id="toc-aaron-zalen---does-higher-volume-correlate-with-a-larger-increase-in-price" class="nav-link" data-scroll-target="#aaron-zalen---does-higher-volume-correlate-with-a-larger-increase-in-price"><span class="header-section-number">4</span> Aaron Zalen - Does higher volume correlate with a larger increase in price?</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5</span> Conclusion:</a></li>
+  <li><a href="#john-christanis---how-are-the-individual-stocks-correlated" id="toc-john-christanis---how-are-the-individual-stocks-correlated" class="nav-link" data-scroll-target="#john-christanis---how-are-the-individual-stocks-correlated"><span class="header-section-number">5</span> John Christanis - How are the Individual Stocks Correlated?</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6</span> Conclusion:</a></li>
   </ul>
 </nav>
     </div>
@@ -369,12 +370,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="project_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="864"></p>
 </div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Different graph --------------------------------------------------------------</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>correlation_by_group <span class="ot">&lt;-</span> stocks <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Company) <span class="sc">%&gt;%</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">correlation =</span> <span class="fu">cor</span>(PercentageChange, Volume))</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(correlation_by_group, <span class="fu">aes</span>(<span class="at">x=</span>Company, <span class="at">y=</span>correlation))<span class="sc">+</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()<span class="sc">+</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span> <span class="st">"How strongly does Volume and Percentage Change in Price Correlate?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="project_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="864"></p>
+</div>
+</div>
 <section id="the-change-in-volume-does-not-appear-to-have-any-effect-on-the-stocks-price" class="level3" data-number="4.0.1">
 <h3 data-number="4.0.1" class="anchored" data-anchor-id="the-change-in-volume-does-not-appear-to-have-any-effect-on-the-stocks-price"><span class="header-section-number">4.0.1</span> The change in volume does not appear to have any effect on the stock’s price</h3>
 </section>
 </section>
-<section id="conclusion" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Conclusion:</h1>
+<section id="john-christanis---how-are-the-individual-stocks-correlated" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> John Christanis - How are the Individual Stocks Correlated?</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>StocksJ <span class="ot">&lt;-</span> StocksUpdated2 <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Change=</span><span class="st">`</span><span class="at">Close/Last</span><span class="st">`</span><span class="sc">-</span>Open) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PercentageChange =</span> ((<span class="st">`</span><span class="at">Close/Last</span><span class="st">`</span> <span class="sc">-</span> Open) <span class="sc">/</span> Open) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>StockJ <span class="ot">&lt;-</span> StocksJ <span class="sc">%&gt;%</span> </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Company<span class="sc">|</span>PercentageChange<span class="sc">|</span>Date) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">"Company"</span>, <span class="at">values_from =</span> <span class="st">"PercentageChange"</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>correlation_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(StockJ[, <span class="fu">sapply</span>(StockJ, is.numeric)], <span class="at">use =</span> <span class="st">"pairwise.complete.obs"</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(correlation_matrix)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          AAPL      SBUX      MSFT      CSCO      QCOM      META      AMZN
+AAPL 1.0000000 0.4428538 0.6485268 0.5203601 0.5024310 0.5418905 0.5910447
+SBUX 0.4428538 1.0000000 0.4903366 0.4391910 0.3825120 0.4330567 0.4458405
+MSFT 0.6485268 0.4903366 1.0000000 0.5814746 0.5113923 0.5654512 0.6334205
+CSCO 0.5203601 0.4391910 0.5814746 1.0000000 0.4400602 0.4030487 0.4331343
+QCOM 0.5024310 0.3825120 0.5113923 0.4400602 1.0000000 0.3986357 0.4361434
+META 0.5418905 0.4330567 0.5654512 0.4030487 0.3986357 1.0000000 0.6163096
+AMZN 0.5910447 0.4458405 0.6334205 0.4331343 0.4361434 0.6163096 1.0000000
+TSLA 0.4019308 0.2823318 0.3703267 0.2243869 0.3214886 0.4066322 0.4278876
+AMD  0.4206154 0.2579077 0.4303950 0.3347329 0.3970769 0.3926171 0.4384913
+NFLX 0.4641511 0.3738207 0.4963435 0.3667748 0.3630747 0.5582040 0.5806457
+          TSLA       AMD      NFLX
+AAPL 0.4019308 0.4206154 0.4641511
+SBUX 0.2823318 0.2579077 0.3738207
+MSFT 0.3703267 0.4303950 0.4963435
+CSCO 0.2243869 0.3347329 0.3667748
+QCOM 0.3214886 0.3970769 0.3630747
+META 0.4066322 0.3926171 0.5582040
+AMZN 0.4278876 0.4384913 0.5806457
+TSLA 1.0000000 0.3557420 0.3955207
+AMD  0.3557420 1.0000000 0.3607283
+NFLX 0.3955207 0.3607283 1.0000000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(correlation_matrix, <span class="at">method =</span> <span class="st">"circle"</span>, <span class="at">type =</span> <span class="st">"upper"</span>, <span class="at">tl.col =</span> <span class="st">"black"</span>, <span class="at">tl.srt =</span> <span class="dv">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="project_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="864"></p>
+</div>
+</div>
+</section>
+<section id="conclusion" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Conclusion:</h1>
 
 
 </section>
