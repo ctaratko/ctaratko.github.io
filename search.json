@@ -109,14 +109,14 @@
     "href": "project.html",
     "title": "DANL Project",
     "section": "",
-    "text": "The goal intended of the research and analysis of the stocks performed was to help people understand what certain stocks would classify as, whether it be a good investment overall, something preferable for the short/long run, what the volatility of a stock is, and other performance functions that would help the reader grasp what to look for when investing.\n\n1 + 1\n\n[1] 2"
+    "text": "The goal intended of the research and analysis of the stocks performed was to help people understand what certain stocks would classify as, whether it be a good investment overall, something preferable for the short/long run, what the volatility of a stock is, and other performance functions that would help the reader grasp what to look for when investing."
   },
   {
     "objectID": "project.html#summary-statistics",
     "href": "project.html#summary-statistics",
     "title": "DANL Project",
     "section": "2.1 Summary Statistics",
-    "text": "2.1 Summary Statistics\n\nmpg &lt;- ggplot2::mpg\n\n\n\n\n  \n\n\n\nskim(mpg) %&gt;% \n  select(-n_missing)\n\n\nData summary\n\n\nName\nmpg\n\n\nNumber of rows\n234\n\n\nNumber of columns\n11\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n6\n\n\nnumeric\n5\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\nskim_variable\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\n\nmanufacturer\n1\n4\n10\n0\n15\n0\n\n\nmodel\n1\n2\n22\n0\n38\n0\n\n\ntrans\n1\n8\n10\n0\n10\n0\n\n\ndrv\n1\n1\n1\n0\n3\n0\n\n\nfl\n1\n1\n1\n0\n5\n0\n\n\nclass\n1\n3\n10\n0\n7\n0\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\ndispl\n1\n3.47\n1.29\n1.6\n2.4\n3.3\n4.6\n7\n▇▆▆▃▁\n\n\nyear\n1\n2003.50\n4.51\n1999.0\n1999.0\n2003.5\n2008.0\n2008\n▇▁▁▁▇\n\n\ncyl\n1\n5.89\n1.61\n4.0\n4.0\n6.0\n8.0\n8\n▇▁▇▁▇\n\n\ncty\n1\n16.86\n4.26\n9.0\n14.0\n17.0\n19.0\n35\n▆▇▃▁▁\n\n\nhwy\n1\n23.44\n5.95\n12.0\n18.0\n24.0\n27.0\n44\n▅▅▇▁▁"
+    "text": "2.1 Summary Statistics\n\nsummary(StocksUpdated2)\n\n   Company              Date             Close/Last         Volume         \n Length:25160       Length:25160       Min.   :  1.62   Min.   :1.144e+06  \n Class :character   Class :character   1st Qu.: 36.57   1st Qu.:1.200e+07  \n Mode  :character   Mode  :character   Median : 65.68   Median :2.672e+07  \n                                       Mean   :102.46   Mean   :5.132e+07  \n                                       3rd Qu.:134.24   3rd Qu.:6.857e+07  \n                                       Max.   :691.69   Max.   :1.065e+09  \n      Open             High             Low        \n Min.   :  1.62   Min.   :  1.69   Min.   :  1.61  \n 1st Qu.: 36.51   1st Qu.: 36.89   1st Qu.: 36.13  \n Median : 65.65   Median : 66.48   Median : 64.92  \n Mean   :102.43   Mean   :103.83   Mean   :101.01  \n 3rd Qu.:134.32   3rd Qu.:136.23   3rd Qu.:132.66  \n Max.   :692.35   Max.   :700.99   Max.   :686.09"
   },
   {
     "objectID": "project.html#mpg-and-a-type-of-cars",
@@ -187,5 +187,12 @@
     "title": "DANL 200: Christopher Taratko’s WorkspaceTeam Project",
     "section": "2.7 Inserting a HTML page",
     "text": "2.7 Inserting a HTML page"
+  },
+  {
+    "objectID": "project.html#jack-katz---research-question-1-which-stocks-have-the-most-historical-volatility.",
+    "href": "project.html#jack-katz---research-question-1-which-stocks-have-the-most-historical-volatility.",
+    "title": "DANL Project",
+    "section": "2.2 Jack Katz - Research Question 1: Which stocks have the most historical volatility.",
+    "text": "2.2 Jack Katz - Research Question 1: Which stocks have the most historical volatility.\n\n2.2.1 Creating new variables for analysis, Separating by month day and year will make it easier to group and filter observations by year.\n#Historical volatility of each company for each year.  A simple measure of historical volatility is calculated by finding the standard deviation  of the close prices over a time series. In this case we found the standard deviation for  each stock for each year and then showed this data on ggplot.\n\nHistorical_Volatility &lt;- Volatility_analysis %&gt;% \n  group_by(Company, Year) %&gt;% \n  summarise(Volatility = sd(`Close/Last`))\n\nVolatility &lt;- ggplot(Historical_Volatility,\n       mapping = aes(x = as.numeric(Year),\n                     y = Volatility\n                     )) +\n  geom_point(color = \"blue\") +\n  geom_line(color = \"green\") +\n  facet_wrap( . ~Company) +\n  ggtitle(\"Stock Price Volatility from 2013-2023\", subtitle = \"In dollars\") +\n  labs(x = \"Year\") +\n  theme_economist_white()\n\nVolatility + scale_x_continuous(breaks = scales::breaks_width(2))"
   }
 ]

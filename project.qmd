@@ -24,62 +24,166 @@ from: markdown+emoji
 
 ```{r setup}
 #| include: false
+
+
 library(tidyverse)
 library(skimr)
 library(ggthemes)
 library(hrbrthemes)
 
-theme_set(theme_ipsum()+
-          theme(strip.background =element_rect(fill="lightgray"),
-                axis.title.x = 
-                  element_text(angle = 0,
-                               size = rel(1.33),
-                               margin = margin(10,0,0,0)),
-                axis.title.y = 
-                  element_text(angle = 0,
-                               size = rel(1.33),
-                               margin = margin(0,10,0,0))
-                )
-          )
+
+
+StocksUpdated2 <- read_csv("/Users/christophertaratko/Documents/ctaratko.github.io/StocksUpdated2.csv")
+
+Volatility_analysis <- StocksUpdated2 %>% 
+  separate(Date, into = c("Month/Day","Year"), sep = 6 )
 ```
 
 # Introduction
 
 The goal intended of the research and analysis of the stocks performed was to help people understand what certain stocks would classify as, whether it be a good investment overall, something preferable for the short/long run, what the volatility of a stock is, and other performance functions that would help the reader grasp what to look for when investing.
 
-```{r}
-1 + 1
-```
-
 # Data
 
-The data set comes `data` comes from kaggle.com from July 18th, 2023, where the code explores a variety of stocks from www.nasdaq.com to give you an easy comparison, but is still fairly broad with what they give you
+We retrieved the dataset "Stock Market: Historical Data of Top 10 Companies" from Kaggle (<https://www.kaggle.com/datasets/khushipitroda/stock-market-historical-data-of-top-10-companies>). The data includes 7 variables and 25160 observations. The variables are Company which is a factor variable for each company name. The data.frame is `Stocks Updated` and is
 
 ## Summary Statistics
 
 ```{r}
-Stocks <- data
+summary(StocksUpdated2)
+```
+
+## Jack Katz - Research Question 1: Which stocks have the most historical volatility.
+
+### Creating new variables for analysis, Separating by month day and year will make it easier to group and filter observations by year.
+
+#Historical volatility of each company for each year. <br> A simple measure of historical volatility is calculated by finding the standard deviation <br> of the close prices over a time series. In this case we found the standard deviation for <br> each stock for each year and then showed this data on ggplot.
+
+```{r}
+Historical_Volatility <- Volatility_analysis %>% 
+  group_by(Company, Year) %>% 
+  summarise(Volatility = sd(`Close/Last`))
+
+Volatility <- ggplot(Historical_Volatility,
+       mapping = aes(x = as.numeric(Year),
+                     y = Volatility
+                     )) +
+  geom_point(color = "blue") +
+  geom_line(color = "green") +
+  facet_wrap( . ~Company) +
+  ggtitle("Stock Price Volatility from 2013-2023", subtitle = "In dollars") +
+  labs(x = "Year") +
+  theme_economist_white()
+
+Volatility + scale_x_continuous(breaks = scales::breaks_width(2))
+
+```
+
+# Christopher Taratko - Which Stocks are Better Short Term Investments vs Long Term Investments?
+
+### Figuring out which stocks could be used at Short and Long term investments was through the use of their PVT Indicator Values & the MAD (Mean Absolute Deviation) of their Closing Value Change.
+
+```{r}
+StocksChange <- StocksUpdated2 %>% 
+  select(Company, Date, `Close/Last`, Volume) %>% 
+  group_by(Company) %>% 
+  mutate(CL_Chg = `Close/Last` - lag(`Close/Last`),
+         V_Chg = Volume - lag(Volume),
+         PVT = (CL_Chg / V_Chg))
+
+ggplot(StocksChange, aes( x = Company, y = PVT)) +
+  geom_hex()
+
+# PVT = Price Volume Trend Indicator. ( ∆ in Price / ∆ in Volume )
+
 ```
 
 ```{r}
-#| results: asis
-#| echo: false
-rmarkdown::paged_table(data) 
-rmarkdown::paged_table(mpg)
+# Object #2:
+
+
+
+StocksManip <- StocksUpdated2 %>% 
+  mutate(CL_Change =`Close/Last` - lag(`Close/Last`))
+
+StocksManip <- StocksManip %>% 
+  select(Company,Date,CL_Change)
+
+StocksManip <- StocksManip %>% 
+  group_by(Company) %>% 
+  arrange(Date) %>% 
+  pivot_wider(names_from = Company, values_from = CL_Change)
+
+summary(StocksManip)
+
+StocksMAD <- StocksManip %>% 
+  mutate(CSCO_mad = CSCO - mean(CSCO, na.rm = T),
+         QCOM_mad = QCOM - mean(QCOM, na.rm = T),
+         META_mad = META- mean(META, na.rm = T),
+         AMZN_mad = AMZN - mean(AMZN, na.rm = T),
+         TSLA_mad = TSLA - mean(TSLA, na.rm = T),
+         AMD_mad = AMD - mean(AMD, na.rm = T),
+         NFLX_mad = NFLX - mean(NFLX, na.rm = T),
+         AAPL_mad = AAPL - mean(AAPL, na.rm = T),
+         SBUX_mad = SBUX - mean(SBUX, na.rm = T),
+         MSFT_mad = MSFT - mean(MSFT, na.rm = T))
+
+
+
+
+mean(StocksManip$AAPL)
+mean(StocksManip$MSFT)
+
+
+StocksIsolated <- StocksMAD %>% 
+  select(ends_with("_mad"))
+
+Isolated_long <- StocksIsolated %>%
+  pivot_longer(cols = ends_with("_MAD"),names_to = "Company", values_to = "MAD")
+
+
+ggplot(Isolated_long, aes(y = Company, x = MAD)) +
+  geom_hex()
 ```
+
+# Aaron Zalen - Does higher volume correlate with a larger increase in price?
 
 ```{r}
-skim(Stocks) %>% 
-  select(-`Close/Last`)
+# Data manipulation -----------------------------------------------------------------
+
+#Opening File
+
+#First we change the values to be numerical 
+stocks <- StocksUpdated2 %>% 
+  mutate(Change=`Close/Last`-Open) %>% 
+  mutate(PercentageChange = ((`Close/Last` - Open) / Open) * 100) %>% 
+  group_by(Company)
+
+
+# Graph 1 -----------------------------------------------------------------
+
+ggplot(stocks, aes(y = PercentageChange, x = log10(Volume))) +
+  geom_point(alpha = 0.1, color = "blue") +
+  geom_smooth(method = "lm", color = "red") +
+  facet_wrap(~ Company, scales="free_y") +
+  labs(
+    title = "Percentage Change vs. Volume",
+    x = "Log10 of Volume",
+    y = "Percentage Change",
+    caption = "Blue points represent data, Red line represents linear fit"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 12, face = "bold"),
+    axis.title.x = element_text(size = 12),
+    axis.title.y = element_text(size = 12),
+    strip.text = element_text(size = 12),
+    legend.position = "none"  # Remove legend for better clarity
+  )
+
+
 ```
 
-## MPG and a Type of Cars
+### The change in volume does not appear to have any effect on the stock's price
 
-The following boxplot shows how the distribution of highway MPG (`hwy`) varies by a type of cars (`class`) :blue_car: :truck: :minibus:.
-
-```{r}
-ggplot(data = mpg) +
-  geom_boxplot(aes(x = class, y = hwy, fill = class),
-               show.legend = F) +
-  labs(x = "Class", y = "Highway\nMPG") 
-```
+# Conclusion:

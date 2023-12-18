@@ -27,7 +27,7 @@ data <- data %>%
          Chg_Close = LastCloseLag - `Close/Last`)
 
 getwd()
-
+??ggthemes
 
 # Stocks Manipulation ------------------------------------------------------------
 
@@ -52,32 +52,107 @@ StocksManip <- StocksManip %>%
 summary(StocksManip)
 
 StocksMAD <- StocksManip %>% 
-  mutate(CSCO_mad = mean(CSCO) - CSCO,
-         QCOM_mad = mean(QCOM) - QCOM,
-         META_mad = mean(META) - META,
-         AMZN_mad = mean(AMZN) - AMZN,
-         TSLA_mad = mean(TSLA) - TSLA,
-         AMD_mad = mean(AMD) - AMD,
-         NFLX_mad = mean(NFLX) - NFLX)
+  mutate(CSCO_mad = CSCO - mean(CSCO, na.rm = T),
+         QCOM_mad = QCOM - mean(QCOM, na.rm = T),
+         META_mad = META- mean(META, na.rm = T),
+         AMZN_mad = AMZN - mean(AMZN, na.rm = T),
+         TSLA_mad = TSLA - mean(TSLA, na.rm = T),
+         AMD_mad = AMD - mean(AMD, na.rm = T),
+         NFLX_mad = NFLX - mean(NFLX, na.rm = T),
+         AAPL_mad = AAPL - mean(AAPL, na.rm = T),
+         SBUX_mad = SBUX - mean(SBUX, na.rm = T),
+         MSFT_mad = MSFT - mean(MSFT, na.rm = T))
+
+
+
+
+mean(StocksManip$AAPL)
+mean(StocksManip$MSFT)
+
 
 StocksIsolated <- StocksMAD %>% 
   select(ends_with("_mad"))
 
-ggplot(StocksIsolated, aes(x = CSCO_mad))+
-  geom_point()
-
-ggplot(StocksIsolated, aes(x = ends_with("_mad")))+
-  geom_point()
+Isolated_long <- StocksIsolated %>%
+  pivot_longer(cols = ends_with("_MAD"),names_to = "Company", values_to = "MAD")
 
 
+ggplot(Isolated_long, aes(y = Company, x = MAD)) +
+  geom_hex()
+
+ggplot(Isolated_long, aes(y = Company, x = MAD)) +
+  geom_boxplot()
 
 
-ggplot() +
-  geom_point(aes(x = value, y = loc, color = name), size = 2) +
-  scale_color_identity() +
-  geom_line(aes(x = value, y = loc)) + 
-  theme_minimal()
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+colnames(StocksIsolated)
+
+library(tidyr)
+
+Isolated_long <- StocksIsolated %>%
+  pivot_longer(cols = ends_with("_MAD"),names_to = "Company", values_to = "MAD")
+
+ggplot(Isolated_long, aes(y = Company, x = MAD)) +
+  geom_hex()
+
+
+?pivot_longer
+
+
+
+
+# Change in Closing -------------------------------------------------------
+
+StocksUpdated2 <- read.csv("StocksUpdated2.csv")
+
+StocksChange <- StocksUpdated %>% 
+  select(Company, Date, Close.Last, Volume) %>% 
+  group_by(Company) %>% 
+  pivot_wider(names_from = Company, values_from = c(Close.Last, Volume))
+
+# mutate(CL_Chg = Close.Last - lag(Close.Last),
+#          V_Chg = Volume - lag(Volume))
+
+colnames(StocksUpdated)
+
+
+ggplot(StocksChange, aes(x = starts_with("Volume"), y = ends_with("Close.Last"))) +
+  geom_point() +
+  facet_wrap(starts_with("Volume"))~starts_with(("Close.Last"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# NonWorking --------------------------------------------------------------
 
 
 
