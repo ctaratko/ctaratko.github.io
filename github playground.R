@@ -1,3 +1,4 @@
+#####
 getwd(
 )
 
@@ -35,10 +36,10 @@ install.packages("tidyverse")
 library(tidyverse)
 
 
-Stocks <- read.csv("stocks.csv")
+StocksUpdated2 <- read.csv("stocksUpdated2.csv")
 
 
-StocksManip <- StocksUpdated %>% 
+StocksManip <- StocksUpdated2 %>% 
   mutate(CL_Change =Close.Last - lag(Close.Last))
 
 StocksManip <- StocksManip %>% 
@@ -118,27 +119,66 @@ ggplot(Isolated_long, aes(y = Company, x = MAD)) +
 
 
 
-# Change in Closing -------------------------------------------------------
+# Price Volume Trend Indicator -------------------------------------------------------
 
 StocksUpdated2 <- read.csv("StocksUpdated2.csv")
 
 StocksChange <- StocksUpdated %>% 
   select(Company, Date, Close.Last, Volume) %>% 
   group_by(Company) %>% 
-  pivot_wider(names_from = Company, values_from = c(Close.Last, Volume))
+  mutate(CL_Chg = Close.Last - lag(Close.Last),
+         V_Chg = Volume - lag(Volume),
+         PVT = (CL_Chg / V_Chg))
 
+ggplot(StocksChange, aes( x = Company, y = PVT)) +
+  geom_hex()
+  
+
+
+  
 # mutate(CL_Chg = Close.Last - lag(Close.Last),
 #          V_Chg = Volume - lag(Volume))
 
 colnames(StocksUpdated)
 
 
-ggplot(StocksChange, aes(x = starts_with("Volume"), y = ends_with("Close.Last"))) +
-  geom_point() +
-  facet_wrap(starts_with("Volume"))~starts_with(("Close.Last"))
 
 
 
+
+ggplot(StocksChange, aes(x = Volume_AAPL, y = Close.Last_AAPL)) +
+  geom_hex()
+
+ggplot(StocksChange, aes(x = Volume_SBUX, y = Close.Last_SBUX)) +
+  geom_hex()
+
+ggplot(StocksChange, aes(x = Volume_MSFT, y = Close.Last_MSFT)) +
+  geom_hex()
+
+ggplot(StocksChange, aes(x = Volume_CSCO, y = Close.Last_CSCO)) +
+  geom_hex()
+
+ggplot(StocksChange, aes(x = Volume_AAPL, y = Close.Last_AAPL)) +
+  geom_hex()
+
+ggplot(StocksChange, aes(x = Volume_AAPL, y = Close.Last_AAPL)) +
+  geom_hex()
+
+
+ggplot(StocksChange, aes(x = Volume_SBUX, y = Close.Last_SBUX)) +
+  geom_point()
+
+ggplot(StocksChange, aes(x = Volume_MSFT, y = Close.Last_MSFT)) +
+  geom_point()
+
+ggplot(StocksChange, aes(x = Volume_AAPL, y = Close.Last_AAPL)) +
+  geom_point()
+
+ggplot(StocksChange, aes(x = Volume_AAPL, y = Close.Last_AAPL)) +
+  geom_point()
+
+ggplot(StocksChange, aes(x = Volume_AAPL, y = Close.Last_AAPL)) +
+  geom_point()
 
 
 
@@ -200,3 +240,9 @@ summarize(Stocks$Close.Last)
 StocksUpdated <- read.csv("StocksUpdated.csv")
 
 
+
+# Jack Section ------------------------------------------------------------
+
+
+Volatility_Analysis <- StocksUpdated2 %>% 
+  separate(Date, into = c("Month/Day","Year"), sep = 6 )

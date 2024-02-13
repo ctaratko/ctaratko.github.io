@@ -5,3 +5,5 @@ install.packages("gitcreds")
 gitcreds::gitcreds_set()
 
 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
+
+getwd()
