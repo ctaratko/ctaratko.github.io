@@ -239,7 +239,7 @@ StocksClosing <- Stocks1
 summarize(Stocks$Close.Last)
 StocksUpdated <- read.csv("StocksUpdated.csv")
 
-
+getwd()
 
 # Jack Section ------------------------------------------------------------
 

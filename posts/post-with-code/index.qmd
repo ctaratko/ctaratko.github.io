@@ -9,5 +9,9 @@ image: "image.jpg"
 This is a post with executable code.
 
 ```{r}
-StockPost <- read_csv("/Users/christophertaratko/Documents/ctaratko.github.io/StocksUpdated2.csv")
+library(tidyverse)
+library(ggplot2)
+StockPost <- read_csv("/Users/christophertaratko/ProjectsList/Data Analytics/Personal Website/ctaratko.github.io/StocksUpdated2.csv")
+view(StockPost)
 ```
+

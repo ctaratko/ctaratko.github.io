@@ -34,7 +34,8 @@ library(corrplot)
 
 
 
-StocksUpdated2 <- read_csv("/Users/christophertaratko/Documents/ctaratko.github.io/StocksUpdated2.csv")
+StocksUpdated2 <- read_csv(
+  "/Users/christophertaratko/ProjectsList/Data Analytics/Personal Website/ctaratko.github.io/StocksUpdated2.csv")
 
 Volatility_analysis <- StocksUpdated2 %>% 
   separate(Date, into = c("Month/Day","Year"), sep = 6 )
