@@ -76,9 +76,3 @@ div(
   )
 )
 ```
-
-
-## Experience
-
-Too much for anyone to handle... (N/A) Testing to see if this is posted
-

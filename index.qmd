@@ -30,12 +30,50 @@ about:
       href: https://JohnChristanis227.github.io
 ---
 
-Christopher Taratko majors in Accounting & Economics, with a Minor in Data Analytics at SUNY Geneseo. When not working on college assignments, Christopher enjoys Sailing, Snowboarding, zip-lining, and gaming.
-
-## Education
-
-State University of New York at Geneseo \| Geneseo, NY <br> B.S in Accounting & Economics \| Aug 2022 - May 2026 <br> Minor in Data Analytics
-
-## Experience
-
-Too much for anyone to handle... (N/A)
+```{r}
+#| echo: false
+library(htmltools)
+div(
+  h1('About Me',
+     style = css(
+       color = '#14a',
+       font_family = 'Libre Baskerville',
+       font_size = '30px'
+     )),
+  p("I have majors in",
+  span("Accounting & Economics", 
+       style = css(
+         font_weight = 600,
+         )),
+  ",with a Minor in",
+  span("Data Analytics",
+       style = css(
+         font_weight = 600
+         )),
+  "at SUNY Geneseo. When not working on college assignments, I enjoy sailing, snowboarding, zip-lining, rock climbing and gaming. Other interesting facts about me is that I have a Level 1 Sailing Certification, I race sailboats competitively through the summer and winter seasons, and my hopes for my college education is to bring a balance within Data Analytics and Accounting. I see both of these majors as essential to each other, especially now that AI will cause job uncertainty in programmable positions and is being developed to predict markets."),
+  h1("Education",
+     style = css(
+       color = '#14a',
+       font_family = 'Libre Baskerville',
+       font_size = '30px'
+     )),
+  p("State University of New York at Geneseo | Geneseo, NY  B.S in Accounting & Economics | Aug 2022 - May 2026 Minor in Data Analytics"),
+  h1('Experience',
+     style = css(
+       color = '#14a',
+       font_family = 'Libre Baskerville',
+       font_size = '30px'
+     )),
+  p("Daidone Income Tax LLC - Mentorship"),
+  p("LinkedIn Learning - Excel Tutorial"),
+  p("LinkedIn Learning - Intermediate Excel"),
+  p("LinkedIn Learning - Excel - Financial Functions in Depth"),
+  p("LinkedIn Learning - Managing and Analyzing Data in Excel"),
+  style = css(
+    background = "linear-gradient(45deg, #bcd7e1, #c7dbf0)",
+    padding = '25px',
+    color = '#333333',
+    border_radius = '10px'
+  )
+)
+```
