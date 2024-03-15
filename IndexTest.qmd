@@ -1,0 +1,84 @@
+---
+title: "Christopher Taratko"
+about:
+  template: trestles  # jolla  trestles  solana  marquee  broadside
+  image: img/CoolKid.jpg
+  image-width: 15em
+  image-shape: round # rectangle  round  rounded
+  
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com/in/christopher-taratko-63a59524a/
+    - icon: instagram
+      text: Instagram
+      href: https://instagram.com/ctaratko/
+    - icon: github
+      text: GitHub
+      href: https://github.com/ctaratko
+    - icon: file-earmark-pdf
+      text: Resumé
+      href: https://ctaratko.github.io/ChristopherTaratkoResume.pdf
+    - icon: mailbox
+      text: Email
+      href: mailto:cmt101@geneseo.edu
+    - text: Jack Katz
+      href: https://jackatzecon.github.io
+    - text: Aaron Zalen
+      href: https://1Aaronz.github.io
+    - text: John Christanis
+      href: https://JohnChristanis227.github.io
+---
+```{r}
+#| echo: false
+library(htmltools)
+div(
+  h1('About Me',
+     style = css(
+       color = '#14a',
+       font_family = 'Libre Baskerville',
+       font_size = '30px'
+     )),
+  p("I have majors in",
+  span("Accounting & Economics", 
+       style = css(
+         font_weight = 600,
+         )),
+  ",with a Minor in",
+  span("Data Analytics",
+       style = css(
+         font_weight = 600
+         )),
+  "at SUNY Geneseo. When not working on college assignments, I enjoy sailing, snowboarding, zip-lining, rock climbing and gaming. Other interesting facts about me is that I have a Level 1 Sailing Certification, I race sailboats competitively through the summer and winter seasons, and my hopes for my college education is to bring a balance within Data Analytics and Accounting. I see both of these majors as essential to each other, especially now that AI will cause job uncertainty in programmable positions and is being developed to predict markets."),
+  h1("Education",
+     style = css(
+       color = '#14a',
+       font_family = 'Libre Baskerville',
+       font_size = '30px'
+     )),
+  p("State University of New York at Geneseo | Geneseo, NY  B.S in Accounting & Economics | Aug 2022 - May 2026 Minor in Data Analytics"),
+  h1('Experience',
+     style = css(
+       color = '#14a',
+       font_family = 'Libre Baskerville',
+       font_size = '30px'
+     )),
+  p("Daidone Income Tax LLC - Mentorship"),
+  p("LinkedIn Learning - Excel Tutorial"),
+  p("LinkedIn Learning - Intermediate Excel"),
+  p("LinkedIn Learning - Excel - Financial Functions in Depth"),
+  p("LinkedIn Learning - Managing and Analyzing Data in Excel"),
+  style = css(
+    background = "linear-gradient(45deg, #bcd7e1, #c7dbf0)",
+    padding = '25px',
+    color = '#333333',
+    border_radius = '10px'
+  )
+)
+```
+
+
+## Experience
+
+Too much for anyone to handle... (N/A) Testing to see if this is posted
+

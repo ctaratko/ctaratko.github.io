@@ -31,7 +31,7 @@ library(skimr)
 library(ggthemes)
 library(hrbrthemes)
 library(corrplot)
-
+library(ggplot2)
 
 
 StocksUpdated2 <- read_csv(
