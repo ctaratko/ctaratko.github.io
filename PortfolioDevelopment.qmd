@@ -110,7 +110,8 @@ ggplot(DivTest2,aes(x = Date, y = Total_Value)) +
        x = "Date of Dividends Payment",
        y = "Total Share Valuation"
        )
-
+# Create Target Values
+# With geom_vline and geom_hLine
 ?labs
 ```
 
