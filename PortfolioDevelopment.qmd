@@ -22,7 +22,7 @@ from: markdown+emoji
 ```{r setup}
 #| include: false
 
-
+library(htmltools)
 library(tidyverse)
 library(skimr)
 library(ggthemes)
@@ -30,4 +30,97 @@ library(hrbrthemes)
 library(corrplot)
 library(ggplot2)
 
+```
+
+```{r}
+#| echo: false
+div(
+  h1("NVDY Reinvestment Data Planner",
+     style = css(
+       font_family = 'Garamond',
+       font_size = '40px',
+       color = '#FFF'
+     )),
+  p("The Dividend Reinvestment Calculator is an array of charted values based on a given amount of NVDY in terms of USD Valuation or number of shares.  ",
+    style = css(
+      font_size = '25px',
+      color = '#ddd',
+      font_weight = '600px'
+    )),
+  p("The given valuation will be more or less volatile, as the provided date comes from the date of dividend payouts, rather than all daily valuations. This is not meant to be a secured planner, but just a general visualization of how money invested into this can grow and by what growth the stock has already seen",
+    style = css(
+      font_size = '20px'
+    )),
+  h3("Contributions",
+     style = css(
+       color = '#FFF',
+       font_family = 'Garamond'
+     )),
+  p("Site Owner: Christopher Taratko"),
+  p("Contributors: Professor Li Lu & Professor Byeong-Hak Choe"),
+  style = css(
+       background = 'linear-gradient(45deg, #769DC8, #20548D )',
+       padding = '50px',
+       color = '#ddd',
+       border_radius = '5px',
+       font_family = 'Old Standard TT'
+))
+```
+
+```{r}
+#| echo: false
+D_NVDY_Pull <- function() {
+  NVDY1 <- read_csv("https://query1.finance.yahoo.com/v7/finance/download/NVDY?period1=1683811800&period2=1709314910&interval=1d&events=dividends&includeAdjustedClose=true")
+  NVDY2 <- read_csv("https://query1.finance.yahoo.com/v7/finance/download/NVDY?period1=1683811800&period2=1709256228&interval=1d&events=history&includeAdjustedClose=true")
+  NVDY3 <- NVDY2 %>% 
+    left_join(NVDY1)
+  NVDY4 <- NVDY3 %>% 
+    select(Date, Open, Close, `Adj Close`, Dividends) %>% 
+    na.omit() %>% 
+    mutate(Avg_Price = (Open + Close + `Adj Close`)/3) %>% 
+    select(Date, Avg_Price, Dividends) %>% 
+    arrange((Date))
+}
+ 
+      # Attempt No.5 #Input works fine, will later need to bring it to 
+      # Website to get User Data
+DivTest <- D_NVDY_Pull()
+# Input <-  as.numeric(readline("Investment: ")) / first(DivTest$Avg_Price)
+Input <- 1000 # Change when JavaScript is implemented
+DivTest1 <- D_NVDY_Pull()
+ShareCount <- c(Input,rep(NA,nrow(DivTest1)-1))
+Div_to_Shares <- as.numeric(rep(NA,nrow(DivTest1)))
+DivTest1$ShareCount <- ShareCount
+DivTest1$Div_to_Shares <- Div_to_Shares
+for (i in 1:nrow(DivTest1)) {
+  DivTest1$Div_to_Shares[i] = (DivTest1$ShareCount[i] * DivTest1$Dividends[i])/ DivTest1$Avg_Price[i]
+  if (i == nrow(DivTest1)) break 
+  if (is.na(DivTest1$ShareCount[i + 1])) {
+    DivTest1$ShareCount[i + 1] = DivTest1$ShareCount[i] + DivTest1$Div_to_Shares[i]
+  }
+}
+DivTest2 <- DivTest1 %>% 
+  mutate(DivPayout = Div_to_Shares * Avg_Price,
+         Total_Value = (ShareCount + Div_to_Shares) * Avg_Price)
+
+ggplot(DivTest2,aes(x = Date, y = Total_Value)) +
+  geom_point(aes(size = 1.5, color = 'navy', alpha = .6),show.legend = FALSE) +
+  geom_smooth(aes(color = '#000080'), se = F, show.legend = F) +
+  labs(title = "NVDY Dividend Reinvestment Plot",
+       x = "Date of Dividends Payment",
+       y = "Total Share Valuation"
+       )
+
+?labs
+```
+
+```{r}
+#| echo: false
+div(
+  div(
+    h1("Functionality of The Reinvestment Calculator:"),
+    p("The Calculator / Graph is designed to be a User Input based service (Which will occur in the future) that will be able to calculate the monthly and overall returns.")
+  ),
+  p("The current calculator does not have an input function due to the lack of JavaScript knowledge on my end, but it will be temporarily resolved with a ShinyApp variable slider (Ex. '$50,$100,$500,$1000,$5000... $100000' or in terms of # of shares). ")
+)
 ```

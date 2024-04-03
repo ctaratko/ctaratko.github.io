@@ -37,7 +37,8 @@ div(
      style = css(
        color = '#14a',
        font_family = 'Libre Baskerville',
-       font_size = '30px'
+       font_size = '30px',
+       text_align = "Center"
      )),
   p("I have majors in",
   span("Accounting & Economics", 
@@ -54,14 +55,16 @@ div(
      style = css(
        color = '#14a',
        font_family = 'Libre Baskerville',
-       font_size = '30px'
+       font_size = '30px',
+       text_align = "Center"
      )),
   p("State University of New York at Geneseo | Geneseo, NY  B.S in Accounting & Economics | Aug 2022 - May 2026 Minor in Data Analytics"),
   h1('Experience',
      style = css(
        color = '#14a',
        font_family = 'Libre Baskerville',
-       font_size = '30px'
+       font_size = '30px',
+       text_align = "Center"
      )),
   p("Daidone Income Tax LLC - Mentorship"),
   p("LinkedIn Learning - Excel Tutorial"),

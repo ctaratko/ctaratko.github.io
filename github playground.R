@@ -66,7 +66,6 @@ StocksMAD <- StocksManip %>%
 
 
 
-
 mean(StocksManip$AAPL)
 mean(StocksManip$MSFT)
 
@@ -246,3 +245,8 @@ getwd()
 
 Volatility_Analysis <- StocksUpdated2 %>% 
   separate(Date, into = c("Month/Day","Year"), sep = 6 )
+
+# Directory ---------------------------------------------------------------
+
+ setwd("/Users/christophertaratko/ProjectsList/Data Analytics/Personal Website")
+getwd()

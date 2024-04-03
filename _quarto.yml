@@ -9,6 +9,8 @@ website:
     left:
       - text: Project
         href: project.qmd
+      - text: Portfolio Development
+        href: PortfolioDevelopment.qmd
       - text: Blog
         href: blog-listing.qmd
   page-footer: 
