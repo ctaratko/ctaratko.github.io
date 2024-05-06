@@ -99,7 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -144,7 +144,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of Contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#lab-7-work" id="toc-lab-7-work" class="nav-link active" data-scroll-target="#lab-7-work"><span class="header-section-number">1</span> Lab 7 Work</a></li>
+  <li><a href="#lab-8" id="toc-lab-8" class="nav-link" data-scroll-target="#lab-8"><span class="header-section-number">2</span> Lab 8</a></li>
+  <li><a href="#lab-9" id="toc-lab-9" class="nav-link" data-scroll-target="#lab-9"><span class="header-section-number">3</span> Lab 9</a></li>
+  <li><a href="#another-class-exercise" id="toc-another-class-exercise" class="nav-link" data-scroll-target="#another-class-exercise"><span class="header-section-number">4</span> Another Class Exercise</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -173,8 +184,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="lab-7-work" class="level1">
-<h1>Lab 7 Work</h1>
+<section id="lab-7-work" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Lab 7 Work</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># IN-CLASS EXERCISE</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   Create an if-else statement example in R that assigns a hypothetical starting salary based on different education levels. We’ll consider three levels of education: High School, Bachelor’s Degree, and Master’s Degree.</span></span>
@@ -205,8 +216,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="lab-8" class="level1">
-<h1>Lab 8</h1>
+<section id="lab-8" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Lab 8</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#     In-Class Exercise: Adjusting Discount Rates Based on Purchase Amount</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise Description: Based on the previous example, now introduce an additional </span></span>
@@ -250,8 +261,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="lab-9" class="level1">
-<h1>Lab 9</h1>
+<section id="lab-9" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Lab 9</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In-Class Exercise: Inventory for a popular book</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise Description: You own a small bookstore, and you keep track of the inventory for a popular book. Initially, you have 50 books in stock. Throughout the day, customers buy them, and you record each sale. Your policy is to order 30 more books whenever your stock drops below 10 to ensure you always have enough books to meet demand. The simulation stops after ordering more books once, for simplicity.</span></span>
@@ -277,23 +288,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "The initial Stock of 50 has been reduced to: 48"
-[1] "The initial Stock of 50 has been reduced to: 43"
+[1] "The initial Stock of 50 has been reduced to: 44"
+[1] "The initial Stock of 50 has been reduced to: 42"
+[1] "The initial Stock of 50 has been reduced to: 41"
+[1] "The initial Stock of 50 has been reduced to: 40"
 [1] "The initial Stock of 50 has been reduced to: 38"
-[1] "The initial Stock of 50 has been reduced to: 34"
-[1] "The initial Stock of 50 has been reduced to: 29"
-[1] "The initial Stock of 50 has been reduced to: 25"
-[1] "The initial Stock of 50 has been reduced to: 24"
-[1] "The initial Stock of 50 has been reduced to: 20"
-[1] "The initial Stock of 50 has been reduced to: 16"
+[1] "The initial Stock of 50 has been reduced to: 35"
+[1] "The initial Stock of 50 has been reduced to: 31"
+[1] "The initial Stock of 50 has been reduced to: 28"
+[1] "The initial Stock of 50 has been reduced to: 23"
+[1] "The initial Stock of 50 has been reduced to: 18"
+[1] "The initial Stock of 50 has been reduced to: 15"
+[1] "The initial Stock of 50 has been reduced to: 12"
 [1] "The initial Stock of 50 has been reduced to: 11"
-[1] "The initial Stock of 50 has been reduced to: 9"
-[1] "Stock originally was at: 9"
-[1] "The updated Stock is now at: 39"</code></pre>
+[1] "The initial Stock of 50 has been reduced to: 6"
+[1] "Stock originally was at: 6"
+[1] "The updated Stock is now at: 36"</code></pre>
 </div>
 </div>
 </section>
-<section id="another-class-exercise" class="level1">
-<h1>Another Class Exercise</h1>
+<section id="another-class-exercise" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Another Class Exercise</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ConsumerPoints <span class="ot">&lt;-</span> <span class="dv">85</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (ConsumerPoints <span class="sc">&lt;</span> <span class="dv">140</span>) {</span>
@@ -315,11 +330,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Would you like to Convert your Points to Cash: [Y/N] </code></pre>
 </div>
 </div>
-<p>#| echo: false</p>
-</section>
-<section id="test" class="level1">
-<h1>Test</h1>
-<p>print(“This Website has been fixed”)</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "This Website has been fixed"</code></pre>
+</div>
+</div>
 
 
 </section>
