@@ -1,12 +1,14 @@
 ---
-title: "Welcome To My Blog"
-author: "YOUR NAME"
-date: "2023-10-27"
+title: "NVDY Planner"
+author: "Christopher Taratko"
+date: "2024-4-10"
 categories: [news]
 ---
 
-This is the first post in a Quarto blog. Welcome!
+NVDY Dividend Reinvestment Code
 
 ![](thumbnail.jpg)
 
-Since this post doesn't specify an explicit `image`, the first image in the post will be used in the listing page of posts.
+Creating a secured future for myself and others is a plan I wish to enact. With that being said, I've begun to learn how to code various ways to get financial data from useful resources like finance.yahoo, Robinhood, and tools such as `Quantmod`.
+
+> Code-Block:

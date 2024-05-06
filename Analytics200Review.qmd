@@ -1,0 +1,141 @@
+---
+title: "Lab Exercises - DANL 200"
+format: html
+editor: visual
+---
+
+```{r}
+#| echo: false
+library(htmltools)
+div(
+  h1("Data Analytics Lab Review (In Class Exercises)",
+     style = css(
+       font_family = 'Garamond',
+       font_size = '40px',
+       color = '#ddd'
+       )
+     ),
+  p("These Lab Exercises consist of if statements, for loops, while loops, and repeat statements",
+    style = css(
+      font_family = 'Garamond',
+      font_size = '25px',
+      color = '#FFF',
+      background = 'linear-gradient(30deg, #444, #aaa )',
+      padding = '20px',
+      border_radius = '20px',
+      text_align = 'center',
+    ))
+  )
+
+```
+# Lab 7 Work
+```{r}
+# IN-CLASS EXERCISE
+#   Create an if-else statement example in R that assigns a hypothetical starting salary based on different education levels. We’ll consider three levels of education: High School, Bachelor’s Degree, and Master’s Degree.
+
+#In this example:
+
+#   If the education level is “High School”, the starting salary is set to $30,000.
+#   If the education level is “Bachelor’s Degree”, the starting salary is set to $50,000.
+#   If the education level is “Master’s Degree”, the starting salary is set to $70,000.
+#   For any other education level not explicitly listed, the default starting salary is set to $40,000.
+
+# At the beginning, insert education level is “Bachelor’s Degree”, and Initialize the starting salary at 0. At the end use print() to show the result.
+
+Education <- "Bachelor's Degree"
+Starting_Salary <- 0
+if (Education == "High School") {
+  Starting_Salary <- 30000
+} else if (Education == "Bachelor's Degree") {
+  Starting_Salary <- 50000
+} else if (Education == "Master's Degree") {
+  Starting_Salary <- 70000
+} else {
+  Starting_Salary <- 40000
+}
+print(paste("This person has a ",Education," and their starting salary will be $",Starting_Salary,sep = ''))
+```
+# Lab 8
+```{r}
+#     In-Class Exercise: Adjusting Discount Rates Based on Purchase Amount
+# Exercise Description: Based on the previous example, now introduce an additional 
+# condition: for premium members, if their purchase amount exceeds $200, they get 
+# a 15% discount instead of 10%. all the rest are same, including non exceeds $200 
+# will get 10% and Non-premium members still do not receive any discount.
+
+
+# Purchase amounts and membership status
+purchase_amounts <- c(100, 150, 200, 250, 300)
+is_premium_member <- c(TRUE, FALSE, TRUE, FALSE, TRUE)
+
+# Initialize a vector to hold the final amounts, the initial value doesn't matter, eventually they will updated. But the length is important, it gives us the vector of results.
+final_amounts <- numeric(length(purchase_amounts))
+
+# Use a for loop with if-else statement to apply discounts
+for (i in 1:length(purchase_amounts)) {
+  if (is_premium_member[i] && purchase_amounts[i] > 200) {
+    final_amounts[i] <- purchase_amounts[i] * .85  # Applied 15% discount
+  } else if (is_premium_member[i]) {
+    final_amounts[i] <- purchase_amounts[i] * 0.9  # Apply 10% discount
+  } else {
+    final_amounts[i] <- purchase_amounts[i]  # No discount
+  } # My formatting (Works)
+}
+
+# for (i in 1:length(purchase_amounts)) 
+#   if (is_premium_member[i]) {
+#     if (is_premium_member[i] && purchase_amounts[i] > 200) {
+#       final_amounts[i] <- purchase_amounts[i] * 0.85  # Applied 15% discount 
+#     } else {
+#     final_amounts[i] <- purchase_amounts[i] * 0.9  # Apply 10% discount
+#   }
+#     } else {
+#     final_amounts[i] <- purchase_amounts[i]  # No discount
+#   } # Li Lu's Formatting (Cleaner Formatting, nested if statements)
+
+print(final_amounts)
+```
+
+# Lab 9
+```{r}
+# In-Class Exercise: Inventory for a popular book
+# Exercise Description: You own a small bookstore, and you keep track of the inventory for a popular book. Initially, you have 50 books in stock. Throughout the day, customers buy them, and you record each sale. Your policy is to order 30 more books whenever your stock drops below 10 to ensure you always have enough books to meet demand. The simulation stops after ordering more books once, for simplicity.
+
+
+# Initial Setup
+Initial_Stock <- 50
+OrderThreshold <- 10
+OrderQ <- 30
+CurrentStock <- Initial_Stock
+repeat {
+  while (CurrentStock > OrderThreshold) {
+  Q_Book_Sold <- sample(1:5,1)
+  CurrentStock <- CurrentStock - Q_Book_Sold
+  print(paste("The initial Stock of",Initial_Stock,"has been reduced to:",CurrentStock))
+  } 
+  if (CurrentStock <= OrderThreshold) {
+  print(paste("Stock originally was at:", CurrentStock))
+  CurrentStock <- CurrentStock + OrderQ
+  print(paste("The updated Stock is now at:", CurrentStock))
+  break
+  } 
+}
+
+```
+
+
+# Another Class Exercise
+```{r}
+ConsumerPoints <- 85
+while (ConsumerPoints < 140) {
+  if (ConsumerPoints < 100) {
+    ConsumerPoints <- ConsumerPoints + 5
+    print(ConsumerPoints)
+  } else if (ConsumerPoints >= 100) {
+    ConsumerPoints <- ConsumerPoints + 5
+    print(paste("You have", ConsumerPoints, "Points!",""))
+    readline("Would you like to Convert your Points to Cash: [Y/N] ")
+    break
+  }
+}
+```

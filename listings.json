@@ -2,15 +2,10 @@
   {
     "listing": "/blog-listing.html",
     "items": [
-      "/ctaratko.github.io-tmp/danl-website-template-master/posts/beer-markets/beer-markets.html",
+      "/posts/welcome/index.html",
       "/posts/beer-markets/beer-markets.html",
-      "/posts/post-with-code/index.html",
-      "/ctaratko.github.io-tmp/danl-website-template-master/posts/Starwars2/starwars2.html",
-      "/ctaratko.github.io-tmp/danl-website-template-master/posts/starwars/starwars_df.html",
-      "/posts/starwars/starwars_df.html",
-      "/ctaratko.github.io-tmp/danl-website-template-master/posts/post-with-code/index.html",
-      "/ctaratko.github.io-tmp/danl-website-template-master/posts/welcome/index.html",
-      "/posts/welcome/index.html"
+      "/posts/Stock Code/index.html",
+      "/posts/starwars/starwars_df.html"
     ]
   }
 ]

@@ -13,6 +13,8 @@ website:
         href: PortfolioDevelopment.qmd
       - text: Blog
         href: blog-listing.qmd
+      - text: DANL 200 Review
+        href: Analytics200Review.qmd
   page-footer: 
     center: "Powered with GitHub and Quarto<br>© Christopher Taratko, 2023"
 
