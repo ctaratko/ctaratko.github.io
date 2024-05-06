@@ -28,7 +28,9 @@ div(
   )
 
 ```
+
 # Lab 7 Work
+
 ```{r}
 # IN-CLASS EXERCISE
 #   Create an if-else statement example in R that assigns a hypothetical starting salary based on different education levels. We’ll consider three levels of education: High School, Bachelor’s Degree, and Master’s Degree.
@@ -55,7 +57,9 @@ if (Education == "High School") {
 }
 print(paste("This person has a ",Education," and their starting salary will be $",Starting_Salary,sep = ''))
 ```
+
 # Lab 8
+
 ```{r}
 #     In-Class Exercise: Adjusting Discount Rates Based on Purchase Amount
 # Exercise Description: Based on the previous example, now introduce an additional 
@@ -97,6 +101,7 @@ print(final_amounts)
 ```
 
 # Lab 9
+
 ```{r}
 # In-Class Exercise: Inventory for a popular book
 # Exercise Description: You own a small bookstore, and you keep track of the inventory for a popular book. Initially, you have 50 books in stock. Throughout the day, customers buy them, and you record each sale. Your policy is to order 30 more books whenever your stock drops below 10 to ensure you always have enough books to meet demand. The simulation stops after ordering more books once, for simplicity.
@@ -123,8 +128,8 @@ repeat {
 
 ```
 
-
 # Another Class Exercise
+
 ```{r}
 ConsumerPoints <- 85
 while (ConsumerPoints < 140) {
@@ -138,4 +143,11 @@ while (ConsumerPoints < 140) {
     break
   }
 }
+```
+
+```{r}
+#| echo: false
+
+# Test
+print("This Website has been fixed")
 ```
