@@ -1,0 +1,85 @@
+<html>
+
+h1 {
+  font-size: 90%;
+  font: 'Garamond';
+  color: '#a58'
+}
+
+<head>
+  <title>
+  I made this with html
+  </title>
+</head>
+
+<body>
+
+  <p> 
+    <b>
+      Knit HTML
+    </b>
+  </p>
+<h1>
+  R Studio Coding: Interpretive Portfolio Value Over Time
+</h1>
+<!--begin.rcode
+#| echo: true
+install.packages("tidyverse")
+library(tidyverse)
+
+TVOM <- data.frame(
+  Year = c(2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040,2041,2042,2043,2044,2045,2046,2047,2048,2049,2050,2051,2052,2053,2054,2055,2056,2057,2058,2059,2060),
+  PortfolioValue = c(3700,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA)
+)
+TVOM <- TVOM %>% 
+  mutate(
+    YearNum = Year - 2023
+  )
+
+IntNo2 <- c()  # Initialize an empty vector
+for (i in 160:360) {
+  IntNo2 <- c(IntNo2, i)  # Append each number to the vector
+}
+IntNo2 <- IntNo2 / 1000
+Interest_RNG <- function() {
+  sample(IntNo2,size = 1, replace = T)
+}
+
+
+
+PlaceHolder <- nrow(TVOM)
+Inputs <- TVOM$PortfolioValue
+
+for (i in 1:nrow(TVOM)) {
+  if (i == 1) {
+    Inputs[i] = TVOM$PortfolioValue[i]
+  }
+  else if (i <= PlaceHolder) {
+    Inputs[i] = round(Inputs[i-1] * (1+Interest_RNG())^TVOM$YearNum, digits = 2)
+  }
+}
+TVOM <- TVOM %>% 
+  mutate(
+    PortfolioValue = Inputs
+)
+ggplot(TVOM) +
+  geom_point(aes(x = Year, y = PortfolioValue, color = 'red', ), show.legend = F) +
+  labs(title = "Estimated Portfolio Valuation", subtitle = "Use of Current Portfolio with a RNG for % interest") +
+  geom_smooth(aes(x = Year, y = PortfolioValue, colour = 'Green'), se = F, na.rm = F, show.legend = F, level = .90)
+?geom_smooth
+# PortfolioValue = PortfolioValue[i-1]*(1+.24)^YearNum
+
+end.rcode-->
+
+<p>You can also embed plots, for example:</p>
+
+<!--begin.rcode fig.width=7, fig.height=6
+#| echo: false
+Inputs
+
+plot(TVOM)
+?plot
+end.rcode-->
+
+</body>
+</html>

@@ -15,6 +15,10 @@ website:
         href: blog-listing.qmd
       - text: Lab Review
         href: Analytics200Review.qmd
+      - text: 210 Projects List
+        menu:
+        - text: 210 Project 1
+          href: DANL210_Project.qmd
   page-footer: 
     center: "Powered with GitHub and Quarto<br>© Christopher Taratko, 2023"
 

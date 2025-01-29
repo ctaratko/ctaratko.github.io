@@ -1,0 +1,60 @@
+---
+title: "Data Analytics -- [Project Name]"
+toc: true
+format: 
+  html:
+    code-fold: true
+editor: visual
+---
+
+### Data Analysis
+
+# \[Title\]
+
+------------------------------------------------------------------------
+
+# [Introduction]{.underline}:
+
+## - *Background*
+
+-   Provide context for the research questions, explaining why they are significant, relevant, or interesting
+
+## - *Statement of the Problem*
+
+::: callout-important
+### Important
+
+This is a callout, it'll help define items on my page that might be important, or other such key features. You can find this at [PositCo](https://rstudio.github.io/cheatsheets/html/quarto.html?_gl=1r8o89c_gaMTM5Njc3MjgwMy4xNzM3OTkxNDY4_ga_2C0WZ1JHG0*MTczNzk5MTQ2OC4xLjEuMTczNzk5MTUzMC4wLjAuMA..)'s Cheatsheet page
+:::
+
+-   Clearly articulate the specific problem or issue the project will address.
+
+------------------------------------------------------------------------
+
+# [Data Collection]{.underline}:
+
+-   Use a Python script (`*.py`) to write the code and the comment on how to retrieve financial, accounting, and ESG data using Python `yfinance` and `selenium`.
+
+    -   Do NOT provide your code for data collection in your webpage. You should submit your Python script for data collection to Brightspace.
+
+``` r
+{r}
+#| echo: true
+
+
+library(tidyverse)
+library(quantmod)
+install.packages("gganimate")
+# Learn how to use gganimate properly (Requires other packages to download the jpeg files that makes the slides flush)
+library(gganimate)
+```
+
+------------------------------------------------------------------------
+
+# [Descriptive Statistics]{.underline}:
+
+-   Provide both grouped and un-grouped descriptive statistics and distribution plots for the ESG data and the finance/accounting data
+
+-   Provide correlation heat maps using `corr()` and `seaborn.heatmap()`. Below provides the Python code for creating a correlation heatmap.
+
+------------------------------------------------------------------------

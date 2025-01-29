@@ -9,6 +9,8 @@ NVDY Dividend Reinvestment Code
 
 ![](thumbnail.jpg)
 
-Creating a secured future for myself and others is a plan I wish to enact. With that being said, I've begun to learn how to code various ways to get financial data from useful resources like finance.yahoo, Robinhood, and tools such as `Quantmod`.
+The reinvestment planner for the ticker, NVDY, is based off of the stock ticker for Nvidia (NVDA), where ProShares performs options trading on behalf of the shareholders in order to generate profits for said shareholders and the company through the distribution of Stock prices and dividends payments which can vary greatly, but have performed well in the past year, allowing shareholders to receive 1.5x shares through just monthly dividend reinvestment in this past year.
+
+The strategies used for these option trades can vary immensely, but would look as if they contain a self 
 
 > Code-Block:

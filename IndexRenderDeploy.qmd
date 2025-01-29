@@ -79,3 +79,93 @@ div(
   )
 )
 ```
+
+```{javascript}
+# #| echo: false
+# const DATA_ENTRY_SHEET_NAME = "1BT-M6uJ5OdLBnojAMorrafl7VW6GBaSbZMJJD3h-_08"; # 1BT-M6uJ5OdLBnojAMorrafl7VW6GBaSbZMJJD3h-_08
+# var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(DATA_ENTRY_SHEET_NAME);
+# 
+# const doPost = (request = {}) => {
+#   const { postData: { contents, type } = {} } = request;
+#   if (!contents) {
+#     console.error('No postData contents found');
+#     return ContentService.createTextOutput('No postData contents found').setMimeType(ContentService.MimeType.TEXT);
+#   }
+#   var data = parseFormData(contents);
+#   if (data) {
+#     appendToGoogleSheet(data);
+#     return ContentService.createTextOutput(JSON.stringify(data)).setMimeType(ContentService.MimeType.JSON);
+#   } else {
+#     return ContentService.createTextOutput('Error parsing form data').setMimeType(ContentService.MimeType.TEXT);
+#   }
+# };
+# 
+# function parseFormData(postData) {
+#   if (typeof postData !== 'string') {
+#     console.error('postData is not a string:', postData);
+#     return null;
+#   }
+#   var data = {};
+#   var parameters = postData.split('&');
+#   for (var i = 0; i < parameters.length; i++) {
+#     var [key, value] = parameters[i].split('=');
+#     data[key] = decodeURIComponent(value.replace(/\+/g, ' '));
+#   }
+#   return data;
+# }
+# 
+# function appendToGoogleSheet(data) {
+#   var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+#   var rowData = headers.map(headerFld => data[headerFld] || "");
+#   sheet.appendRow(rowData);
+# }
+# 
+# 
+
+```
+
+```{javascript}
+#| echo: false
+
+const SPREADSHEET_ID = '1BT-M6uJ5OdLBnojAMorrafl7VW6GBaSbZMJJD3h-_08';  // Replace with your actual Spreadsheet ID
+const DATA_ENTRY_SHEET_NAME = 'SpreadDataBase';  // Replace with the actual sheet name within your spreadsheet
+
+var sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(DATA_ENTRY_SHEET_NAME);
+
+const doPost = (request = {}) => {
+  const { postData: { contents, type } = {} } = request;
+  if (!contents) {
+    console.error('No postData contents found');
+    return ContentService.createTextOutput('No postData contents found').setMimeType(ContentService.MimeType.TEXT);
+  }
+  var data = parseFormData(contents);
+  if (data) {
+    appendToGoogleSheet(data);
+    return ContentService.createTextOutput(JSON.stringify(data)).setMimeType(ContentService.MimeType.JSON);
+  } else {
+    return ContentService.createTextOutput('Error parsing form data').setMimeType(ContentService.MimeType.TEXT);
+  }
+};
+
+function parseFormData(postData) {
+  if (typeof postData !== 'string') {
+    console.error('postData is not a string:', postData);
+    return null;
+  }
+  var data = {};
+  var parameters = postData.split('&');
+  for (var i = 0; i < parameters.length; i++) {
+    var [key, value] = parameters[i].split('=');
+    data[key] = decodeURIComponent(value.replace(/\+/g, ' '));
+  }
+  return data;
+}
+
+function appendToGoogleSheet(data) {
+  var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  var rowData = headers.map(headerFld => data[headerFld] || "");
+  sheet.appendRow(rowData);
+}
+
+
+```
