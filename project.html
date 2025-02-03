@@ -128,10 +128,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Project</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./PortfolioDevelopment.html"> 
-<span class="menu-text">Portfolio Development</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="./blog-listing.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
@@ -171,12 +167,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">2</span> Data</a>
   <ul class="collapse">
   <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics"><span class="header-section-number">2.1</span> Summary Statistics</a></li>
-  <li><a href="#jack-katz---research-question-1-which-stocks-have-the-most-historical-volatility." id="toc-jack-katz---research-question-1-which-stocks-have-the-most-historical-volatility." class="nav-link" data-scroll-target="#jack-katz---research-question-1-which-stocks-have-the-most-historical-volatility."><span class="header-section-number">2.2</span> Jack Katz - Research Question 1: Which stocks have the most historical volatility.</a></li>
   </ul></li>
-  <li><a href="#christopher-taratko---which-stocks-are-better-short-term-investments-vs-long-term-investments" id="toc-christopher-taratko---which-stocks-are-better-short-term-investments-vs-long-term-investments" class="nav-link" data-scroll-target="#christopher-taratko---which-stocks-are-better-short-term-investments-vs-long-term-investments"><span class="header-section-number">3</span> Christopher Taratko - Which Stocks are Better Short Term Investments vs Long Term Investments?</a></li>
-  <li><a href="#aaron-zalen---does-higher-volume-correlate-with-a-larger-increase-in-price" id="toc-aaron-zalen---does-higher-volume-correlate-with-a-larger-increase-in-price" class="nav-link" data-scroll-target="#aaron-zalen---does-higher-volume-correlate-with-a-larger-increase-in-price"><span class="header-section-number">4</span> Aaron Zalen - Does higher volume correlate with a larger increase in price?</a></li>
-  <li><a href="#john-christanis---how-are-the-individual-stocks-correlated" id="toc-john-christanis---how-are-the-individual-stocks-correlated" class="nav-link" data-scroll-target="#john-christanis---how-are-the-individual-stocks-correlated"><span class="header-section-number">5</span> John Christanis - How are the Individual Stocks Correlated?</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6</span> Conclusion:</a></li>
+  <li><a href="#jack-katz---research-question-1-which-stocks-have-the-most-historical-volatility." id="toc-jack-katz---research-question-1-which-stocks-have-the-most-historical-volatility." class="nav-link" data-scroll-target="#jack-katz---research-question-1-which-stocks-have-the-most-historical-volatility."><span class="header-section-number">3</span> Jack Katz - Research Question 1: Which stocks have the most historical volatility.</a>
+  <ul class="collapse">
+  <li><a href="#historical-volatility-of-each-company-for-each-year." id="toc-historical-volatility-of-each-company-for-each-year." class="nav-link" data-scroll-target="#historical-volatility-of-each-company-for-each-year."><span class="header-section-number">3.1</span> Historical volatility of each company for each year.</a></li>
+  </ul></li>
+  <li><a href="#christopher-taratko---which-stocks-are-better-short-term-investments-vs-long-term-investments" id="toc-christopher-taratko---which-stocks-are-better-short-term-investments-vs-long-term-investments" class="nav-link" data-scroll-target="#christopher-taratko---which-stocks-are-better-short-term-investments-vs-long-term-investments"><span class="header-section-number">4</span> Christopher Taratko - Which Stocks are Better Short Term Investments vs Long Term Investments?</a></li>
+  <li><a href="#aaron-zalen---does-higher-volume-correlate-with-a-larger-increase-in-price" id="toc-aaron-zalen---does-higher-volume-correlate-with-a-larger-increase-in-price" class="nav-link" data-scroll-target="#aaron-zalen---does-higher-volume-correlate-with-a-larger-increase-in-price"><span class="header-section-number">5</span> Aaron Zalen - Does higher volume correlate with a larger increase in price?</a></li>
+  <li><a href="#john-christanis---how-are-the-individual-stocks-correlated" id="toc-john-christanis---how-are-the-individual-stocks-correlated" class="nav-link" data-scroll-target="#john-christanis---how-are-the-individual-stocks-correlated"><span class="header-section-number">6</span> John Christanis - How are the Individual Stocks Correlated?</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">7</span> Conclusion:</a></li>
   </ul>
 </nav>
     </div>
@@ -213,7 +212,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="summary-statistics" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="summary-statistics"><span class="header-section-number">2.1</span> Summary Statistics</h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(StocksUpdated2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Company              Date             Close/Last         Volume         
  Length:25160       Length:25160       Min.   :  1.62   Min.   :1.144e+06  
@@ -232,12 +234,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="jack-katz---research-question-1-which-stocks-have-the-most-historical-volatility." class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="jack-katz---research-question-1-which-stocks-have-the-most-historical-volatility."><span class="header-section-number">2.2</span> Jack Katz - Research Question 1: Which stocks have the most historical volatility.</h2>
-<section id="creating-new-variables-for-analysis-separating-by-month-day-and-year-will-make-it-easier-to-group-and-filter-observations-by-year." class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="creating-new-variables-for-analysis-separating-by-month-day-and-year-will-make-it-easier-to-group-and-filter-observations-by-year."><span class="header-section-number">2.2.1</span> Creating new variables for analysis, Separating by month day and year will make it easier to group and filter observations by year.</h3>
-<p>#Historical volatility of each company for each year. <br> A simple measure of historical volatility is calculated by finding the standard deviation <br> of the close prices over a time series. In this case we found the standard deviation for <br> each stock for each year and then showed this data on ggplot.</p>
+</section>
+<section id="jack-katz---research-question-1-which-stocks-have-the-most-historical-volatility." class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Jack Katz - Research Question 1: Which stocks have the most historical volatility.</h1>
+<section id="creating-new-variables-for-analysis-separating-by-month-day-and-year-will-make-it-easier-to-group-and-filter-observations-by-year." class="level3" data-number="3.0.1">
+<h3 data-number="3.0.1" class="anchored" data-anchor-id="creating-new-variables-for-analysis-separating-by-month-day-and-year-will-make-it-easier-to-group-and-filter-observations-by-year."><span class="header-section-number">3.0.1</span> Creating new variables for analysis, Separating by month day and year will make it easier to group and filter observations by year.</h3>
+</section>
+<section id="historical-volatility-of-each-company-for-each-year." class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="historical-volatility-of-each-company-for-each-year."><span class="header-section-number">3.1</span> Historical volatility of each company for each year.</h2>
+<p>A simple measure of historical volatility is calculated by finding the standard deviation of the close prices over a time series. In this case we found the standard deviation for each stock for each year and then showed this data on ggplot.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Historical_Volatility <span class="ot">&lt;-</span> Volatility_analysis <span class="sc">%&gt;%</span> </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Company, Year) <span class="sc">%&gt;%</span> </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Volatility =</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">Close/Last</span><span class="st">`</span>))</span>
@@ -254,6 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_economist_white</span>()</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>Volatility <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_width</span>(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -264,12 +273,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-</section>
-<section id="christopher-taratko---which-stocks-are-better-short-term-investments-vs-long-term-investments" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Christopher Taratko - Which Stocks are Better Short Term Investments vs Long Term Investments?</h1>
-<section id="figuring-out-which-stocks-could-be-used-at-short-and-long-term-investments-was-through-the-use-of-their-pvt-indicator-values-the-mad-mean-absolute-deviation-of-their-closing-value-change." class="level3" data-number="3.0.1">
-<h3 data-number="3.0.1" class="anchored" data-anchor-id="figuring-out-which-stocks-could-be-used-at-short-and-long-term-investments-was-through-the-use-of-their-pvt-indicator-values-the-mad-mean-absolute-deviation-of-their-closing-value-change."><span class="header-section-number">3.0.1</span> Figuring out which stocks could be used at Short and Long term investments was through the use of their PVT Indicator Values &amp; the MAD (Mean Absolute Deviation) of their Closing Value Change.</h3>
+<section id="christopher-taratko---which-stocks-are-better-short-term-investments-vs-long-term-investments" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Christopher Taratko - Which Stocks are Better Short Term Investments vs Long Term Investments?</h1>
+<section id="figuring-out-which-stocks-could-be-used-at-short-and-long-term-investments-was-through-the-use-of-their-pvt-indicator-values-the-mad-mean-absolute-deviation-of-their-closing-value-change." class="level3" data-number="4.0.1">
+<h3 data-number="4.0.1" class="anchored" data-anchor-id="figuring-out-which-stocks-could-be-used-at-short-and-long-term-investments-was-through-the-use-of-their-pvt-indicator-values-the-mad-mean-absolute-deviation-of-their-closing-value-change."><span class="header-section-number">4.0.1</span> Figuring out which stocks could be used at Short and Long term investments was through the use of their PVT Indicator Values &amp; the MAD (Mean Absolute Deviation) of their Closing Value Change.</h3>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>StocksChange <span class="ot">&lt;-</span> StocksUpdated2 <span class="sc">%&gt;%</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Company, Date, <span class="st">`</span><span class="at">Close/Last</span><span class="st">`</span>, Volume) <span class="sc">%&gt;%</span> </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Company) <span class="sc">%&gt;%</span> </span>
@@ -279,6 +289,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(StocksChange, <span class="fu">aes</span>( <span class="at">x =</span> Company, <span class="at">y =</span> PVT)) <span class="sc">+</span></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hex</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -286,9 +297,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PVT = Price Volume Trend Indicator. ( ∆ in Price / ∆ in Volume )</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Object #2:</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -305,6 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Company, <span class="at">values_from =</span> CL_Change)</span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(StocksManip)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     Date                AAPL              SBUX               MSFT        
  Length:2516        Min.   :-541.35   Min.   :-95.6100   Min.   :-14.460  
@@ -331,6 +348,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  Max.   :236.950   Max.   :  20.420   Max.   :570.08  
                                                       </code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>StocksMAD <span class="ot">&lt;-</span> StocksManip <span class="sc">%&gt;%</span> </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">CSCO_mad =</span> CSCO <span class="sc">-</span> <span class="fu">mean</span>(CSCO, <span class="at">na.rm =</span> T),</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">QCOM_mad =</span> QCOM <span class="sc">-</span> <span class="fu">mean</span>(QCOM, <span class="at">na.rm =</span> T),</span>
@@ -347,13 +366,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(StocksManip<span class="sc">$</span>AAPL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(StocksManip<span class="sc">$</span>MSFT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 65.64621</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>StocksIsolated <span class="ot">&lt;-</span> StocksMAD <span class="sc">%&gt;%</span> </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">"_mad"</span>))</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -363,6 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Isolated_long, <span class="fu">aes</span>(<span class="at">y =</span> Company, <span class="at">x =</span> MAD)) <span class="sc">+</span></span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hex</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -373,9 +399,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="aaron-zalen---does-higher-volume-correlate-with-a-larger-increase-in-price" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Aaron Zalen - Does higher volume correlate with a larger increase in price?</h1>
+<section id="aaron-zalen---does-higher-volume-correlate-with-a-larger-increase-in-price" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Aaron Zalen - Does higher volume correlate with a larger increase in price?</h1>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data manipulation -----------------------------------------------------------------</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Opening File</span></span>
@@ -407,6 +435,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
 <span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>  <span class="co"># Remove legend for better clarity</span></span>
 <span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -416,6 +445,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Different graph --------------------------------------------------------------</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>correlation_by_group <span class="ot">&lt;-</span> stocks <span class="sc">%&gt;%</span></span>
@@ -425,6 +456,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(correlation_by_group, <span class="fu">aes</span>(<span class="at">x=</span>Company, <span class="at">y=</span>correlation))<span class="sc">+</span></span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()<span class="sc">+</span></span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span> <span class="st">"How strongly does Volume and Percentage Change in Price Correlate?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -433,13 +465,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="the-change-in-volume-does-not-appear-to-have-any-effect-on-the-stocks-price" class="level3" data-number="4.0.1">
-<h3 data-number="4.0.1" class="anchored" data-anchor-id="the-change-in-volume-does-not-appear-to-have-any-effect-on-the-stocks-price"><span class="header-section-number">4.0.1</span> The change in volume does not appear to have any effect on the stock’s price</h3>
+<section id="the-change-in-volume-does-not-appear-to-have-any-effect-on-the-stocks-price" class="level3" data-number="5.0.1">
+<h3 data-number="5.0.1" class="anchored" data-anchor-id="the-change-in-volume-does-not-appear-to-have-any-effect-on-the-stocks-price"><span class="header-section-number">5.0.1</span> The change in volume does not appear to have any effect on the stock’s price</h3>
 </section>
 </section>
-<section id="john-christanis---how-are-the-individual-stocks-correlated" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> John Christanis - How are the Individual Stocks Correlated?</h1>
+<section id="john-christanis---how-are-the-individual-stocks-correlated" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> John Christanis - How are the Individual Stocks Correlated?</h1>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>StocksJ <span class="ot">&lt;-</span> StocksUpdated2 <span class="sc">%&gt;%</span> </span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Change=</span><span class="st">`</span><span class="at">Close/Last</span><span class="st">`</span><span class="sc">-</span>Open) <span class="sc">%&gt;%</span> </span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PercentageChange =</span> ((<span class="st">`</span><span class="at">Close/Last</span><span class="st">`</span> <span class="sc">-</span> Open) <span class="sc">/</span> Open) <span class="sc">*</span> <span class="dv">100</span>)</span>
@@ -452,6 +486,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>correlation_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(StockJ[, <span class="fu">sapply</span>(StockJ, is.numeric)], <span class="at">use =</span> <span class="st">"pairwise.complete.obs"</span>)</span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(correlation_matrix)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>          AAPL      SBUX      MSFT      CSCO      QCOM      META      AMZN
 AAPL 1.0000000 0.4428538 0.6485268 0.5203601 0.5024310 0.5418905 0.5910447
@@ -476,7 +511,10 @@ TSLA 1.0000000 0.3557420 0.3955207
 AMD  0.3557420 1.0000000 0.3607283
 NFLX 0.3955207 0.3607283 1.0000000</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(correlation_matrix, <span class="at">method =</span> <span class="st">"circle"</span>, <span class="at">type =</span> <span class="st">"upper"</span>, <span class="at">tl.col =</span> <span class="st">"black"</span>, <span class="at">tl.srt =</span> <span class="dv">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -486,8 +524,8 @@ NFLX 0.3955207 0.3607283 1.0000000</code></pre>
 </div>
 </div>
 </section>
-<section id="conclusion" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Conclusion:</h1>
+<section id="conclusion" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Conclusion:</h1>
 
 
 </section>

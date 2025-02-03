@@ -6,6 +6,9 @@ author:
   - Name 2:   Jack Katz
   - Name 3:   Aaron Zalen
   - Name 4:   John Christanis
+format: 
+  html: 
+    code-fold: true
 
 toc: true
 toc-title: "Table of Contents"
@@ -55,11 +58,12 @@ We retrieved the dataset "Stock Market: Historical Data of Top 10 Companies" fro
 summary(StocksUpdated2)
 ```
 
-## Jack Katz - Research Question 1: Which stocks have the most historical volatility.
+# Jack Katz - Research Question 1: Which stocks have the most historical volatility.
 
 ### Creating new variables for analysis, Separating by month day and year will make it easier to group and filter observations by year.
 
-#Historical volatility of each company for each year. <br> A simple measure of historical volatility is calculated by finding the standard deviation <br> of the close prices over a time series. In this case we found the standard deviation for <br> each stock for each year and then showed this data on ggplot.
+## Historical volatility of each company for each year.
+A simple measure of historical volatility is calculated by finding the standard deviation of the close prices over a time series. In this case we found the standard deviation for each stock for each year and then showed this data on ggplot.
 
 ```{r}
 Historical_Volatility <- Volatility_analysis %>% 
