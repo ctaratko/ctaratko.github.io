@@ -1,0 +1,9 @@
+{
+  "listing": "/blog-listing.html",
+  "items": [
+    "/posts/welcome/index.html",
+    "/posts/beer-markets/beer-markets.html",
+    "/posts/Stock Code/index.html",
+    "/posts/starwars/starwars_df.html"
+  ]
+}
