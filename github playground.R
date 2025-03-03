@@ -250,3 +250,9 @@ Volatility_Analysis <- StocksUpdated2 %>%
 
  setwd("/Users/christophertaratko/ProjectsList/Data Analytics/Personal Website")
 getwd()
+
+
+# Poop --------------------------------------------------------------------
+
+
+
