@@ -23,6 +23,10 @@ website:
           href: PythonNotebooks/danl_210_hw1_Taratko_Christopher.ipynb
         - text: 210 Homework 2
           href: PythonNotebooks/danl_210_hw2_Taratko_Christopher.ipynb
+        - text: 210 Homework 3
+          href: PythonNotebooks/danl_210_hw3_Taratko_Christopher.py
+        - text: 210 Homework 4
+          href: PythonNotebooks/danl_210_hw4_Taratko_Christopher.py
   page-footer: 
     center: "Powered with GitHub and Quarto<br>© Christopher Taratko, 2023"
 
