@@ -27,6 +27,14 @@ website:
           href: PythonNotebooks/danl_210_hw3_Taratko_Christopher.py
         - text: 210 Homework 4
           href: PythonNotebooks/danl_210_hw4_Taratko_Christopher.py
+      - text: googlesheets Test
+        href: GoogleSheets/GoogleSheetsTesting.qmd
+      - text: DANL 210 Project
+        menu: 
+        - text: Project Overview
+          href: PythonFolder/DANL210Project.qmd
+        - text: python
+          href: PythonFolder/210Project1.py
   page-footer: 
     center: "Powered with GitHub and Quarto<br>© Christopher Taratko, 2023"
 
