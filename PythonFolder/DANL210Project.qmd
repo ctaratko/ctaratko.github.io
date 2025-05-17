@@ -1,5 +1,98 @@
 ---
 title: "DANL210Project"
-format: html
+toc: True
+format: 
+  html:
+    code-fold: true
+editor: visual
 ---
 
+# The ESG Report and Stock Correlation
+
+The ESG is an important financial and technical set of values that relate to a company's internal values, as well as their show of those internal values through values that make a difference in the world. ESG consists of three main portions: ***Environmental***, ***Social***, and ***Governance***. To add onto this list of three, there's the third value that is also looked at, which is ***Controversy***.
+
+## Background to the Data
+
+The data collected was the 2025 stock data, as well as the ESG data of the past year, through Data Scraping. This method involves code to collect a company website's data that they post, which turns it into then unreadable data, and then will convert the data back into readable data, such as a data frame, standardized text, or just understanding if a web-page has a button to click.
+
+```{py}
+import pandas as pd
+url_2024 = "https://bcdanl.github.io/data/esg_proj_2024_data.csv"
+esg_proj_2024_data = pd.read_csv(url_2024)
+
+url_2025 = "https://bcdanl.github.io/data/esg_proj_2025.csv"
+esg_proj_2025 = pd.read_csv(url_2025)
+
+del url_2024 # new favorite thing to use, clean explorer
+del url_2025
+
+esg_proj_2025_filtered = esg_proj_2025[esg_proj_2025['Symbol'].isin(esg_proj_2024_data['Symbol'])].drop_duplicates().copy().reset_index(drop=True)
+# someone cooked here, and that person's name.... is me :sunglasses emoji:
+del esg_proj_2025 #I'm keeping this explorer looking absotootly beautiful
+```
+
+```{py}
+import time
+import random
+import pandas as pd
+import os
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+options = Options()
+options.add_argument("window-size=1400,1200")  # Set window size
+options.add_argument('--disable-blink-features=AutomationControlled')  # Prevent detection of automation by disabling blink features
+options.page_load_strategy = 'eager'
+driver = webdriver.Chrome(options=options)
+
+df = pd.DataFrame()
+for Ticker in esg_proj_2025_filtered['Symbol']:
+    url = f'https://finance.yahoo.com/quote/{Ticker}/sustainability/'
+    driver.get(url)
+    time.sleep(random.uniform(3,5))
+    Data = driver.find_elements(By.TAG_NAME,'h4')
+    try:
+        All_ESG = Data[0].text
+    except:
+        All_ESG = "NA"
+    try:
+        EnvRisk = Data[1].text
+    except:
+        EnvRisk = "NA"
+    try:
+        SocRisk = Data[2].text
+    except:
+        SocRisk = "NA"
+    try:
+        GovRisk = Data[3].text
+    except:
+        GovRisk = "NA"
+    try:
+        Controversy = driver.find_element(By.XPATH,"/html/body/div[2]/main/section/section/section/article/section[3]/section[1]/div/div[2]/span[1]").text
+    except:
+        Controversy = "NA"
+    
+    obs = [All_ESG, EnvRisk, SocRisk, GovRisk, Controversy]
+    obs = pd.DataFrame([obs])
+    df = pd.concat([df, obs], ignore_index= True)
+driver.quit()
+driver.close()
+
+df
+```
+
+# Data Fulfillment
+
+-   Average ∆ in the Sector's Stock Data (Closing Values) to better understand the output relies solely on the `groupby()` function, a very strong foundation which allowed the data to be separated into each individual sector.
+-   The AVG ∆ in Stock Data per `Sector` was chosen because as an Accounting major, it is important to accurately reflect a company's data and the trend of such data by comparing it to like sources. It wouldn't be reasonable to compare a tech stock's performance to a company that supplies home-goods and somehow made it to IPO. Not that there's anything wrong with either types of companies, but they're just not useful comparisons, and if they have like data, it would be very hard to explain that they correlate so well, yet have zero actual similarities at their cores.
+
+```{py}
+ColumnHeaders = esg_proj_2024_data.columns
+Merge = pd.merge(esg_proj_2025_filtered, df, left_index=True, right_index=True)
+Merge.columns = ColumnHeaders # COOKED RIGHT HERE, WHO DID THIS AND HAS TWO THUMBS? This guy
+del ColumnHeaders # get this GARBAGE outta here (it was useful for the one line, too much clutter gang)
+Merge
+```
