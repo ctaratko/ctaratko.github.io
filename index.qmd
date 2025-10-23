@@ -2,7 +2,7 @@
 title: "Christopher Taratko"
 about:
   template: trestles  # jolla  trestles  solana  marquee  broadside
-  image: img/CoolKid.jpg
+  image: img/Myself.JPG
   image-width: 15em
   image-shape: round # rectangle  round  rounded
   
@@ -24,10 +24,6 @@ about:
       href: mailto:cmt101@geneseo.edu
     - text: Jack Katz
       href: https://jackatzecon.github.io
-    - text: Aaron Zalen
-      href: https://1Aaronz.github.io
-    - text: John Christanis
-      href: https://JohnChristanis227.github.io
 ---
 
 ```{r}
