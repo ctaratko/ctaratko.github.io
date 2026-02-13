@@ -1,0 +1,130 @@
+---
+title: "Ben & Jerrys"
+author: "Christopher Taratko"
+date: "2023-11-02"
+categories: [IceCream, code, data-analysis]
+image: "ben-jerry-ice-cream.png"
+
+execute: 
+  warning: false
+  message: false
+  
+toc: true
+---
+
+# Ben & Jerry's Ice Cream Dataframe Analysis
+
+### Data Loading
+
+```{r}
+#| include: false
+#| echo: false
+
+library(knitr)
+library(rmarkdown)
+library(tidyverse)
+library(skimr)
+library(ggthemes)
+library(hrbrthemes)
+
+theme_set(theme_ipsum()+
+          theme(strip.background =element_rect(fill="lightgray"),
+                axis.title.x  = element_text(angle = 0,
+                                            size = rel(1.5),
+                                            margin = margin(10,0,0,0)),
+                axis.title.y  = element_text(angle = 0,
+                                            size = rel(1.5),
+                                            margin = margin(0,10,0,0))
+                )
+          )
+```
+
+Let's analyze the `beer_data` data:
+
+```{r}
+ice_cream <- read_csv("https://bcdanl.github.io/data/ben-and-jerry-cleaned.csv")
+rmarkdown::paged_table(ice_cream) 
+```
+
+## Summary of Data
+
+This code provides the following statistics:
+
+-   Mean (price)
+
+-   Median (price)
+
+-   Standard Deviation (price)
+
+-   Mean (Coupon)
+
+-   Mean (Household size)
+
+```{r}
+#| results: asis
+
+mySummary <- ice_cream %>%
+  summarise(
+    mean_price = mean(priceper1),
+    median_price = median(priceper1),
+    sd_price = sd(priceper1),
+    avg_coupon = mean(couponper1),
+    avg_household_size = mean(household_size)
+  )
+data.frame(mySummary)
+```
+
+### Top 5 Ben & Jerry's **Flavors**
+
+```{r}
+ice_cream %>% 
+  count(ice_cream$flavor_descr) %>% 
+  arrange(-n) %>% 
+  head(10)
+```
+
+## Regional DataGrouping
+
+```{r}
+
+
+regional_ice_cream <- ice_cream %>% 
+  count(region, flavor_descr, name = "n") %>% 
+  group_by(region) %>% 
+  slice_max(n, n = 5)
+
+regional_ice_cream
+```
+
+## Plotting
+
+```{r}
+ggplot(regional_ice_cream,
+       aes(
+         x = flavor_descr,
+         y = n,
+         color = region
+       )) +
+  geom_point(show.legend = F) + 
+  facet_wrap(~ region, ncol = 4) + 
+  ggthemes::theme_fivethirtyeight() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(title = "Regional Best Sellers")
+```
+
+## Regression Model
+
+```{r}
+model <- lm(priceper1 ~ couponper1 + household_income +
+              household_size + region,
+            data = ice_cream)
+
+unique(ice_cream$household_income)
+library(stargazer)
+stargazer(model, type = 'text')
+
+```
+
+### Explanation
+
+Of this linear regression model, we can see that all except the south region is statistically significant. Another indicator we can use to help make valuable assumptions is the R\^2 value, where it is fairly low for this model, but that doesn't necessarily mean there's no correlation. It also seems that the household income has a very minimal effect, with the dependent variable being -0.00000. After researching possible reasons to this, it was concluded that the values within that column of data might be too large, and would have to be scaled back in order to get a visible number, so that it isn't cut off.

@@ -235,7 +235,7 @@ Stocks1 <- Stocks1 %>%
 
 StocksClosing <- Stocks1
 
-summarize(Stocks$Close.Last)
+# summarize(Stocks$Close.Last)
 StocksUpdated <- read.csv("StocksUpdated.csv")
 
 getwd()
