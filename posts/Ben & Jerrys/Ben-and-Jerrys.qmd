@@ -128,3 +128,127 @@ stargazer(model, type = 'text')
 ### Explanation
 
 Of this linear regression model, we can see that all except the south region is statistically significant. Another indicator we can use to help make valuable assumptions is the R\^2 value, where it is fairly low for this model, but that doesn't necessarily mean there's no correlation. It also seems that the household income has a very minimal effect, with the dependent variable being -0.00000. After researching possible reasons to this, it was concluded that the values within that column of data might be too large, and would have to be scaled back in order to get a visible number, so that it isn't cut off.
+
+# Ben & Jerry's \[310 Addition\]
+
+This section is designated to fulfilling requests of the Data Analytics 310 Homework assignment, as the rest that was above was for the 320 Homework assignment
+
+<br>
+
+### Regional Counts
+
+```{r}
+#| include: False
+#| echo: false
+
+library(tidyverse)
+region_summary <- ice_cream %>%
+  count(region, sort = TRUE)
+region_summary
+```
+
+### Income Groupings
+
+```{r}
+#ice_cream$household_income
+ice_cream <- ice_cream %>% 
+  mutate(
+    income_group = case_when( 
+      default = NULL,
+      household_income < 80000       ~ "Low",
+      household_income < 150000      ~ "Mid",
+      TRUE                           ~ "High" 
+      ))
+
+ice_cream %>%
+  group_by(income_group) %>%
+  summarise(
+    avg_price = mean(priceper1, na.rm = TRUE),
+    avg_coupon = mean(couponper1, na.rm = TRUE),
+    n = n()
+  ) %>%
+  arrange(desc(avg_price))   # sorting
+
+```
+
+## Ice Cream ggplots:
+
+### Price Distribution by Income Groups
+
+```{r}
+ggplot(ice_cream, aes(
+  x = income_group, 
+  y = priceper1,
+  fill = income_group
+  )) +
+  geom_boxplot(size = .5) +
+  labs(
+    title = "Ice Cream Price Distribution by Income Group",
+    x = "Income Group",
+    y = "Price per Unit"
+  )
+
+```
+
+Explanation: <br>
+
+Insert Explanation
+
+### Coupon Value & Price Paid
+
+```{r}
+ggplot(ice_cream, aes(x = couponper1, y = priceper1)) +
+  geom_point(alpha = 0.2) +
+  geom_smooth(method = "gam", se = FALSE, aes(color = ""), show.legend = F) +
+  labs(
+    title = "Relationship Between Coupon Value and Price Paid",
+    x = "Coupon Value",
+    y = "Price Paid"
+  )
+
+```
+
+Explanation: <br>
+
+Insert Explanation
+
+### Regional Price Distribution
+
+```{r}
+ggplot(ice_cream, aes(
+  x = priceper1,
+  fill = region
+  )) +
+  geom_histogram(bins = 30) +
+  facet_wrap(~ region) +
+  labs(
+    title = "Price Distribution by Region",
+    x = "Price",
+    y = "Count"
+  )
+
+```
+
+Explanation: <br>
+
+Insert Explanation
+
+### Household Size vs Price Paid
+
+```{r}
+ggplot(ice_cream, aes(
+  x = household_size, 
+  y = priceper1
+  )) +
+  geom_jitter(alpha = 0.2) +
+# geom_smooth(se = FALSE, color = "") + # Wasn't able to get a smooth line out of it
+  labs(
+    title = "Household Size vs Price Paid",
+    x = "Household Size",
+    y = "Price Paid"
+  )
+```
+
+Explanation: <br>
+
+Insert Explanation

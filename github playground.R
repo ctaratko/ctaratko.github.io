@@ -248,8 +248,8 @@ Volatility_Analysis <- StocksUpdated2 %>%
 
 # Directory ---------------------------------------------------------------
 
- setwd("/Users/christophertaratko/ProjectsList/Data Analytics/Personal Website")
-getwd()
+# setwd("/Users/christophertaratko/ProjectsList/Data Analytics/Personal Website")
+# getwd()
 
 
 # Poop --------------------------------------------------------------------
