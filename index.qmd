@@ -28,6 +28,7 @@ about:
 
 ```{r}
 #| echo: false
+#| warning: false
 library(htmltools)
 div(
   h1('About Me',
@@ -36,15 +37,10 @@ div(
        font_family = 'Libre Baskerville',
        font_size = '30px'
      )),
-  p("I have majors in",
-  span("Accounting & Economics", 
+  p("I have two majors majors, those being",
+  span("Accounting & Data Analytics", 
        style = css(
          font_weight = 600,
-         )),
-  ",with a Minor in",
-  span("Data Analytics",
-       style = css(
-         font_weight = 600
          )),
   "at SUNY Geneseo. When not working on college assignments, I enjoy sailing, snowboarding, zip-lining, rock climbing and gaming. Other interesting facts about me is that I have a Level 1 Sailing Certification, I race sailboats competitively through the summer and winter seasons, and my hopes for my college education is to bring a balance within Data Analytics and Accounting. I see both of these majors as essential to each other, especially now that AI will cause job uncertainty in programmable positions and is being developed to predict markets."),
   h1("Education",

@@ -192,7 +192,7 @@ ggplot(ice_cream, aes(
 
 Explanation: <br>
 
-Insert Explanation
+From the looks of it, low income groups (\$80,000 or less per household) spend more on average compared to their counterparts. This could be due to these lower income houses being either a single resident getting more expensive ice cream on average due to not having to take care of other individuals, or it could be some relation to how the ice cream is advertised in the lower income group's neighborhood
 
 ### Coupon Value & Price Paid
 
@@ -210,7 +210,7 @@ ggplot(ice_cream, aes(x = couponper1, y = priceper1)) +
 
 Explanation: <br>
 
-Insert Explanation
+Initially, the coupon values are low, and scatter the price paid, but as they reach a point around \~\$3.25, the trend becomes very linear and only follows as it continues.
 
 ### Regional Price Distribution
 
@@ -231,19 +231,20 @@ ggplot(ice_cream, aes(
 
 Explanation: <br>
 
-Insert Explanation
+In terms of regional Price Distribution, you can see a very distinct occurrence the South Region being on the lower end, and spiking at that point. This can be attributed to it being a hotter climate most likely, and hotter climates bring people to demand more ice cream, so pricing ice cream lower will result in far more sales due to the season of ice cream having a much longer period of time, requiring people to be more conscious of their spending, and allowing them to spend more due to that different in price they would've paid elsewhere.
 
-### Household Size vs Price Paid
+### Household Size vs Price Paid (Regionally)
 
 ```{r}
 ggplot(ice_cream, aes(
-  x = household_size, 
-  y = priceper1
-  )) +
-  geom_jitter(alpha = 0.2) +
-# geom_smooth(se = FALSE, color = "") + # Wasn't able to get a smooth line out of it
+  x = factor(household_size), 
+  y = priceper1,
+  fill = region
+)) +
+  geom_boxplot(size = .5, show.legend = F) +
+  facet_wrap(~ region) +
   labs(
-    title = "Household Size vs Price Paid",
+    title = "Household Size vs Price Paid by Region",
     x = "Household Size",
     y = "Price Paid"
   )
@@ -251,4 +252,4 @@ ggplot(ice_cream, aes(
 
 Explanation: <br>
 
-Insert Explanation
+As seen here, there's a more unanimous trend in Central and South, while the East & West almost split into two separate directions as the household size reaches 6 or greater. These don't have great explanations as to why, but it could be due to the type of population that lives in these regions, whether their households are built to be for family homes or for more luxurious purposes.
