@@ -1,0 +1,134 @@
+---
+title: "Beer Markets"
+author: "Byeong-Hak Choe"
+date: "2023-11-02"
+categories: [beer, code, data-analysis]
+image: "image.png"
+
+execute: 
+  warning: false
+  message: false
+  
+toc: true
+---
+
+```{r}
+#| include: false
+
+library(knitr)
+library(rmarkdown)
+library(tidyverse)
+library(skimr)
+library(ggthemes)
+library(hrbrthemes)
+
+theme_set(theme_ipsum()+
+          theme(strip.background =element_rect(fill="lightgray"),
+                axis.title.x  = element_text(angle = 0,
+                                            size = rel(1.5),
+                                            margin = margin(10,0,0,0)),
+                axis.title.y  = element_text(angle = 0,
+                                            size = rel(1.5),
+                                            margin = margin(0,10,0,0))
+                )
+          )
+```
+
+Let's analyze the `beer_data` data:
+
+```{r}
+beer_data <- read_csv("https://bcdanl.github.io/data/beer_markets.csv")
+```
+
+\
+
+```{r}
+#| results: asis
+rmarkdown::paged_table(beer_data) 
+```
+
+## Variable Description for `beer_data` data.frame
+
+The following describes the variables in the `beer_data` data.frame.
+
+-   `hh`: Household identifier
+-   `_purchase_desc`: Description of the purchase
+-   `quantity`: The quantity of beer purchased
+-   `brand`: The brand of beer
+-   `dollar_spent`: The amount spent
+-   `beer_floz`: Fluid ounces of beer
+-   `price_per_floz`: Price per fluid ounce
+-   `container`: Type of container
+-   `promo`: Whether the purchase was on promotion
+-   `market`: The market where the purchase was made
+-   Demographics: `age`, `employment` status, `degree`, class of worker (`cow`), `race`, and household information like `microwave`, `dishwasher`, `tvcable`, `singlefamilyhome`, and `npeople` (number of people in the household)
+
+## Summarizations
+
+```{r}
+beer_data %>%
+  mutate(
+    price = price_per_floz * 16,
+    pack_6 = price * 6,
+    pack_12 = price * 12
+  ) %>% 
+  summarise(
+    mean_price = mean(price, na.rm = TRUE),
+    median_price = median(price, na.rm = TRUE),
+    sd_price = sd(price, na.rm = TRUE),
+    "Avg 6-pack price" = mean(pack_6),
+    "Avg 12-pack price" = mean(pack_12)
+  )
+```
+
+```{r}
+beer_sum <- beer_data %>%
+  mutate(
+    npeople = as.integer(npeople)
+  ) %>% 
+  summarise(
+    mean_spent = mean(dollar_spent, na.rm = TRUE),
+    median_spent = median(dollar_spent, na.rm = TRUE),
+    mean_quantity = mean(quantity, na.rm = TRUE),
+    mean_price_per_oz = mean(price_per_floz, na.rm = TRUE),
+    avg_household_size = mean(npeople, na.rm = TRUE)
+  )
+
+beer_sum
+```
+
+## Counting Statistics
+
+```{r}
+# rm(beer_sum)
+beer_data %>%
+  count(brand) %>% 
+  arrange(-n) %>% 
+  mutate(
+    pct_tot = round(n / sum(n),digits = 4),
+    cum_tot = cumsum(pct_tot)
+  )
+```
+
+```{r}
+beer_data %>%
+  filter(age == "<30") %>%
+  count(income, brand,container, sort = TRUE) %>%
+  group_by(income) %>%
+  slice_max(n, n = 3) %>%
+  ungroup() %>% 
+  ggplot(aes(
+    x = brand,
+    y = n,
+    fill = container
+  )) +
+  facet_wrap(~income, ncol = 2, nrow = 2, scales = "free_y") +
+  geom_col() +
+  theme(
+    axis.text.x = element_text(angle = 30, size = 7)
+  ) +
+  labs(
+    title = "Income Brackets Brand Purchasing Habits",
+  )
+
+```
