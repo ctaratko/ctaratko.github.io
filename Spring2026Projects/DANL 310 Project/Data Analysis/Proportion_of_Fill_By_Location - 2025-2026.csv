@@ -1,0 +1,36 @@
+Location,Fill_Type,Proportion_of_Fill,Tally of Fill,Number Filled,Total Tubes,Second count
+Arboretum,Masticated_Leaves,0.2,IIIIIIIIIIIIIIIIIIIIIIIIIIII,28,140,
+Arboretum,Intact_Leaves,0.007142857143,I,1,140,
+Arboretum,Light_Mud,0.1,IIIIIIIIIIIIII,14,140,
+Arboretum,Grass,0.08571428571,IIIIIIIIIIII,12,140,
+Arboretum,Silk,0.01428571429,II,2,140,
+Arboretum,Debris,0.07142857143,IIIIIIIIII,10,140,
+Arboretum,Empty,0.5214285714,,73,140,
+ISC/Greenhouse,Masticated_Leaves,0.075,III,3,40,
+ISC/Greenhouse,Intact_Leaves,0.075,III,3,40,
+ISC/Greenhouse,Light_Mud,0.125,IIIII,5,40,
+ISC/Greenhouse,Grass,0,,0,40,
+ISC/Greenhouse,Silk,0.05,II,2,40,
+ISC/Greenhouse,Debris,0.125,IIIII,5,40,
+ISC/Greenhouse,Empty,0.55,,22,40,
+No Mow Zone,Masticated_Leaves,0,,0,20,
+No Mow Zone,Intact_Leaves,0.1,II,2,20,
+No Mow Zone,Light_Mud,0.1,II,2,20,
+No Mow Zone,Grass,0.2,IIII,4,20,
+No Mow Zone,Silk,0.2,IIII,4,20,
+No Mow Zone,Debris,0.1,II,2,20,
+No Mow Zone,Empty,0.3,,6,20,
+EGarden,Masticated_Leaves,0.15,III,3,20,
+EGarden,Intact_Leaves,0,,0,20,
+EGarden,Light_Mud,0.25,IIIII,5,20,
+EGarden,Grass,0.25,IIIII,5,20,
+EGarden,Silk,0.1,II,2,20,
+EGarden,Debris,0.15,III,3,20,
+EGarden,Empty,0.1,,2,20,
+Island Preserve,Masticated_Leaves,0.01875,II,3,160,3
+Island Preserve,Intact_Leaves,0.00625,I,1,160,1
+Island Preserve,Light_Mud,0.125,IIIIIIIIII(10)IIIIIIIII,20,160,20
+Island Preserve,Grass,0.1625,IIIIIIIIII(10)II,26,160,26
+Island Preserve,Silk,0.025,II,4,160,4
+Island Preserve,Debris,0.075,IIIIIIIIII(10)II,12,160,12
+Island Preserve,Empty,0.5875,,94,160,

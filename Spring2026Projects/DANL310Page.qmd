@@ -1,0 +1,9 @@
+---
+title: "Bees"
+author: "Christopher Taratko & Sophia Stang"
+format:
+  html:
+    backgroundcolor: "#fdf6e3"
+toc: true
+---
+

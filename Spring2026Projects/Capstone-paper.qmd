@@ -78,11 +78,29 @@ As of recently, it is able to be seen that individuals have began choosing new m
 
 # Background and Related Literature
 
-Throughout the process of learning about the data itself, key ideas that were needed to be known going into the research and understanding of this financial data is the connection between financial instruments and the housing market as a whole. The article "House Prices, Home Equity-Based Borrowing, and the US Household Leverage Crisis (*Mian, A, & Sufi, A, 2011*), is a critical analysis of the 2008 Housing Crisis and the ties to household valuations. From this paper, one of the key concepts is how the housing boom didn't only raise household values, but rather encouraged heavy borrowing against rising home equity. This was one of the large factors and and a signficant catalyst for why the collapse of the housing market was so burdening to the general public. The paper analyzed from 1997 all the way up to 2008, understanding individual credit data and how people borrowed against their equity. The finding within this article was that households borrowed \$0.25 for every \$1.00 increase in home equity.
+Throughout the process of learning about the data itself, key ideas that were needed to be known going into the research and understanding of this financial data is the connection between financial instruments and the housing market as a whole. The article "House Prices, Home Equity-Based Borrowing, and the US Household Leverage Crisis (*Mian, A, & Sufi, A, 2011*), is a critical analysis of the 2008 Housing Crisis and the ties to household valuations. From this paper, one of the key concepts is how the housing boom didn't only raise household values, but rather encouraged heavy borrowing against rising home equity. This was one of the large factors and and a signficant catalyst for why the collapse of the housing market was so burdening to the general public. Using detailed individual-level credit data from 1997 to 2008, Mian and Sufi demonstrate that households actively extracted equity from their homes during periods of rising housing prices. Their findings show that, on average, households borrowed approximately \$0.25 for every \$1.00 increase in home equity. This behavior significantly contributed to the overall rise in household leverage during the early 2000s.
+
+Importantly, the paper highlights that this borrowing was not primarily used to pay down existing debt, but rather to finance consumption and other expenditures. As a result, households became increasingly leveraged without improving their financial stability. When housing prices began to decline during the financial crisis, these highly leveraged households faced increased financial strain, leading to widespread defaults and a sharp contraction in economic activity.
+
+This relationship between housing prices, borrowing behavior, and financial vulnerability is central to understanding the dataset used in this analysis. Variables such as Debt-to-Income ratios, housing price indices (HPI), and foreclosure rates are directly connected to the mechanisms described in the literature. By incorporating these variables into a panel data framework, this project aims to capture how changes in housing markets and financial conditions influence household financial health across states and over time.
+
+Overall, the background literature emphasizes that household financial health cannot be understood in isolation. Instead, it must be viewed within the broader context of housing markets, credit systems, and macroeconomic dynamics. This perspective guides the empirical analysis conducted in this project.
 
 # Data
 
-The data is a Panel (State-Quarter) based model, with the following variables:
+The data within this analysis was constructed through multiple sources, those sources are the following:
+
+- **Federal Reserve Economic Data (FRED)**: Provides macroeconomic indicators such as debt levels, income measures, and foreclosure-related variables.
+
+- **Federal Housing Finance Agency (FHFA)**: Supplies the House Price Index (HPI), which measures changes in housing prices over time.
+
+- **Bureau of Labor Statistics (BLS)**: Provides Consumer Price Index (CPI) data used to measure inflation.
+
+- **New York FED**: Provided Specific Debt amounts, delinquency rates, foreclosure rates, and mortgage payment in relation to income.
+
+### Unit of Observation
+
+The data is a Panel (State-Quarter) based model, used to understand more distinct trends throughout each year in order to get more specific values and time frames. Within this data, there is the following variables:
 
 #### **Input Variables**
 
@@ -162,6 +180,75 @@ ggplot(model_prep, aes(y = DTI_ratio, x = time, fill = state)) +
   my_theme
 ```
 
+```{r}
+model_prep |> 
+  mutate(state = fct_reorder2(state, time, HPI)) |>
+  
+  ggplot(aes(x = time, y = HPI, color = state)) +
+  geom_smooth(se = F, size = .5, method =  "gam") +
+  geom_vline(xintercept = as.Date("2008-01-01"), size = .15) +
+  geom_vline(xintercept = as.Date("2020-03-01"), size = .15) +
+  labs(
+    y = "House Pricing Index",
+    x = "Time (in quarters)",
+    title = "HPI Trend by State",
+    subtitle = "US (2003 - 2023)",
+    caption = "Vlines:\n Housing Crisis - 2008\n COVID Pandemic - 2020",
+    color = "State"
+  ) +
+  scale_color_solarized() +
+  theme_solarized() +
+  theme(
+    plot.title = element_text(family = "Times New Roman", color = "#700000", face = 'bold'),
+    plot.subtitle = element_text(
+      face = "italic",
+      family = "Times New Roman",
+      size = 10
+    ),
+    axis.title = element_text(family = "Times New Roman", face = "bold"),
+    legend.position = "right",
+    legend.title = element_text(family = "Times New Roman", face = "bold"),
+    legend.text = element_text(family = "Times New Roman", face = "italic"),
+    plot.caption = element_text(family = "Times New Roman", size = 7),
+  )
+```
+
+```{r}
+model_prep |> 
+  mutate(state = fct_reorder2(state, time, DTI_ratio)) |>
+
+  ggplot(aes(x = time, y = DTI_ratio, color = state)) +
+  geom_line(size = .5) +
+  # geom_smooth(size = .25, se = F, method = "lm") +
+  geom_vline(xintercept = as.Date("2008-01-01"), size = .15) +
+  geom_vline(xintercept = as.Date("2020-03-01"), size = .15) +
+  labs(
+    title = "Debt-To-Income Trend by State",
+    subtitle = "US (2003 - 2023)",
+    x = "Time (in quarters)",
+    y = "Debt-to-Income Ratio",
+    caption = "Vlines:\n Housing Crisis - 2008\n COVID Pandemic - 2020",
+    color = "State"
+  ) +
+  theme_solarized() +
+  scale_color_solarized() +
+  theme(
+    # axis.text.x = element_text(angle = 15),
+    axis.text = element_text(family = "Times New Roman"),
+    plot.title = element_text(family = "Times New Roman", color = "#700000", face = "bold"),
+    plot.subtitle = element_text(
+      face = "italic",
+      family = "Times New Roman",
+      size = 10
+    ),
+    axis.title = element_text(family = "Times New Roman", face = "bold"),
+    legend.position = "right",
+    legend.title = element_text(family = "Times New Roman", face = "bold"),
+    legend.text = element_text(family = "Times New Roman", face = "italic"),
+    plot.caption = element_text(family = "Times New Roman", size = 7),
+  )
+```
+
 ```{r, warning=FALSE, echo=FALSE}
 model_prep |> 
   ggplot(aes(x = log(ForeclosureRate), y = DTI_ratio, color = state)) +
@@ -216,6 +303,10 @@ model_prep |>
 ```
 
 # Empirical Strategy / Methods
+
+The empirical strategy employs panel data regression techniques using the plm (Panel Linear Model) framework to analyze the determinants of household financial health across U.S. states over time. Panel data allows for controlling both cross-sectional (state-level) and time-series variation, improving estimation accuracy relative to purely cross-sectional or time-series models.
+
+Three model specifications are estimated: Pooled OLS, Fixed Effects (FE), and Two-Way Fixed Effects (TWFE). Each model provides a different level of control for unobserved heterogeneity.
 
 ## Pooled OLS Model
 
@@ -273,6 +364,8 @@ $$\begin{aligned}
 
 - $\alpha_i$​: state fixed effects
 - $\gamma_t$​: time fixed effects (e.g., macro shocks)
+
+The progression from Pooled OLS to FE and TWFE models allows for increasingly robust estimation. The TWFE model is generally the most reliable specification.
 
 # Results
 
@@ -352,3 +445,98 @@ Overall, the differences between the FE and TWFE models suggest that unobserved 
 **Mian, A., & Sufi, A. (2011)**. House prices, home equity-based borrowing, and the U.S. household leverage crisis. *American Economic Review, 101*(5), 2132–2156.
 
 **Saiz, A. (2010)**. The geographic determinants of housing supply. *Quarterly Journal of Economics, 125*(3), 1253–1296.
+
+# Appendix
+
+## Usage of Median Data
+
+Throughout the process, finding the least skewed data possible required using median values compared to the means of the data. With the scaling of incomes in the United States, the average CEO makes over 300x the average worker, slowly making it's way to 400x. The graph below shows the variance between Median & Mean Income by state.
+
+```{r}
+model_prep |> 
+  group_by(state) |> 
+  summarise(
+    mean_income   = mean(mean_AGI,      na.rm = TRUE),
+    median_income = mean(Median_H_Inc/1.25,  na.rm = TRUE),   # takes into account 1 ind. HHs
+    .groups = "drop"
+  ) |> 
+  mutate(Income_avg_change = mean_income - median_income) |> 
+  ggplot(aes(y = fct_reorder(state, Income_avg_change))) +
+  geom_segment(aes(x = median_income, xend = mean_income, yend = state),
+               linewidth = 1, color = "gray70", linetype = 2) +
+  geom_segment(aes(x = median_income, xend = mean_income, yend = state),
+               linewidth = 1, color = "gray45", linetype = 1, alpha = .65) +
+  geom_point(aes(x = median_income),color = "#700000", size = 2) +
+  geom_point(aes(x = mean_income),color = "green4",   size = 2) +
+  labs(
+    title = "Variances in Mean & Median Income (by State)",
+    x = "Income",
+    y = ""
+  ) +
+  scale_x_continuous(labels = scales::dollar) +
+  theme_solarized() +
+  theme(
+    plot.title = element_text(family = "Times New Roman", color = "#700000", face = 'bold'),
+    plot.subtitle = element_text(
+      face = "italic",
+      family = "Times New Roman",
+      size = 10
+    ),
+    axis.title = element_text(family = "Times New Roman", face = "bold"),
+    legend.position = "right",
+    legend.title = element_text(family = "Times New Roman", face = "bold"),
+    legend.text = element_text(family = "Times New Roman", face = "italic"),
+    plot.caption = element_text(family = "Times New Roman", size = 7),
+  )
+```
+
+## Median Income Compared to minimal Inflation 
+
+The data here represents a non-CPI based metric of understanding data, given that the inflation rate is below-average, being 1.5%. The data here is not meant to be compared external visualizations due to it's low inflation rate. This plot is meant to display that even at a low inflation rate of 1.5%, median incomes still don't scale properly with that annual increase.
+
+```{r}
+inflation_rate <- 0.015
+
+baseline_data <- model_prep |>
+  group_by(time) |>
+  summarise(avg_start_inc = mean(Median_H_Inc[time == min(time)], na.rm = TRUE)) |>
+  mutate(
+    years_since_start = as.numeric(difftime(time, min(time), units = "days")) / 365.25,
+    inflation_line = avg_start_inc * (1 + inflation_rate)^years_since_start
+  )
+model_prep |> 
+  mutate(state = fct_reorder2(state, time, Median_H_Inc)) |>
+  ggplot(aes(x = time, y = Median_H_Inc)) + # Removed color=state from global aes
+  
+  # The Inflation Baseline (dashed for distinction)
+  geom_line(data = baseline_data, aes(y = inflation_line), 
+            color = "black", linetype = "dashed", size = .6) +
+  
+  # Individual State Data
+  geom_line(aes(color = state), size = .5) + 
+  
+  facet_wrap(~state, ncol = 2) +
+  
+  # Your existing styling
+  labs(
+    y = "Median Household Income",
+    x = "Time (in quarters)",
+    title = "Median Household Income vs. 1.5% Inflation (Low End)",
+    subtitle = "Dashed line represents standard inflation baseline from 2003",
+    caption = "Vlines: 2008 Housing Crisis, 2020 COVID\nDash: 2% Inflation Baseline - www.minneapolisfed.org",
+  ) +
+  geom_vline(xintercept = as.Date("2008-01-01"), size = .15) +
+  geom_vline(xintercept = as.Date("2020-03-01"), size = .15) +
+  scale_y_continuous(labels = scales::dollar) +
+  scale_color_solarized() +
+  theme_solarized() +
+  theme(
+    legend.position = "none", # Removed as requested
+    strip.background = element_rect(fill = "#eee8d5"), # Matching Solarized palette
+    strip.text = element_text(family = "Times New Roman", face = "bold"),
+    plot.title = element_text(family = "Times New Roman", color = "#700000", face = 'bold'),
+    plot.subtitle = element_text(face = "italic", family = "Times New Roman", size = 10),
+    axis.title = element_text(family = "Times New Roman", face = "bold"),
+    plot.caption = element_text(family = "Times New Roman", size = 7)
+  )
+```

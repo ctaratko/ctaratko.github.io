@@ -1,0 +1,190 @@
+---
+title: "Bees Be Buzzing: Nesting Behavior Dashboard"
+format: dashboard
+toc: true
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(ggthemes)
+library(hrbrthemes)
+library(ggtext)
+library(ggrepel)
+library(htmltools)
+source("FinalStang1.R")
+```
+
+# Overview
+
+## Row
+
+```{r}
+#| content: valuebox
+#| title: "Total Tubes Filled"
+
+list(
+  icon = "check-circle",
+  color = "success",
+  value = sum(fill_2023$Number_of_Tubes_First_Filled, na.rm = TRUE)
+)
+```
+
+```{r}
+#| content: valuebox
+#| title: "Peak Week"
+
+list(
+  icon = "calendar",
+  color = "warning",
+  value = fill_2023 |>
+    group_by(Week) |>
+    summarise(total = sum(Number_of_Tubes_First_Filled)) |>
+    slice_max(total, n = 1) |>
+    pull(Week)
+)
+```
+
+```{r}
+#| content: valuebox
+#| title: "Dominant Fill Type"
+
+list(
+  icon = "leaf",
+  color = "info",
+  value = fill_2023 |>
+    group_by(Fill_Type) |>
+    summarise(total = sum(Number_of_Tubes_First_Filled)) |>
+    slice_max(total, n = 1) |>
+    pull(Fill_Type)
+)
+```
+
+## Row
+
+```{r}
+#| title: "Summary"
+# This study examines solitary cavity-nesting bees and wasps in Geneseo, NY, using artificial nesting structures (“bee boxes”) to monitor their activity, diversity, and habitat preferences over multiple years. These insects are unique because they do not form colonies; instead, they lay eggs in pre-existing cavities (like reeds or wooden holes) and seal them with materials such as mud, grass, or leaves. These fill types serve as indicators of which species are present, since different taxa use distinct materials.
+
+
+p("This study examines solitary cavity-nesting bees and wasps in Geneseo, NY, using artificial")
+p("nesting structures (“bee boxes”) to monitor their activity, diversity, and habitat preferences over")
+p("multiple years. These insects are unique because they do not form colonies; instead, they lay eggs")
+p("in pre-existing cavities (like reeds or wooden holes) and seal them with materials such as mud,")
+p("grass, or leaves. These fill types serve as indicators of which species are present, since different")
+p("taxa use distinct materials.")
+```
+
+
+# When Do Bees Start Filling?
+
+## Row {height=75%}
+
+```{r}
+#| title: "Timing of First Fill (2023)"
+
+ggplot(fill_2023, aes(fill = Fill_Type,
+                      y = Number_of_Tubes_First_Filled,
+                      x = Week)) +
+  geom_bar(position = "stack", stat = "identity", col = "black") +
+  scale_fill_manual(values = my_colors, labels = my_labels) +
+  labs(
+    x = "Week",
+    y = "Number of Tubes",
+    fill = "Fill Type"
+  ) +
+  scale_x_continuous(breaks = seq(0, 20, 1)) +
+  scale_y_continuous(breaks = seq(0, 27, 1)) +
+  mytheme
+```
+
+## Row {height=25%}
+
+```{r}
+#| title: "Ecological Insight"
+
+# "Most nesting activity ramps up mid-season. Early weeks show minimal activity, suggesting delayed "
+# 'resource availability. Later peaks indicate optimal environmental conditions for nesting.'
+p("Most nesting activity ramps up mid-season. Early weeks show minimal activity, suggesting delayed ")
+p('resource availability. Later peaks indicate optimal environmental conditions for nesting.')
+```
+
+# What Materials Do Bees Use?
+
+## Row
+
+```{r}
+#| title: "Annotated Fill Behavior"
+
+ggplot(fill_2023, aes(fill = Fill_Type,
+                      y = Number_of_Tubes_First_Filled,
+                      x = Week)) +
+  geom_bar(position = "stack", stat = "identity", col = "black") +
+  scale_fill_manual(values = my_colors, labels = my_labels) +
+  annotate("text", x = 7, y = -2.5, label = "Leafcutter Bees", size = 3) +
+  annotate("text", x = 14, y = -2.5, label = "Grass Wasps", size = 3) +
+  coord_cartesian(ylim = c(-5, 20), clip = "off") +
+  mytheme
+```
+
+```{r}
+#| title: "Fill Type Comparison"
+
+ggplot(fill_2023_cum, aes(x = cum_sum, y = Fill_Type, fill = Fill_Type)) +
+  geom_density_ridges(alpha = 0.6) +
+  scale_fill_manual(values = my_colors, labels = my_labels) +
+  mytheme
+```
+
+# Where Do Patterns Change?
+
+## Row
+
+```{r}
+#| title: "Fill Type Distribution by Location"
+ID_freq_comp %>%
+  filter(Fill_Type != "Empty") %>%
+  ggplot(aes(x = Fill_Type, y = Location, fill = Proportion_of_Fill)) +
+  geom_tile(color = "white") +
+  scale_fill_gradient(low = "white", high = "darkgreen") +
+  labs(x = "Fill Type", y = "Location", fill = "Proportion") +
+  mytheme
+```
+
+# Long-Term Trends
+
+## Row
+
+```{r}
+#| title: "Cumulative Trends"
+
+ggplot(full_cum_clean,
+       aes(x = Week, y = cum_sum, fill = Fill_Type)) +
+  geom_area() +
+  facet_wrap(~Year) +
+  scale_fill_manual(values = my_colors, labels = my_labels) +
+  mytheme
+```
+
+```{r}
+#| title: "Fill Rate Over Time"
+
+fill_2023 %>%
+  ggplot(aes(x = Week,
+             y = Number_of_Tubes_First_Filled,
+             color = Fill_Type)) +
+  geom_line(size = 1.1) +
+  scale_color_manual(values = my_colors, labels = my_labels) +
+  mytheme
+```
+
+# Key Takeaways
+
+## Row
+
+```{r}
+#| title: "Summary"
+
+"• Nesting peaks mid-season\n• Grass and leaves dominate\n• Location strongly influences behavior\n• Trends suggest increasing nesting over time"
+```

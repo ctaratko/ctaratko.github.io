@@ -1,0 +1,29 @@
+Location,Inhabitant,Number,Proportion_of_Fill
+BeeBarn,Ancistrocerus,2,0.01162790698
+eGarden,Ancistrocerus,2,0.01162790698
+eGarden,Ancistrocerus capra,1,0.005813953488
+BeeBarn,Ancistrocerus capra,2,0.01162790698
+BeeBarn,Ancistrocerus spinolae,4,0.02325581395
+eGarden,Chrysis cessata,3,0.01744186047
+BeeBarn,Chrysis cessata,4,0.02325581395
+BeeBarn,Coelioxys,1,0.005813953488
+BeeBarn,Coelioxys alternatus,4,0.02325581395
+BeeBarn,Euodynerus foraminatus,3,0.01744186047
+BeeBarn,Genus Morellia,1,0.005813953488
+Meadow,Genus Morellia,3,0.01744186047
+BeeBarn,Isodontia,3,0.01744186047
+Meadow,Isodontia mexicana,10,0.05813953488
+BeeBarn,Isodontia mexicana,6,0.03488372093
+NMZ,Isodontia mexicana,12,0.06976744186
+BeeBarn,Megachile pugnata,56,0.3255813953
+Meadow,Megachile pugnata,1,0.005813953488
+NMZ,Megachile pugnata,22,0.1279069767
+NMZ,Megachile relativa,4,0.02325581395
+NMZ,Megachile rotundata,1,0.005813953488
+NMZ,Nemognatha nemorensis,1,0.005813953488
+NMZ,Osmia,10,0.05813953488
+Arboretum,Osmia caerulescens,2,0.01162790698
+eGarden,Osmia caerulescens,1,0.005813953488
+BeeBarn,Osmia caerulescens,1,0.005813953488
+Meadow,Osmia caerulescens,3,0.01744186047
+BeeBarn,Trypoxylon lactitarse,9,0.0523255814

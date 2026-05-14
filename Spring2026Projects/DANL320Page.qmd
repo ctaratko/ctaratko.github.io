@@ -1,0 +1,9 @@
+---
+title: "AI Market - Forecasting Values"
+author: "Christopher Taratko"
+format:
+  html:
+    backgroundcolor: "#fdf6e3"
+toc: true
+---
+

@@ -1,0 +1,51 @@
+Location,Inhabitant,Proportion_of_Fill
+Arboretum,Ancistrocerus,0
+Arboretum,Euodynerus foraminatus,0
+Arboretum,Isodontia mexicana,0
+Arboretum,Trypoxylon lactitarse,0
+Arboretum,Megachile pugnata,0
+Arboretum,Megachile relativa,0
+Arboretum,Megachile rotundata,0
+Arboretum,Osmia caerulescens,1
+Arboretum,Chrysis cessata,0
+Arboretum,Coelioxys alternatus,0
+BeeBarn,Ancistrocerus,0.084210526
+BeeBarn,Euodynerus foraminatus,0.031578947
+BeeBarn,Isodontia mexicana,0.094736842
+BeeBarn,Trypoxylon lactitarse,0.094736842
+BeeBarn,Megachile pugnata,0.589473684
+BeeBarn,Megachile relativa,0
+BeeBarn,Megachile rotundata,0
+BeeBarn,Osmia caerulescens,0.010526316
+BeeBarn,Chrysis cessata,0.042105263
+BeeBarn,Coelioxys alternatus,0.052631579
+Meadow,Ancistrocerus,0
+Meadow,Euodynerus foraminatus,0
+Meadow,Isodontia mexicana,0.714285714
+Meadow,Trypoxylon lactitarse,0
+Meadow,Megachile pugnata,0.071428571
+Meadow,Megachile relativa,0
+Meadow,Megachile rotundata,0
+Meadow,Osmia caerulescens,0.214285714
+Meadow,Chrysis cessata,0
+Meadow,Coelioxys alternatus,0
+NoMowZone,Ancistrocerus,0
+NoMowZone,Euodynerus foraminatus,0
+NoMowZone,Isodontia mexicana,0.244897959
+NoMowZone,Trypoxylon lactitarse,0
+NoMowZone,Megachile pugnata,0.448979592
+NoMowZone,Megachile relativa,0.081632653
+NoMowZone,Megachile rotundata,0.020408163
+NoMowZone,Osmia caerulescens,0.204081633
+NoMowZone,Chrysis cessata,0
+NoMowZone,Coelioxys alternatus,0
+EGarden,Ancistrocerus,0.428571429
+EGarden,Euodynerus foraminatus,0
+EGarden,Isodontia mexicana,0
+EGarden,Trypoxylon lactitarse,0
+EGarden,Megachile pugnata,0
+EGarden,Megachile relativa,0
+EGarden,Megachile rotundata,0
+EGarden,Osmia caerulescens,0.142857143
+EGarden,Chrysis cessata,0.428571429
+EGarden,Coelioxys alternatus,0

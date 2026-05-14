@@ -15,18 +15,6 @@ website:
         href: blog-listing.qmd
       - text: Lab Review
         href: Analytics200Review.qmd
-      - text: 210 Projects List
-        menu:
-        - text: 210 Project 1
-          href: DANL210_Project.qmd
-        - text: 210 Homework 1
-          href: PythonNotebooks/danl_210_hw1_Taratko_Christopher.ipynb
-        - text: 210 Homework 2
-          href: PythonNotebooks/danl_210_hw2_Taratko_Christopher.ipynb
-        - text: 210 Homework 3
-          href: PythonNotebooks/danl_210_hw3_Taratko_Christopher.py
-        - text: 210 Homework 4
-          href: PythonNotebooks/danl_210_hw4_Taratko_Christopher.py
       - text: DANL 210 Project
         menu: 
         - text: Project Overview
@@ -38,9 +26,11 @@ website:
         - text: Capstone Paper
           href: Spring2026Projects/Capstone-paper.qmd
         - text: 310 Project
-          href: PythonFolder/210Project1.py
+          href: Spring2026Projects/DANL310Page.qmd
         - text: 320 Project
-          href: PythonFolder/210Project1.py 
+          href: Spring2026Projects/DANL320Page.qmd
+        - text: 310 Dashboard
+          href: Spring2026Projects/DANL 310 Project/bees_dashboard.qmd
   page-footer: 
     center: "Powered with GitHub and Quarto<br>© Christopher Taratko, 2023"
 
