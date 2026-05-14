@@ -50,15 +50,15 @@ rmarkdown::paged_table(ice_cream)
 
 This code provides the following statistics:
 
--   Mean (price)
+- Mean (price)
 
--   Median (price)
+- Median (price)
 
--   Standard Deviation (price)
+- Standard Deviation (price)
 
--   Mean (Coupon)
+- Mean (Coupon)
 
--   Mean (Household size)
+- Mean (Household size)
 
 ```{r}
 #| results: asis

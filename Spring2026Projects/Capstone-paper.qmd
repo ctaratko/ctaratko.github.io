@@ -1,0 +1,319 @@
+---
+title: "Capstone-Paper"
+author: "Christopher Taratko"
+format:
+  html:
+    backgroundcolor: "#fdf6e3"
+toc: true
+---
+
+```{r, include=FALSE}
+library(rmarkdown)
+library(tidyverse)
+library(broom)
+library(stargazer)
+library(skimr)
+
+library(margins)
+library(yardstick)
+library(WVPlots)
+library(pROC)
+
+library(glmnet)
+library(Matrix)
+
+library(rmarkdown)
+library(hrbrthemes)
+library(ggthemes)
+
+library(plm)
+library(zoo)
+setwd("/Users/christophertaratko/ProjectsList/Data Analytics/Personal Website/ctaratko.github.io/Data/CapstoneDatasets")
+model_prep <- read_csv("Housing.csv")
+# setwd("/Users/christophertaratko/ProjectsList/Data Analytics/Personal Website/ctaratko.github.io/Spring2026Projects")
+
+my_theme <- theme(
+    plot.title = element_text(family = "Times New Roman", color = "#700000", face = 'bold'),
+    plot.subtitle = element_text(
+      face = "italic",
+      family = "Times New Roman",
+      size = 10
+    ),
+    axis.title = element_text(family = "Times New Roman", face = "bold"),
+    legend.position = "right",
+    legend.title = element_text(family = "Times New Roman", face = "bold"),
+    legend.text = element_text(family = "Times New Roman", face = "italic"),
+    plot.caption = element_text(family = "Times New Roman", size = 7),
+    strip.background = element_rect(
+      fill = "#fdf6e3",
+      color = "black", 
+      linewidth = .5
+    ),
+    
+    strip.text = element_text(face = "bold")
+  )
+```
+
+# Introduction
+
+Current households face the question of whether or not they should spend money to build up their assets, more specifically their long term assets. Long Term Assets is a broad classification of assets, but when specified under a Household, it normally pertains to assets such as:
+
+- Houses
+
+- Car
+
+- Small Businesses
+
+the US consumer body as a whole is at a state where its becoming less and less common to have a larger amount of debt relative to one's income, as as financially sound this is, it also creates concern for future innovation. Entrepreneurship requires risks to be taken, and the US has been the global powerhouse for innovation and research for new products and services, and the US government has backed this innovation with the amount of debt that's been acquired.
+
+As of recently, it is able to be seen that individuals have began choosing new methods of acquiring debt, but for less innovative or valued purposes, but instead for financially illiterate purposes. It is common for people to overspend on their line(s) of revolving credit (credit cards) that have balances due at the end of each month, or else they'll be charged interest on the balance. Other options are people will over-spend on their debit card, and end up utilizing methods such as "Buy-Now-Pay-Later", or "Pay-Day" Loans.
+
+## Thesis Question
+
+- What levels of DTI Ratios (Debt-to-Income) and HPI conditions have been sustainably manageable for the U.S. households based on the ML Outputs?
+
+  - What factors best represent the overall health of Household finances in the United States?
+
+  - How have US financial factors changed over time, and what patterns have emerged from the changes?
+
+# Background and Related Literature
+
+Throughout the process of learning about the data itself, a key
+
+# Data
+
+The data is a Panel (State-Quarter) based model, with the following variables:
+
+#### **Input Variables**
+
+- **Debt Value** – \[*DebtValue*\]
+
+- **Median Household Income** – \[*Median_H_Inc*\]
+
+- **Average Adjusted Gross Income** – \[*mean_AGI*\]
+
+- **Minimum Wage** – \[*MinWage*\]
+
+- **Houses Pricing Index** – \[*HPI*\]
+
+- **Mortgage Delinquency Percentage** – \[*Delinquency_pct*\]
+
+- **Average Mortgage PMT Percent** (relative to income) – \[*Mean_Mpct*\]
+
+- **Average State Consumer Prices Index** – \[*mean_CPI*\]
+
+- **Foreclosure** Rate – \[*ForeclosureRate*\]
+
+*Panel-Related Variables*:
+
+- **Time** (Quarter Start Date) – \[*time*\]
+
+- **State** – \[*state*\]
+
+- **Year** – \[*year*\]
+
+#### **Output Variable**
+
+- **Debt-to-Income Ratio** – \[*DTI_ratio*\]
+
+```{r, echo=FALSE}
+paged_table(model_prep)
+```
+
+These values are vital to understanding household financial health due to their relation to the ability for an individual or family to build wealth, financial stress indicators, Cost of Living by state, Housing Prices by State, and the output of being able to see how much a house can under-go with the stress of debt before issues arise.
+
+## Summary Statistics
+
+### Delinquency Rates
+
+```{r, echo=FALSE, warning=FALSE}
+model_prep |> 
+  filter(year >= 2015) |>
+  ggplot(aes(x = Delinquency_pct)) +
+    geom_histogram(bins = 20, fill = "#700", color = "grey40") +
+    facet_wrap(~year) +
+  theme_solarized() +
+  my_theme +
+  labs(
+    title = "Delinquency Rates Over the Past 10 Years",
+    x = "Delinquency (%)",
+    y = ""
+  )
+```
+
+Over the past 10 years, delinquent payments have become less and less of an issue. While this is seen as a good
+
+### Debt-to-Income Ratios Over Time
+
+```{r,warning=FALSE, echo=FALSE}
+ggplot(model_prep, aes(y = DTI_ratio, x = time, fill = state)) +
+  geom_col(show.legend = F) +
+  geom_line(show.legend = F) +
+  geom_vline(xintercept = as.Date("2008-01-01"), size = .15) +
+  geom_vline(xintercept = as.Date("2020-03-01"), size = .15) +
+  facet_wrap(~state, scales = "free_y", ncol = 2) +
+  theme_solarized() +
+  my_theme
+```
+
+```{r, warning=FALSE, echo=FALSE}
+model_prep |> 
+  ggplot(aes(x = log(ForeclosureRate), y = DTI_ratio, color = state)) +
+  geom_point(alpha = .5, show.legend = F) +
+  facet_wrap(~state, ncol = 2) +
+  theme_solarized() +
+  my_theme +
+  labs(
+    x = "Log(Foreclosure Rate)",
+    y = "Debt-to-Income Ratio"
+  )
+```
+
+# Empirical Strategy / Methods
+
+## Pooled OLS Model
+
+$$\begin{aligned}
+\log(DTI\_ratio_{it}) =\;&
+\beta_1 \log(DebtValue_{it})
++ \beta_2 \log(Median\_H\_Inc_{it})
++ \beta_3 MinWage_{it} \\
+&+ \beta_4 \log(HPI_{it})
++ \beta_5 Delinquency\_pct_{it}
++ \beta_6 Med\_Mpct_{it} \\
+&+ \beta_7 \log(mean\_CPI_{it})
++ \beta_8 ForeclosureRate_{it}
++ \varepsilon_{it}
+\end{aligned}$$
+
+## Fixed Effect Model
+
+$$\begin{aligned}
+\log(DTI\_ratio_{it}) =\;&
+\beta_1 \log(DebtValue_{it})
++ \beta_2 \log(Median\_H\_Inc_{it})
++ \beta_3 MinWage_{it} \\
+&+ \beta_4 \log(HPI_{it})
++ \beta_5 Delinquency\_pct_{it}
++ \beta_6 Med\_Mpct_{it} \\
+&+ \beta_7 \log(mean\_CPI_{it})
++ \beta_8 ForeclosureRate_{it}
++ \alpha_i
++ \varepsilon_{it}
+\end{aligned}$$
+
+### Interpretation:
+
+- $\alpha_i$: captures all **time-invariant state characteristics**
+
+## Two-Way Fixed Effect Model
+
+$$\begin{aligned}
+\log(DTI\_ratio_{it}) =\;&
+\beta_1 \log(DebtValue_{it})
++ \beta_2 \log(Median\_H\_Inc_{it})
++ \beta_3 MinWage_{it} \\
+&+ \beta_4 \log(HPI_{it})
++ \beta_5 Delinquency\_pct_{it}
++ \beta_6 Med\_Mpct_{it} \\
+&+ \beta_7 \log(mean\_CPI_{it})
++ \beta_8 ForeclosureRate_{it}
++ \alpha_i
++ \gamma_t
++ \varepsilon_{it}
+\end{aligned}$$
+
+### Interpretation:
+
+- $\alpha_i$​: state fixed effects
+- $\gamma_t$​: time fixed effects (e.g., macro shocks)
+
+# Results
+
+According to all three plots, there is high statistical significance from majority of the variables within each model. Starting off with Fixed effect, all variables are statistically significant to the model. As for Two-Way FE, the variables that lack statistical significance in the Delinquency Percent, Foreclosure Rate, and Minimum Wage. Lastly, with the Pooled OLS, all variables hold statistical significance except for the constant.
+
+Key notes to be taken about specific variables would be the $\log(DebtValue)$, which is always negative and highly significant, ranging between -1.05 and -1.21. For a 1% increase in the total debt is associated with about 1.05% - 1.21% decrease within the Debt-to-Income Ratio. As for the next significant variable, $\log(Median Household Income)$, has stronger effects within the Fixed-Effect & Pooled OLS (Ordinary Least Squares) Model. With the opposite effect of the DebtValue, it's *positive* relationship has an effect of 1% increase in Median Household Income resulting in an increase of the Debt-to-Income Ratio by \~0.75% - 1.07%.
+
+```{r, warning=FALSE, echo=FALSE}
+# model_fe <- plm(
+#   log(DTI_ratio) ~ DebtValue + Median_H_Inc + MinWage + HPI +
+#     Delinquency_pct + Med_Mpct + mean_CPI + ForeclosureRate,
+#   data = model_prep,
+#   index = c("state", "time"),
+#   model = "within",
+#   effect = "individual"
+# )
+# 
+# model_twfe <- plm(
+#   log(DTI_ratio) ~ log(DebtValue) + log(Median_H_Inc) + MinWage +
+#     log(HPI) + Delinquency_pct + Med_Mpct + log(mean_CPI) +
+#     ForeclosureRate,
+#   data = model_prep,
+#   index = c("state", "time"),
+#   model = "within",
+#   effect = "twoways"
+# )
+# # stargazer(model_log_fe, type = "text")
+# 
+# model_pols <- plm(
+#   log(DTI_ratio) ~ log(Median_H_Inc) + MinWage +
+#     log(HPI) + Delinquency_pct + Med_Mpct + log(mean_CPI) +
+#     ForeclosureRate,
+#   data = model_prep,
+#   index = c("state", "time"),
+#   model = "pooling"
+# )
+#===========================================================================#
+model_fe <- plm(
+  log(DTI_ratio) ~ log(DebtValue) + log(Median_H_Inc) + MinWage +
+    log(HPI) + Delinquency_pct + Med_Mpct + log(mean_CPI) +
+    ForeclosureRate,
+  data = model_prep,
+  index = c("state", "time"),
+  model = "within",
+  effect = "individual"
+)
+
+model_twfe <- plm(
+  log(DTI_ratio) ~ log(DebtValue) + log(Median_H_Inc) + MinWage +
+    log(HPI) + Delinquency_pct + Med_Mpct + log(mean_CPI) +
+    ForeclosureRate,
+  data = model_prep,
+  index = c("state", "time"),
+  model = "within",
+  effect = "twoways"
+)
+# stargazer(model_log_fe, type = "text")
+
+model_pols <- plm(
+  log(DTI_ratio) ~ log(DebtValue) + log(Median_H_Inc) + MinWage +
+    log(HPI) + Delinquency_pct + Med_Mpct + log(mean_CPI) +
+    ForeclosureRate,
+  data = model_prep,
+  index = c("state", "time"),
+  model = "pooling"
+)
+
+stargazer(model_fe,model_twfe,model_pols, type = "text", column.labels = c("Fixed Effect","Two-Way Fixed Effect","Pooled OLS"))
+# ?stargazer
+```
+
+# Discussion and Implications
+
+# Conclusion
+
+# References
+
+**Bhutta, N. (2015)**. *The ins and outs of mortgage debt during the housing boom and bust.* FEDS Working Paper 2015-41, Board of Governors of the Federal Reserve System.
+
+**Bureau of Labor Statistics (BLS)**. (n.d.). City *CPI Data and Cumulative State CPI Data.* <https://www.bls.gov>
+
+**Federal Housing Finance Agency (FHFA)**. (n.d.). *House price index data.* <https://www.fhfa.gov>
+
+**Federal Reserve Economic Data (FRED)**. (n.d.). *Economic research data.* Federal Reserve Bank of St. Louis. <https://fred.stlouisfed.org>
+
+**Glaeser, E. L., & Gyourko, J. (2018)**. The economic implications of housing supply. *Journal of Economic Perspectives, 32*(1), 3–30.
+
+**Mian, A., & Sufi, A. (2011)**. House prices, home equity-based borrowing, and the U.S. household leverage crisis. *American Economic Review, 101*(5), 2132–2156.
+
+**Saiz, A. (2010)**. The geographic determinants of housing supply. *Quarterly Journal of Economics, 125*(3), 1253–1296.

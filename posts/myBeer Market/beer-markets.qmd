@@ -51,17 +51,17 @@ rmarkdown::paged_table(beer_data)
 
 The following describes the variables in the `beer_data` data.frame.
 
--   `hh`: Household identifier
--   `_purchase_desc`: Description of the purchase
--   `quantity`: The quantity of beer purchased
--   `brand`: The brand of beer
--   `dollar_spent`: The amount spent
--   `beer_floz`: Fluid ounces of beer
--   `price_per_floz`: Price per fluid ounce
--   `container`: Type of container
--   `promo`: Whether the purchase was on promotion
--   `market`: The market where the purchase was made
--   Demographics: `age`, `employment` status, `degree`, class of worker (`cow`), `race`, and household information like `microwave`, `dishwasher`, `tvcable`, `singlefamilyhome`, and `npeople` (number of people in the household)
+- `hh`: Household identifier
+- `_purchase_desc`: Description of the purchase
+- `quantity`: The quantity of beer purchased
+- `brand`: The brand of beer
+- `dollar_spent`: The amount spent
+- `beer_floz`: Fluid ounces of beer
+- `price_per_floz`: Price per fluid ounce
+- `container`: Type of container
+- `promo`: Whether the purchase was on promotion
+- `market`: The market where the purchase was made
+- Demographics: `age`, `employment` status, `degree`, class of worker (`cow`), `race`, and household information like `microwave`, `dishwasher`, `tvcable`, `singlefamilyhome`, and `npeople` (number of people in the household)
 
 ## Summarizations
 
