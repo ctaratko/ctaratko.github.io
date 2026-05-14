@@ -26,11 +26,11 @@ website:
         - text: Capstone Paper
           href: Spring2026Projects/Capstone-paper.qmd
         - text: 310 Project
-          href: Spring2026Projects/DANL310Page.qmd
+          href: Spring2026Projects/DANL 310 Project/Final/310Webpage.qmd
         - text: 320 Project
           href: Spring2026Projects/DANL320Page.qmd
         - text: 310 Dashboard
-          href: Spring2026Projects/DANL 310 Project/bees_dashboard.qmd
+          href: Spring2026Projects/DANL 310 Project/Final/danl_310_taratko_christopher_project_dashboard.qmd
   page-footer: 
     center: "Powered with GitHub and Quarto<br>© Christopher Taratko, 2023"
 

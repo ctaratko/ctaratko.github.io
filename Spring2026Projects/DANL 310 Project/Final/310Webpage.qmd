@@ -1,0 +1,494 @@
+---
+title: "Cavity-Nesting Bee & Wasp Community Study"
+author: "Sophia Stang & Christopher Taratko"
+format:
+  html:
+    theme: cosmo
+    include-in-header:
+      - text: |
+          <style>
+          h1, h2, h3, h4, h5, h6 {
+            color: #000080;
+          }
+          </style>
+    toc: true
+    smooth-scroll: true
+    page-layout: full
+editor: visual
+execute:
+  warning: false
+  message: false
+---
+
+```{r}
+#| include: false
+
+library(tidyverse)
+library(plotly)
+library(ggiraph)
+library(htmlwidgets)
+library(gganimate)
+library(ggthemes)
+library(hrbrthemes)
+library(rmarkdown)
+# setwd("/Users/christophertaratko/ProjectsList/Data Analytics/DANL 310 Project")
+source("FinalScript.R")
+```
+
+# Cavity-Nesting Bee & Wasp Community Study
+
+## Monitoring Tube Occupancy Across Campus Habitats (2023–2026)
+
+This project investigates the diversity, seasonal activity, and habitat relationships of cavity-nesting bees and wasps in Geneseo, New York. Artificial nesting boxes were monitored across multiple habitats from 2023–2026 to examine how environmental conditions influence nesting behavior, occupancy patterns, and species diversity.
+
+------------------------------------------------------------------------
+
+# Introduction
+
+Solitary bees and wasps are insects with unique reproductive patterns that involve the construction of nests in pre-existing cavities, such as hollow reed stems or holes from wood-boring insects. Cavity-nesting bees and wasps modify these nests by partitioning the tube using natural materials like mud, grass, and masticated leaves and provisioning their young with pollen or arthropods. As a result of their specific reproductive requirements, cavity-nesting bees and wasps can be used as indicator species for the overall impact of habitat management in a given area. This study aims to analyze the diversity and abundance of cavity-nesting species in Geneseo, NY, assessing fill types, temporal patterns, and environmental factors influencing these individuals across years and sites. Cavity-nesting species can be monitored and supported using nesting boxes containing artificial tubes. This study examines solitary cavity-nesting bees and wasps in Geneseo, NY, using artificial nesting structures (“bee boxes”) to monitor their activity, diversity, and habitat preferences over multiple years. Fill types were analyzed and categorized as mud, grass, masticated leaves, or intact leaves. These fill types serve as indicators of which taxa are present, since different families of cavity-nesters use distinct materials. This information was used to gain baseline information on local cavity-nesting bee and wasp temporal patterns, identities, and environmental niches.
+
+This study examines:
+
+- seasonal nesting activity across years
+- variation in fill materials through time
+- differences among habitat locations
+- species composition across sites
+- ecological relationships between habitat and occupancy
+
+The primary research questions include:
+
+- How does nesting activity change throughout the season?
+- Which habitats support the highest diversity?
+- How do fill materials vary across years and locations?
+- What ecological patterns emerge across habitats?
+
+------------------------------------------------------------------------
+
+# Data
+
+## Data Sources
+
+The dataset combines multiple CSV files collected during weekly monitoring of cavity-nesting bee and wasp boxes between 2023 and 2026.
+
+These files include:
+
+- weekly first-fill observations
+- fill-type proportions by location
+- species identifications
+- cumulative occupancy information
+- habitat-specific occupancy frequencies
+
+```{r}
+# DATA IMPORTS HERE
+
+# Example:
+paged_table(ID_freq_comp)
+paged_table(fill_df)
+paged_table(full_cum_clean)
+paged_table(combined_df)
+```
+
+## Unit of Observation
+
+The primary unit of observation is:
+
+- one nesting tube observed during one week at one location
+
+## Key Variables
+
+| Variable                       | Description                    |
+|--------------------------------|--------------------------------|
+| `Week`                         | Week of seasonal monitoring    |
+| `Year`                         | Sampling year                  |
+| `Location`                     | Habitat site                   |
+| `Fill_Type`                    | Material used to seal tube     |
+| `Number_of_Tubes_First_Filled` | Number of newly occupied tubes |
+| `Inhabitant`                   | Species or taxonomic identity  |
+
+## Study Locations
+
+The nesting boxes were placed in several habitat types around SUNY Geneseo and the Island Preserve, including:
+
+- Arboretum
+- Bee Barn
+- E-Garden
+- ISC / Greenhouse
+- No-Mow Zone
+- Island Preserve
+
+------------------------------------------------------------------------
+
+# Data Transformation and Descriptive Statistics
+
+## Data Cleaning
+
+The raw datasets required several cleaning and preparation steps before analysis.
+
+These transformations included:
+
+- combining yearly datasets
+- standardizing fill-type labels
+- replacing missing values
+- grouping observations by week and year
+- calculating cumulative totals
+- reshaping datasets for visualization
+- joining habitat metadata
+
+```{r}
+# DATA WRANGLING CODE HERE
+
+# fill_2023_cleaned <- fill_2023 |> 
+#   mutate(Year = 2023,
+#          Number_of_Tubes_First_Filled = ifelse(is.na(Number_of_Tubes_First_Filled), 0, Number_of_Tubes_First_Filled))
+# fill_2024_cleaned <- fill_2024 |> 
+#   mutate(Number_of_Tubes_First_Filled = Number_of_Tubes_First.Filled,
+#          Number_of_Tubes_First_Filled = ifelse(is.na(Number_of_Tubes_First_Filled), 0, Number_of_Tubes_First_Filled),
+#          Year = 2024)|>
+#   select(Week, Year, Number_of_Tubes_First_Filled, Fill_Type)
+# 
+# fill_2025_cleaned <- fill_2025_clean|> 
+#   mutate(Year = 2025,
+#          Number_of_Tubes_First_Filled = Number_of_Tubes_First.Filled,
+#          Number_of_Tubes_First_Filled = ifelse(is.na(Number_of_Tubes_First_Filled), 0, Number_of_Tubes_First_Filled))|>
+#   select(Week, Year, Number_of_Tubes_First_Filled, Fill_Type)
+# 
+# combined_df <- bind_rows(fill_2023_cleaned, fill_2024_cleaned, fill_2025_cleaned)
+# 
+# fill_2023_cum <- fill_2023_cleaned |>
+#   mutate(cum_sum = cumsum(Number_of_Tubes_First_Filled))
+# fill_2024_cum <- fill_2024_cleaned |>
+#   mutate(cum_sum = cumsum(Number_of_Tubes_First_Filled))
+# fill_2025_clean_cum <- fill_2025_cleaned |>
+#   mutate(
+#     cum_sum = cumsum(Number_of_Tubes_First_Filled)
+#   )
+# 
+# ID_freq_comp = read.csv("Data Analysis/Proportion_of_Fill_By_Location - 2025-2026.csv")
+# sample_sizes = data.frame(Location = c("Arboretum", "ISC/Greenhouse", "No Mow Zone", "EGarden", "Island Preserve"),
+#                           Sample_Size = c(140, 40, 20, 20, 160))
+# 
+# 
+# ID_freq_comp$Fill_Type <- factor(ID_freq_comp$Fill_Type,
+#                                  levels = c("Empty", "Debris", "Silk", "Grass", "Light_Mud",
+#                                             "Intact_Leaves", "Masticated_Leaves"))
+# 
+# 
+# fill_2023_cum_fill <- fill_2023_cleaned |>
+#   group_by(Fill_Type)|>
+#   mutate(cum_sum = cumsum(Number_of_Tubes_First_Filled))
+# fill_2024_cum_fill <- fill_2024_cleaned |>
+#   group_by(Fill_Type)|>
+#   mutate(cum_sum = cumsum(Number_of_Tubes_First_Filled))
+# fill_2025_clean_cum_fill <- fill_2025_cleaned |>
+#   group_by(Fill_Type)|>
+#   mutate(
+#     cum_sum = cumsum(Number_of_Tubes_First_Filled)
+#   )
+# 
+# full_cum <- bind_rows(fill_2023_cum, fill_2024_cum, fill_2025_clean_cum)
+# full_cum_fill <- bind_rows(fill_2023_cum_fill, fill_2024_cum_fill, fill_2025_clean_cum_fill)
+
+# full_cum_clean <- full_cum |>
+#   mutate(
+#     Fill_Type = recode(Fill_Type,
+#                        "Leaves" = "Leaves",
+#                        "Intact_Leaves" = "Leaves"   # combine here
+#     )
+#   ) |>
+#   filter(!Fill_Type %in% c("Silk", "Debris"))
+# 
+# full_cum_clean_fill <- full_cum_fill |>
+#   mutate(
+#     Fill_Type = recode(Fill_Type,
+#                        "Leaves" = "Leaves",
+#                        "Intact_Leaves" = "Leaves"   # combine here
+#     )
+#   ) |>
+#   filter(!Fill_Type %in% c("Silk", "Debris"))
+# bee_fill_comp <- c(
+#   "Grass"             = "Grass\n(Grass Wasp)",
+#   "Leaves"            = "Leaves\n(Leafcutter Bee)",
+#   "Light_Mud"         = "Light Mud\n(Square-headed Wasp, Potter Wasp)",
+#   "Masticated_Leaves" = "Masticated Leaves\n(Leafcutter Bee, Mason Bee)",
+#   "Empty"             = "Empty"
+# )
+# 
+# 
+# 
+# 
+# 
+# #Make leaves and intact leaves the same thing, remove non-cavity nester fill
+# full_cum_clean <- full_cum |>
+#   mutate(
+#     Fill_Type = recode(Fill_Type,
+#                        "Leaves" = "Leaves",
+#                        "Intact_Leaves" = "Leaves"   # combine here
+#     )
+#   ) |>
+#   filter(!Fill_Type %in% c("Silk", "Debris"))
+# 
+# full_cum_clean_fill <- full_cum_fill |>
+#   mutate(
+#     Fill_Type = recode(Fill_Type,
+#                        "Leaves" = "Leaves",
+#                        "Intact_Leaves" = "Leaves"   # combine here
+#     )
+#   ) |>
+#   filter(!Fill_Type %in% c("Silk", "Debris"))
+# bee_fill_comp <- c(
+#   "Grass"             = "Grass\n(Grass Wasp)",
+#   "Leaves"            = "Leaves\n(Leafcutter Bee)",
+#   "Light_Mud"         = "Light Mud\n(Square-headed Wasp, Potter Wasp)",
+#   "Masticated_Leaves" = "Masticated Leaves\n(Leafcutter Bee, Mason Bee)",
+#   "Empty"             = "Empty"
+# )
+```
+
+## Descriptive Statistics
+
+Initial summaries were used to examine:
+
+- total occupancy by year
+- average weekly tube fills
+- dominant fill materials
+- variation across habitats
+
+```{r}
+# SUMMARY STATISTICS TABLE HERE
+summary(ID_freq_comp)
+summary(fill_df)
+summary(full_cum_clean)
+summary(combined_df)
+```
+
+```{r}
+# OPTIONAL STATIC SUMMARY GRAPH HERE
+
+
+
+ggplot(full_cum_clean,
+       aes(x = Week,
+           y = cum_sum,
+           color = factor(Year),
+           group = Year)) +
+  geom_smooth()+
+  labs(
+    y = "Cumulative Fills",
+    title = "Cumulative Sums of Fill Types by Year",
+    color = "Year"
+  ) +
+  scale_color_manual(
+    values = c("#FDE725FF", "#29AF7FFF", "#33638DFF"), 
+    labels = c("2023", "2024", "2025")) +
+  theme_minimal() +
+  mytheme +
+  theme(
+    legend.text = element_text(size = 6)
+  )
+
+ggplot(full_cum_clean_fill,
+       aes(x = Week,
+           y = cum_sum,
+           color = Fill_Type)) +
+  geom_line(linewidth = 1.2) +
+  facet_wrap(~Year) +
+  labs(
+    y = "Cumulative Fills",
+    title = "Cumulative Sums of Fill Types by Year",
+    color = "Fill Type"
+  ) +
+  scale_color_manual(
+    values = my_colors,
+    labels = bee_fill_comp
+  ) +
+  scale_y_continuous(
+    breaks = c(10, 20, 30, 40, 50, 60),
+    limits = c(0, 60)
+  ) +
+  theme_minimal() +
+  mytheme
+
+
+```
+
+## Seasonal Occupancy Trends
+
+Across all years, occupancy generally increased through the middle of the summer before declining toward September. Different fill materials appeared at distinct periods of the season, reflecting the reproductive timing of different bee and wasp taxa.
+
+```{r}
+# OPTIONAL DESCRIPTIVE TIME SERIES GRAPH HERE
+```
+
+------------------------------------------------------------------------
+
+# Data Visualization and Storytelling
+
+## Seasonal Activity Across Years
+
+This visualization compares cumulative nesting activity across years. The graph highlights differences in occupancy timing and overall seasonal productivity.
+
+```{r}
+# INTERACTIVE PLOTLY GRAPH HERE
+combined_df$Fill_Type <- factor(combined_df$Fill_Type,
+                                levels = c("Debris", "Silk", "Grass", "Light_Mud", "Leaves",
+                                           "Masticated_Leaves"))
+ggplot(combined_df, aes(x=Week, y=Number_of_Tubes_First_Filled,fill=Fill_Type)) +
+  facet_wrap(~Year, scales = "free_x")+
+  scale_fill_manual(values = my_colors, labels = my_labels) +
+  # scale_fill_viridis_d() +
+  labs(title = " Timing of First Fill by Year", x = "Week", y = "Number of Tubes First Filled", fill = "Fill Type") +
+  geom_bar(position="stack", stat="identity", color = "black", width = 1) +
+  #For scaling the tickmarks along the axes
+  scale_x_continuous(breaks=seq(0,20,by=2)) +
+  scale_y_continuous(breaks=seq(0,20,by=2))+
+  theme_minimal() +
+  mytheme
+```
+
+The visualization demonstrates how nesting activity changes over time and allows comparison between years. Hover interactions provide exact occupancy values for each week.
+
+------------------------------------------------------------------------
+
+## Weekly Fill-Type Dynamics
+
+Different fill materials correspond to different nesting taxa. This animation tracks how fill-type composition changes throughout the season.
+
+```{r}
+# ANIMATED GGANIMATE GRAPH HERE
+ggplot(fill_df,
+       aes(x = Week,
+           y = Number_of_Tubes_First_Filled,
+           fill = Fill_Type)) +
+  facet_wrap(
+    ~Fill_Type,
+    scales = "free_x",
+    labeller = labeller(Fill_Type = c(
+      "Light_Mud" = "Light Mud",
+      "Masticated_Leaves" = "Masticated Leaves",
+      "Intact_Leaves" = "Intact Leaves"
+    ))
+  ) +
+  geom_bar(position = "stack", stat = "identity") +
+  scale_fill_manual(
+    values = my_colors,
+    labels = c(
+      "Grass" = "Grass",
+      "Leaves" = "Leaves",
+      "Light_Mud" = "Light Mud",
+      "Masticated_Leaves" = "Masticated Leaves"
+    )
+  ) +
+  labs(
+    title = "Timing of First Fill by Fill Type: Summary Across Years",
+    x = "Week",
+    y = "Number of Tubes First Filled",
+    fill = "Fill Type"
+  ) +
+  scale_x_continuous(breaks = seq(0, 20, by = 2)) +
+  scale_y_continuous(breaks = seq(0, 20, by = 2)) +
+  theme_minimal() +
+  mytheme +
+  theme(
+    axis.text = element_text(size = 8)
+  )
+```
+
+The animation illustrates the seasonal succession of nesting activity, showing how mud-associated wasps appear earlier in the season while leafcutter bees become more common later in the summer.
+
+------------------------------------------------------------------------
+
+## Habitat Comparisons & Ecological Relationships
+
+Habitat conditions strongly influenced occupancy patterns and diversity across locations.
+
+```{r}
+# HABITAT COMPARISON VISUALIZATION HERE
+ID_freq_comp %>%
+  filter(Fill_Type != "Empty") %>%
+  ggplot(aes(x = Fill_Type, y = Location, fill = Proportion_of_Fill)) +
+  geom_tile(color = "white") +
+  scale_fill_gradient(low = "white", high = "darkgreen") +
+  labs(x = "Fill Type", y = "Location", fill = "Proportion") +
+  mytheme +
+  theme(
+    axis.text.x = element_text(angle = 30, vjust = .5)
+  )
+```
+
+The visualization compares the proportional composition of fill types among habitat locations and highlights ecological differences between managed and naturalized environments.Relationships between fill materials and occupant taxa can also be visualized to better understand ecological interactions within nesting communities.
+
+------------------------------------------------------------------------
+
+## Species Composition
+
+Species-level identifications provide insight into the diversity of cavity-nesting insects observed across locations.
+
+```{r, echo=FALSE}
+# SPECIES-LEVEL VISUALIZATION HERE
+ID_freq <- read.csv("Data Analysis/Actual andPresumed ID.csv")
+
+# --- Species-level ID proportions (complete) ---
+ID_freq_comp <- read.csv("Data Analysis/Actual_presumed_complete.csv")
+
+sample_sizes_species <- data.frame(
+  Location = c("Arboretum", "BeeBarn", "EGarden", "Meadow", "NoMowZone"),
+  Sample_Size = c(2, 95, 7, 14, 49)
+)
+
+ID_freq_comp$Inhabitant <- factor(ID_freq_comp$Inhabitant,
+  levels = c("Chrysis cessata", "Coelioxys alternatus", "Isodontia mexicana",
+             "Ancistrocerus", "Euodynerus foraminatus", "Trypoxylon lactitarse",
+             "Megachile pugnata", "Megachile rotundata", "Megachile relativa", "Osmia caerulescens")
+)
+
+ID_freq_comp <- merge(ID_freq_comp, sample_sizes_species, by = "Location", all.x = TRUE)
+
+species_colors <- c(
+  "Chrysis cessata" = "#480154FF",
+  "Coelioxys alternatus" = "#481567FF",
+  "Isodontia mexicana" = "#1F968BFF",
+  "Ancistrocerus" = "#287D8EFF",
+  "Euodynerus foraminatus" = "#33638DFF",
+  "Trypoxylon lactitarse" = "#404788FF",
+  "Megachile pugnata" = "#55C667FF",
+  "Megachile rotundata" = "lightgreen",
+  "Megachile relativa" = "#FDE725FF",
+  "Osmia caerulescens" = "#DCE319FF"
+)
+
+graph_species <- ggplot(ID_freq_comp, aes(fill = Inhabitant, y = Proportion_of_Fill, x = Location)) +
+  geom_bar(position = "fill", stat = "identity", col = "white") +
+  scale_fill_manual(values = species_colors, breaks = names(species_colors)) +
+  scale_y_continuous(breaks = seq(0, 1, 0.1)) +
+  labs(title = "Proportion of Inhabitant Types by Location (Species-level)",
+       x = "Location", y = "Proportion", fill = "Inhabitant") +
+  theme_minimal() + mytheme +
+  coord_cartesian(ylim = c(-0.08, 1), clip = "off") +
+  theme(plot.margin = margin(t=5, r=5, b=45, l=5))
+graph_species
+```
+
+The results indicate that certain habitats supported greater species richness and higher proportions of native pollinator taxa.
+
+------------------------------------------------------------------------
+
+# Conclusion
+
+The goal of this research is to gain baseline information on the cavity-nesting bees and wasps in Geneseo, NY. Populations of wild bees are declining as a result of declines in floral resources. Monitoring and supporting cavity nesting bees and wasps is crucial; they are beneficial to both local ecosystems and economies. Surveying bee and wasp species provides information on the ecological state of an area. Due to their specific habitat requirements, trophic diversity, and roles as pollinators, cavity-nesters can serve as an indication of environmental change and influences of invasive species. Wild bees pollinate flowers when feeding on nectar and pollen. Solitary adult wasps also feed on nectar providing pollination. Wasp larvae however, feed on arthropod populations as the adults lay their eggs with arthropod provisions. Crops and plants rely on cavity-nesting pollinators to facilitate reproduction. Increased wildflowers plantings result in increased wild bee diversity and abundance. This has been utilized by commercial farms, which plant wildflower gardens adjacent to agricultural fields in order to take advantage of these ecological links. In Geneseo, a town dominated by agricultural fields, monitoring cavity-nesting bees and wasps is essential to local communities.
+
+Several major patterns emerged:
+
+- nesting activity followed consistent seasonal timing
+- fill materials reflected predictable taxonomic patterns
+- habitats with native vegetation supported greater diversity
+- occupancy composition varied strongly across locations
+- certain pollinator taxa consistently dominated specific habitats
+
+These findings contribute to broader efforts aimed at monitoring pollinator populations and understanding how habitat management influences biodiversity in agricultural and suburban landscapes.
+
+------------------------------------------------------------------------
+
+# References
+
+- NA
+- NA

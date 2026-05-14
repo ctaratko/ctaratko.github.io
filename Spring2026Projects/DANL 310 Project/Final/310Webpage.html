@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Sophia Stang &amp; Christopher Taratko">
+
+<title>Cavity-Nesting Bee &amp; Wasp Community Study – Christopher Taratko</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-e5c0da90bde570b7566f6217e7c63da7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-624f288d9dd944902260270fa91305c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link href="../../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<style>
+h1, h2, h3, h4, h5, h6 {
+  color: #000080;
+}
+</style>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Christopher Taratko</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../project.html"> 
+<span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../blog-listing.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../Analytics200Review.html"> 
+<span class="menu-text">Lab Review</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-danl-210-project" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">DANL 210 Project</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-danl-210-project">    
+        <li>
+    <a class="dropdown-item" href="../../../PythonFolder/DANL210Project.html">
+ <span class="dropdown-text">Project Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../PythonFolder/210Project1.py">
+ <span class="dropdown-text">python</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-spring-2026-projects" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Spring 2026 Projects</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-spring-2026-projects">    
+        <li>
+    <a class="dropdown-item" href="../../../Spring2026Projects/Capstone-paper.html">
+ <span class="dropdown-text">Capstone Paper</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../Spring2026Projects/DANL 310 Project/Final/310Webpage.html">
+ <span class="dropdown-text">310 Project</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../Spring2026Projects/DANL320Page.html">
+ <span class="dropdown-text">320 Project</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../Spring2026Projects/DANL 310 Project/Final/danl_310_taratko_christopher_project_dashboard.html">
+ <span class="dropdown-text">310 Dashboard</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#cavity-nesting-bee-wasp-community-study" id="toc-cavity-nesting-bee-wasp-community-study" class="nav-link active" data-scroll-target="#cavity-nesting-bee-wasp-community-study">Cavity-Nesting Bee &amp; Wasp Community Study</a>
+  <ul class="collapse">
+  <li><a href="#monitoring-tube-occupancy-across-campus-habitats-20232026" id="toc-monitoring-tube-occupancy-across-campus-habitats-20232026" class="nav-link" data-scroll-target="#monitoring-tube-occupancy-across-campus-habitats-20232026">Monitoring Tube Occupancy Across Campus Habitats (2023–2026)</a></li>
+  </ul></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a>
+  <ul class="collapse">
+  <li><a href="#data-sources" id="toc-data-sources" class="nav-link" data-scroll-target="#data-sources">Data Sources</a></li>
+  <li><a href="#unit-of-observation" id="toc-unit-of-observation" class="nav-link" data-scroll-target="#unit-of-observation">Unit of Observation</a></li>
+  <li><a href="#key-variables" id="toc-key-variables" class="nav-link" data-scroll-target="#key-variables">Key Variables</a></li>
+  <li><a href="#study-locations" id="toc-study-locations" class="nav-link" data-scroll-target="#study-locations">Study Locations</a></li>
+  </ul></li>
+  <li><a href="#data-transformation-and-descriptive-statistics" id="toc-data-transformation-and-descriptive-statistics" class="nav-link" data-scroll-target="#data-transformation-and-descriptive-statistics">Data Transformation and Descriptive Statistics</a>
+  <ul class="collapse">
+  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning">Data Cleaning</a></li>
+  <li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics">Descriptive Statistics</a></li>
+  <li><a href="#seasonal-occupancy-trends" id="toc-seasonal-occupancy-trends" class="nav-link" data-scroll-target="#seasonal-occupancy-trends">Seasonal Occupancy Trends</a></li>
+  </ul></li>
+  <li><a href="#data-visualization-and-storytelling" id="toc-data-visualization-and-storytelling" class="nav-link" data-scroll-target="#data-visualization-and-storytelling">Data Visualization and Storytelling</a>
+  <ul class="collapse">
+  <li><a href="#seasonal-activity-across-years" id="toc-seasonal-activity-across-years" class="nav-link" data-scroll-target="#seasonal-activity-across-years">Seasonal Activity Across Years</a></li>
+  <li><a href="#weekly-fill-type-dynamics" id="toc-weekly-fill-type-dynamics" class="nav-link" data-scroll-target="#weekly-fill-type-dynamics">Weekly Fill-Type Dynamics</a></li>
+  <li><a href="#habitat-comparisons-ecological-relationships" id="toc-habitat-comparisons-ecological-relationships" class="nav-link" data-scroll-target="#habitat-comparisons-ecological-relationships">Habitat Comparisons &amp; Ecological Relationships</a></li>
+  <li><a href="#species-composition" id="toc-species-composition" class="nav-link" data-scroll-target="#species-composition">Species Composition</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Cavity-Nesting Bee &amp; Wasp Community Study</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Sophia Stang &amp; Christopher Taratko </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="cavity-nesting-bee-wasp-community-study" class="level1">
+<h1>Cavity-Nesting Bee &amp; Wasp Community Study</h1>
+<section id="monitoring-tube-occupancy-across-campus-habitats-20232026" class="level2">
+<h2 class="anchored" data-anchor-id="monitoring-tube-occupancy-across-campus-habitats-20232026">Monitoring Tube Occupancy Across Campus Habitats (2023–2026)</h2>
+<p>This project investigates the diversity, seasonal activity, and habitat relationships of cavity-nesting bees and wasps in Geneseo, New York. Artificial nesting boxes were monitored across multiple habitats from 2023–2026 to examine how environmental conditions influence nesting behavior, occupancy patterns, and species diversity.</p>
+<hr>
+</section>
+</section>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Solitary bees and wasps are insects with unique reproductive patterns that involve the construction of nests in pre-existing cavities, such as hollow reed stems or holes from wood-boring insects. Cavity-nesting bees and wasps modify these nests by partitioning the tube using natural materials like mud, grass, and masticated leaves and provisioning their young with pollen or arthropods. As a result of their specific reproductive requirements, cavity-nesting bees and wasps can be used as indicator species for the overall impact of habitat management in a given area. This study aims to analyze the diversity and abundance of cavity-nesting species in Geneseo, NY, assessing fill types, temporal patterns, and environmental factors influencing these individuals across years and sites. Cavity-nesting species can be monitored and supported using nesting boxes containing artificial tubes. This study examines solitary cavity-nesting bees and wasps in Geneseo, NY, using artificial nesting structures (“bee boxes”) to monitor their activity, diversity, and habitat preferences over multiple years. Fill types were analyzed and categorized as mud, grass, masticated leaves, or intact leaves. These fill types serve as indicators of which taxa are present, since different families of cavity-nesters use distinct materials. This information was used to gain baseline information on local cavity-nesting bee and wasp temporal patterns, identities, and environmental niches.</p>
+<p>This study examines:</p>
+<ul>
+<li>seasonal nesting activity across years</li>
+<li>variation in fill materials through time</li>
+<li>differences among habitat locations</li>
+<li>species composition across sites</li>
+<li>ecological relationships between habitat and occupancy</li>
+</ul>
+<p>The primary research questions include:</p>
+<ul>
+<li>How does nesting activity change throughout the season?</li>
+<li>Which habitats support the highest diversity?</li>
+<li>How do fill materials vary across years and locations?</li>
+<li>What ecological patterns emerge across habitats?</li>
+</ul>
+<hr>
+</section>
+<section id="data" class="level1">
+<h1>Data</h1>
+<section id="data-sources" class="level2">
+<h2 class="anchored" data-anchor-id="data-sources">Data Sources</h2>
+<p>The dataset combines multiple CSV files collected during weekly monitoring of cavity-nesting bee and wasp boxes between 2023 and 2026.</p>
+<p>These files include:</p>
+<ul>
+<li>weekly first-fill observations</li>
+<li>fill-type proportions by location</li>
+<li>species identifications</li>
+<li>cumulative occupancy information</li>
+<li>habitat-specific occupancy frequencies</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORTS HERE</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Example:</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">paged_table</span>(ID_freq_comp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Fill_Type"],"name":[2],"type":["fct"],"align":["left"]},{"label":["Proportion_of_Fill"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Tally.of.Fill"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Number.Filled"],"name":[5],"type":["int"],"align":["right"]},{"label":["Total.Tubes"],"name":[6],"type":["int"],"align":["right"]},{"label":["Second.count"],"name":[7],"type":["int"],"align":["right"]},{"label":["Sample_Size"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"Arboretum","2":"Masticated_Leaves","3":"0.200000000","4":"IIIIIIIIIIIIIIIIIIIIIIIIIIII","5":"28","6":"140","7":"NA","8":"140"},{"1":"Arboretum","2":"Intact_Leaves","3":"0.007142857","4":"I","5":"1","6":"140","7":"NA","8":"140"},{"1":"Arboretum","2":"Light_Mud","3":"0.100000000","4":"IIIIIIIIIIIIII","5":"14","6":"140","7":"NA","8":"140"},{"1":"Arboretum","2":"Grass","3":"0.085714286","4":"IIIIIIIIIIII","5":"12","6":"140","7":"NA","8":"140"},{"1":"Arboretum","2":"Silk","3":"0.014285714","4":"II","5":"2","6":"140","7":"NA","8":"140"},{"1":"Arboretum","2":"Debris","3":"0.071428571","4":"IIIIIIIIII","5":"10","6":"140","7":"NA","8":"140"},{"1":"Arboretum","2":"Empty","3":"0.521428571","4":"","5":"73","6":"140","7":"NA","8":"140"},{"1":"EGarden","2":"Masticated_Leaves","3":"0.150000000","4":"III","5":"3","6":"20","7":"NA","8":"20"},{"1":"EGarden","2":"Intact_Leaves","3":"0.000000000","4":"","5":"0","6":"20","7":"NA","8":"20"},{"1":"EGarden","2":"Light_Mud","3":"0.250000000","4":"IIIII","5":"5","6":"20","7":"NA","8":"20"},{"1":"EGarden","2":"Grass","3":"0.250000000","4":"IIIII","5":"5","6":"20","7":"NA","8":"20"},{"1":"EGarden","2":"Silk","3":"0.100000000","4":"II","5":"2","6":"20","7":"NA","8":"20"},{"1":"EGarden","2":"Debris","3":"0.150000000","4":"III","5":"3","6":"20","7":"NA","8":"20"},{"1":"EGarden","2":"Empty","3":"0.100000000","4":"","5":"2","6":"20","7":"NA","8":"20"},{"1":"ISC/Greenhouse","2":"Masticated_Leaves","3":"0.075000000","4":"III","5":"3","6":"40","7":"NA","8":"40"},{"1":"ISC/Greenhouse","2":"Intact_Leaves","3":"0.075000000","4":"III","5":"3","6":"40","7":"NA","8":"40"},{"1":"ISC/Greenhouse","2":"Light_Mud","3":"0.125000000","4":"IIIII","5":"5","6":"40","7":"NA","8":"40"},{"1":"ISC/Greenhouse","2":"Grass","3":"0.000000000","4":"","5":"0","6":"40","7":"NA","8":"40"},{"1":"ISC/Greenhouse","2":"Silk","3":"0.050000000","4":"II","5":"2","6":"40","7":"NA","8":"40"},{"1":"ISC/Greenhouse","2":"Debris","3":"0.125000000","4":"IIIII","5":"5","6":"40","7":"NA","8":"40"},{"1":"ISC/Greenhouse","2":"Empty","3":"0.550000000","4":"","5":"22","6":"40","7":"NA","8":"40"},{"1":"Island Preserve","2":"Masticated_Leaves","3":"0.018750000","4":"II","5":"3","6":"160","7":"3","8":"160"},{"1":"Island Preserve","2":"Intact_Leaves","3":"0.006250000","4":"I","5":"1","6":"160","7":"1","8":"160"},{"1":"Island Preserve","2":"Light_Mud","3":"0.125000000","4":"IIIIIIIIII(10)IIIIIIIII","5":"20","6":"160","7":"20","8":"160"},{"1":"Island Preserve","2":"Grass","3":"0.162500000","4":"IIIIIIIIII(10)II","5":"26","6":"160","7":"26","8":"160"},{"1":"Island Preserve","2":"Silk","3":"0.025000000","4":"II","5":"4","6":"160","7":"4","8":"160"},{"1":"Island Preserve","2":"Debris","3":"0.075000000","4":"IIIIIIIIII(10)II","5":"12","6":"160","7":"12","8":"160"},{"1":"Island Preserve","2":"Empty","3":"0.587500000","4":"","5":"94","6":"160","7":"NA","8":"160"},{"1":"No Mow Zone","2":"Masticated_Leaves","3":"0.000000000","4":"","5":"0","6":"20","7":"NA","8":"20"},{"1":"No Mow Zone","2":"Intact_Leaves","3":"0.100000000","4":"II","5":"2","6":"20","7":"NA","8":"20"},{"1":"No Mow Zone","2":"Light_Mud","3":"0.100000000","4":"II","5":"2","6":"20","7":"NA","8":"20"},{"1":"No Mow Zone","2":"Grass","3":"0.200000000","4":"IIII","5":"4","6":"20","7":"NA","8":"20"},{"1":"No Mow Zone","2":"Silk","3":"0.200000000","4":"IIII","5":"4","6":"20","7":"NA","8":"20"},{"1":"No Mow Zone","2":"Debris","3":"0.100000000","4":"II","5":"2","6":"20","7":"NA","8":"20"},{"1":"No Mow Zone","2":"Empty","3":"0.300000000","4":"","5":"6","6":"20","7":"NA","8":"20"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paged_table</span>(fill_df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Week"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Fill_Type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Number_of_Tubes_First_Filled"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Year"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"1.0","2":"Light_Mud","3":"0","4":"2023"},{"1":"1.0","2":"Leaves","3":"0","4":"2023"},{"1":"1.0","2":"Grass","3":"0","4":"2023"},{"1":"2.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"2.0","2":"Light_Mud","3":"0","4":"2023"},{"1":"2.0","2":"Leaves","3":"0","4":"2023"},{"1":"2.0","2":"Grass","3":"0","4":"2023"},{"1":"3.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"3.0","2":"Light_Mud","3":"4","4":"2023"},{"1":"3.0","2":"Leaves","3":"0","4":"2023"},{"1":"3.0","2":"Grass","3":"0","4":"2023"},{"1":"4.0","2":"Masticated_Leaves","3":"2","4":"2023"},{"1":"4.0","2":"Light_Mud","3":"1","4":"2023"},{"1":"4.0","2":"Leaves","3":"0","4":"2023"},{"1":"4.0","2":"Grass","3":"0","4":"2023"},{"1":"5.0","2":"Masticated_Leaves","3":"2","4":"2023"},{"1":"5.0","2":"Light_Mud","3":"1","4":"2023"},{"1":"5.0","2":"Leaves","3":"0","4":"2023"},{"1":"5.0","2":"Grass","3":"0","4":"2023"},{"1":"6.0","2":"Masticated_Leaves","3":"4","4":"2023"},{"1":"6.0","2":"Light_Mud","3":"5","4":"2023"},{"1":"6.0","2":"Leaves","3":"0","4":"2023"},{"1":"6.0","2":"Grass","3":"0","4":"2023"},{"1":"7.0","2":"Masticated_Leaves","3":"8","4":"2023"},{"1":"7.0","2":"Light_Mud","3":"4","4":"2023"},{"1":"7.0","2":"Leaves","3":"0","4":"2023"},{"1":"7.0","2":"Grass","3":"0","4":"2023"},{"1":"8.0","2":"Masticated_Leaves","3":"1","4":"2023"},{"1":"8.0","2":"Light_Mud","3":"3","4":"2023"},{"1":"8.0","2":"Leaves","3":"0","4":"2023"},{"1":"8.0","2":"Grass","3":"3","4":"2023"},{"1":"9.0","2":"Masticated_Leaves","3":"6","4":"2023"},{"1":"9.0","2":"Light_Mud","3":"5","4":"2023"},{"1":"9.0","2":"Leaves","3":"0","4":"2023"},{"1":"9.0","2":"Grass","3":"2","4":"2023"},{"1":"10.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"10.0","2":"Light_Mud","3":"6","4":"2023"},{"1":"10.0","2":"Leaves","3":"0","4":"2023"},{"1":"10.0","2":"Grass","3":"3","4":"2023"},{"1":"11.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"11.0","2":"Light_Mud","3":"6","4":"2023"},{"1":"11.0","2":"Leaves","3":"1","4":"2023"},{"1":"11.0","2":"Grass","3":"2","4":"2023"},{"1":"12.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"12.0","2":"Light_Mud","3":"1","4":"2023"},{"1":"12.0","2":"Leaves","3":"7","4":"2023"},{"1":"12.0","2":"Grass","3":"0","4":"2023"},{"1":"13.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"13.0","2":"Light_Mud","3":"0","4":"2023"},{"1":"13.0","2":"Leaves","3":"14","4":"2023"},{"1":"13.0","2":"Grass","3":"2","4":"2023"},{"1":"14.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"14.0","2":"Light_Mud","3":"0","4":"2023"},{"1":"14.0","2":"Leaves","3":"11","4":"2023"},{"1":"14.0","2":"Grass","3":"7","4":"2023"},{"1":"15.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"15.0","2":"Light_Mud","3":"0","4":"2023"},{"1":"15.0","2":"Leaves","3":"9","4":"2023"},{"1":"15.0","2":"Grass","3":"1","4":"2023"},{"1":"16.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"16.0","2":"Light_Mud","3":"0","4":"2023"},{"1":"16.0","2":"Leaves","3":"8","4":"2023"},{"1":"16.0","2":"Grass","3":"2","4":"2023"},{"1":"17.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"17.0","2":"Light_Mud","3":"0","4":"2023"},{"1":"17.0","2":"Leaves","3":"4","4":"2023"},{"1":"17.0","2":"Grass","3":"4","4":"2023"},{"1":"18.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"18.0","2":"Light_Mud","3":"0","4":"2023"},{"1":"18.0","2":"Leaves","3":"3","4":"2023"},{"1":"18.0","2":"Grass","3":"2","4":"2023"},{"1":"19.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"19.0","2":"Light_Mud","3":"0","4":"2023"},{"1":"19.0","2":"Leaves","3":"0","4":"2023"},{"1":"19.0","2":"Grass","3":"1","4":"2023"},{"1":"20.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"20.0","2":"Light_Mud","3":"0","4":"2023"},{"1":"20.0","2":"Leaves","3":"0","4":"2023"},{"1":"20.0","2":"Grass","3":"0","4":"2023"},{"1":"1.0","2":"Masticated_Leaves","3":"0","4":"2024"},{"1":"1.0","2":"Light_Mud","3":"0","4":"2024"},{"1":"1.0","2":"Grass","3":"0","4":"2024"},{"1":"2.0","2":"Masticated_Leaves","3":"0","4":"2024"},{"1":"2.0","2":"Light_Mud","3":"1","4":"2024"},{"1":"2.0","2":"Grass","3":"0","4":"2024"},{"1":"3.0","2":"Masticated_Leaves","3":"0","4":"2024"},{"1":"3.0","2":"Light_Mud","3":"0","4":"2024"},{"1":"3.0","2":"Grass","3":"0","4":"2024"},{"1":"4.0","2":"Masticated_Leaves","3":"0","4":"2024"},{"1":"4.0","2":"Light_Mud","3":"4","4":"2024"},{"1":"4.0","2":"Grass","3":"0","4":"2024"},{"1":"7.0","2":"Masticated_Leaves","3":"0","4":"2024"},{"1":"7.0","2":"Light_Mud","3":"8","4":"2024"},{"1":"7.0","2":"Grass","3":"0","4":"2024"},{"1":"8.0","2":"Masticated_Leaves","3":"0","4":"2024"},{"1":"8.0","2":"Light_Mud","3":"11","4":"2024"},{"1":"8.0","2":"Grass","3":"3","4":"2024"},{"1":"9.0","2":"Masticated_Leaves","3":"4","4":"2024"},{"1":"9.0","2":"Light_Mud","3":"7","4":"2024"},{"1":"9.0","2":"Grass","3":"2","4":"2024"},{"1":"10.0","2":"Masticated_Leaves","3":"10","4":"2024"},{"1":"10.0","2":"Light_Mud","3":"8","4":"2024"},{"1":"10.0","2":"Grass","3":"4","4":"2024"},{"1":"11.0","2":"Masticated_Leaves","3":"4","4":"2024"},{"1":"11.0","2":"Light_Mud","3":"4","4":"2024"},{"1":"11.0","2":"Grass","3":"1","4":"2024"},{"1":"12.0","2":"Masticated_Leaves","3":"0","4":"2024"},{"1":"12.0","2":"Light_Mud","3":"2","4":"2024"},{"1":"12.0","2":"Grass","3":"2","4":"2024"},{"1":"13.0","2":"Masticated_Leaves","3":"2","4":"2024"},{"1":"13.0","2":"Light_Mud","3":"0","4":"2024"},{"1":"13.0","2":"Grass","3":"1","4":"2024"},{"1":"14.0","2":"Masticated_Leaves","3":"1","4":"2024"},{"1":"14.0","2":"Light_Mud","3":"2","4":"2024"},{"1":"14.0","2":"Grass","3":"0","4":"2024"},{"1":"15.0","2":"Masticated_Leaves","3":"0","4":"2024"},{"1":"15.0","2":"Light_Mud","3":"0","4":"2024"},{"1":"15.0","2":"Grass","3":"2","4":"2024"},{"1":"16.0","2":"Masticated_Leaves","3":"0","4":"2024"},{"1":"16.0","2":"Light_Mud","3":"0","4":"2024"},{"1":"16.0","2":"Grass","3":"5","4":"2024"},{"1":"0.0","2":"Masticated_Leaves","3":"NA","4":"2025"},{"1":"0.0","2":"Light_Mud","3":"NA","4":"2025"},{"1":"0.0","2":"Grass","3":"NA","4":"2025"},{"1":"1.0","2":"Masticated_Leaves","3":"NA","4":"2025"},{"1":"1.0","2":"Light_Mud","3":"2","4":"2025"},{"1":"1.0","2":"Grass","3":"1","4":"2025"},{"1":"2.0","2":"Masticated_Leaves","3":"NA","4":"2025"},{"1":"2.0","2":"Light_Mud","3":"13","4":"2025"},{"1":"2.0","2":"Grass","3":"NA","4":"2025"},{"1":"2.5","2":"Masticated_Leaves","3":"NA","4":"2025"},{"1":"2.5","2":"Light_Mud","3":"2","4":"2025"},{"1":"2.5","2":"Grass","3":"NA","4":"2025"},{"1":"3.5","2":"Masticated_Leaves","3":"NA","4":"2025"},{"1":"3.5","2":"Light_Mud","3":"5","4":"2025"},{"1":"3.5","2":"Grass","3":"NA","4":"2025"},{"1":"4.0","2":"Masticated_Leaves","3":"NA","4":"2025"},{"1":"4.0","2":"Light_Mud","3":"5","4":"2025"},{"1":"4.0","2":"Grass","3":"1","4":"2025"},{"1":"5.0","2":"Masticated_Leaves","3":"NA","4":"2025"},{"1":"5.0","2":"Light_Mud","3":"2","4":"2025"},{"1":"5.0","2":"Grass","3":"4","4":"2025"},{"1":"6.0","2":"Masticated_Leaves","3":"2","4":"2025"},{"1":"6.0","2":"Light_Mud","3":"4","4":"2025"},{"1":"6.0","2":"Grass","3":"4","4":"2025"},{"1":"7.0","2":"Masticated_Leaves","3":"1","4":"2025"},{"1":"7.0","2":"Light_Mud","3":"3","4":"2025"},{"1":"7.0","2":"Grass","3":"8","4":"2025"},{"1":"8.0","2":"Masticated_Leaves","3":"1","4":"2025"},{"1":"8.0","2":"Light_Mud","3":"1","4":"2025"},{"1":"8.0","2":"Grass","3":"10","4":"2025"},{"1":"9.0","2":"Masticated_Leaves","3":"3","4":"2025"},{"1":"9.0","2":"Light_Mud","3":"NA","4":"2025"},{"1":"9.0","2":"Grass","3":"7","4":"2025"},{"1":"10.0","2":"Masticated_Leaves","3":"6","4":"2025"},{"1":"10.0","2":"Light_Mud","3":"1","4":"2025"},{"1":"10.0","2":"Grass","3":"5","4":"2025"},{"1":"11.0","2":"Masticated_Leaves","3":"8","4":"2025"},{"1":"11.0","2":"Light_Mud","3":"NA","4":"2025"},{"1":"11.0","2":"Grass","3":"6","4":"2025"},{"1":"12.0","2":"Masticated_Leaves","3":"7","4":"2025"},{"1":"12.0","2":"Light_Mud","3":"1","4":"2025"},{"1":"12.0","2":"Grass","3":"3","4":"2025"},{"1":"13.0","2":"Masticated_Leaves","3":"2","4":"2025"},{"1":"13.0","2":"Light_Mud","3":"1","4":"2025"},{"1":"13.0","2":"Grass","3":"NA","4":"2025"},{"1":"14.0","2":"Masticated_Leaves","3":"NA","4":"2025"},{"1":"14.0","2":"Light_Mud","3":"4","4":"2025"},{"1":"14.0","2":"Grass","3":"2","4":"2025"},{"1":"15.0","2":"Masticated_Leaves","3":"2","4":"2025"},{"1":"15.0","2":"Light_Mud","3":"NA","4":"2025"},{"1":"15.0","2":"Grass","3":"NA","4":"2025"},{"1":"16.0","2":"Masticated_Leaves","3":"2","4":"2025"},{"1":"16.0","2":"Light_Mud","3":"3","4":"2025"},{"1":"16.0","2":"Grass","3":"NA","4":"2025"},{"1":"17.0","2":"Masticated_Leaves","3":"NA","4":"2025"},{"1":"17.0","2":"Light_Mud","3":"2","4":"2025"},{"1":"17.0","2":"Grass","3":"NA","4":"2025"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paged_table</span>(full_cum_clean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Week"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Fill_Type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Number_of_Tubes_First_Filled"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Year"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["cum_sum"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"1.0","2":"Masticated_Leaves","3":"0","4":"2023","5":"0"},{"1":"1.0","2":"Light_Mud","3":"0","4":"2023","5":"0"},{"1":"1.0","2":"Leaves","3":"0","4":"2023","5":"0"},{"1":"1.0","2":"Grass","3":"0","4":"2023","5":"0"},{"1":"2.0","2":"Masticated_Leaves","3":"0","4":"2023","5":"0"},{"1":"2.0","2":"Light_Mud","3":"0","4":"2023","5":"0"},{"1":"2.0","2":"Leaves","3":"0","4":"2023","5":"0"},{"1":"2.0","2":"Grass","3":"0","4":"2023","5":"0"},{"1":"3.0","2":"Masticated_Leaves","3":"0","4":"2023","5":"1"},{"1":"3.0","2":"Light_Mud","3":"4","4":"2023","5":"5"},{"1":"3.0","2":"Leaves","3":"0","4":"2023","5":"5"},{"1":"3.0","2":"Grass","3":"0","4":"2023","5":"5"},{"1":"4.0","2":"Masticated_Leaves","3":"2","4":"2023","5":"7"},{"1":"4.0","2":"Light_Mud","3":"1","4":"2023","5":"8"},{"1":"4.0","2":"Leaves","3":"0","4":"2023","5":"8"},{"1":"4.0","2":"Grass","3":"0","4":"2023","5":"8"},{"1":"5.0","2":"Masticated_Leaves","3":"2","4":"2023","5":"11"},{"1":"5.0","2":"Light_Mud","3":"1","4":"2023","5":"12"},{"1":"5.0","2":"Leaves","3":"0","4":"2023","5":"12"},{"1":"5.0","2":"Grass","3":"0","4":"2023","5":"12"},{"1":"6.0","2":"Masticated_Leaves","3":"4","4":"2023","5":"23"},{"1":"6.0","2":"Light_Mud","3":"5","4":"2023","5":"28"},{"1":"6.0","2":"Leaves","3":"0","4":"2023","5":"28"},{"1":"6.0","2":"Grass","3":"0","4":"2023","5":"28"},{"1":"7.0","2":"Masticated_Leaves","3":"8","4":"2023","5":"38"},{"1":"7.0","2":"Light_Mud","3":"4","4":"2023","5":"42"},{"1":"7.0","2":"Leaves","3":"0","4":"2023","5":"42"},{"1":"7.0","2":"Grass","3":"0","4":"2023","5":"42"},{"1":"8.0","2":"Masticated_Leaves","3":"1","4":"2023","5":"43"},{"1":"8.0","2":"Light_Mud","3":"3","4":"2023","5":"46"},{"1":"8.0","2":"Leaves","3":"0","4":"2023","5":"46"},{"1":"8.0","2":"Grass","3":"3","4":"2023","5":"49"},{"1":"9.0","2":"Masticated_Leaves","3":"6","4":"2023","5":"55"},{"1":"9.0","2":"Light_Mud","3":"5","4":"2023","5":"60"},{"1":"9.0","2":"Leaves","3":"0","4":"2023","5":"60"},{"1":"9.0","2":"Grass","3":"2","4":"2023","5":"62"},{"1":"10.0","2":"Masticated_Leaves","3":"0","4":"2023","5":"62"},{"1":"10.0","2":"Light_Mud","3":"6","4":"2023","5":"68"},{"1":"10.0","2":"Leaves","3":"0","4":"2023","5":"68"},{"1":"10.0","2":"Grass","3":"3","4":"2023","5":"71"},{"1":"11.0","2":"Masticated_Leaves","3":"0","4":"2023","5":"72"},{"1":"11.0","2":"Light_Mud","3":"6","4":"2023","5":"78"},{"1":"11.0","2":"Leaves","3":"1","4":"2023","5":"79"},{"1":"11.0","2":"Grass","3":"2","4":"2023","5":"81"},{"1":"12.0","2":"Masticated_Leaves","3":"0","4":"2023","5":"82"},{"1":"12.0","2":"Light_Mud","3":"1","4":"2023","5":"83"},{"1":"12.0","2":"Leaves","3":"7","4":"2023","5":"90"},{"1":"12.0","2":"Grass","3":"0","4":"2023","5":"90"},{"1":"13.0","2":"Masticated_Leaves","3":"0","4":"2023","5":"90"},{"1":"13.0","2":"Light_Mud","3":"0","4":"2023","5":"90"},{"1":"13.0","2":"Leaves","3":"14","4":"2023","5":"104"},{"1":"13.0","2":"Grass","3":"2","4":"2023","5":"106"},{"1":"14.0","2":"Masticated_Leaves","3":"0","4":"2023","5":"107"},{"1":"14.0","2":"Light_Mud","3":"0","4":"2023","5":"107"},{"1":"14.0","2":"Leaves","3":"11","4":"2023","5":"118"},{"1":"14.0","2":"Grass","3":"7","4":"2023","5":"125"},{"1":"15.0","2":"Masticated_Leaves","3":"0","4":"2023","5":"125"},{"1":"15.0","2":"Light_Mud","3":"0","4":"2023","5":"125"},{"1":"15.0","2":"Leaves","3":"9","4":"2023","5":"134"},{"1":"15.0","2":"Grass","3":"1","4":"2023","5":"135"},{"1":"16.0","2":"Masticated_Leaves","3":"0","4":"2023","5":"135"},{"1":"16.0","2":"Light_Mud","3":"0","4":"2023","5":"135"},{"1":"16.0","2":"Leaves","3":"8","4":"2023","5":"143"},{"1":"16.0","2":"Grass","3":"2","4":"2023","5":"145"},{"1":"17.0","2":"Masticated_Leaves","3":"0","4":"2023","5":"145"},{"1":"17.0","2":"Light_Mud","3":"0","4":"2023","5":"145"},{"1":"17.0","2":"Leaves","3":"4","4":"2023","5":"149"},{"1":"17.0","2":"Grass","3":"4","4":"2023","5":"153"},{"1":"18.0","2":"Masticated_Leaves","3":"0","4":"2023","5":"153"},{"1":"18.0","2":"Light_Mud","3":"0","4":"2023","5":"153"},{"1":"18.0","2":"Leaves","3":"3","4":"2023","5":"156"},{"1":"18.0","2":"Grass","3":"2","4":"2023","5":"158"},{"1":"19.0","2":"Masticated_Leaves","3":"0","4":"2023","5":"158"},{"1":"19.0","2":"Light_Mud","3":"0","4":"2023","5":"158"},{"1":"19.0","2":"Leaves","3":"0","4":"2023","5":"158"},{"1":"19.0","2":"Grass","3":"1","4":"2023","5":"159"},{"1":"20.0","2":"Masticated_Leaves","3":"0","4":"2023","5":"159"},{"1":"20.0","2":"Light_Mud","3":"0","4":"2023","5":"159"},{"1":"20.0","2":"Leaves","3":"0","4":"2023","5":"159"},{"1":"20.0","2":"Grass","3":"0","4":"2023","5":"159"},{"1":"1.0","2":"Masticated_Leaves","3":"0","4":"2024","5":"0"},{"1":"1.0","2":"Light_Mud","3":"0","4":"2024","5":"0"},{"1":"1.0","2":"Grass","3":"0","4":"2024","5":"0"},{"1":"2.0","2":"Masticated_Leaves","3":"0","4":"2024","5":"0"},{"1":"2.0","2":"Light_Mud","3":"1","4":"2024","5":"1"},{"1":"2.0","2":"Grass","3":"0","4":"2024","5":"1"},{"1":"3.0","2":"Masticated_Leaves","3":"0","4":"2024","5":"2"},{"1":"3.0","2":"Light_Mud","3":"0","4":"2024","5":"2"},{"1":"3.0","2":"Grass","3":"0","4":"2024","5":"2"},{"1":"4.0","2":"Masticated_Leaves","3":"0","4":"2024","5":"2"},{"1":"4.0","2":"Light_Mud","3":"4","4":"2024","5":"6"},{"1":"4.0","2":"Grass","3":"0","4":"2024","5":"6"},{"1":"7.0","2":"Masticated_Leaves","3":"0","4":"2024","5":"6"},{"1":"7.0","2":"Light_Mud","3":"8","4":"2024","5":"14"},{"1":"7.0","2":"Grass","3":"0","4":"2024","5":"14"},{"1":"8.0","2":"Masticated_Leaves","3":"0","4":"2024","5":"16"},{"1":"8.0","2":"Light_Mud","3":"11","4":"2024","5":"27"},{"1":"8.0","2":"Grass","3":"3","4":"2024","5":"30"},{"1":"9.0","2":"Masticated_Leaves","3":"4","4":"2024","5":"35"},{"1":"9.0","2":"Light_Mud","3":"7","4":"2024","5":"42"},{"1":"9.0","2":"Grass","3":"2","4":"2024","5":"44"},{"1":"10.0","2":"Masticated_Leaves","3":"10","4":"2024","5":"55"},{"1":"10.0","2":"Light_Mud","3":"8","4":"2024","5":"63"},{"1":"10.0","2":"Grass","3":"4","4":"2024","5":"67"},{"1":"11.0","2":"Masticated_Leaves","3":"4","4":"2024","5":"71"},{"1":"11.0","2":"Light_Mud","3":"4","4":"2024","5":"75"},{"1":"11.0","2":"Grass","3":"1","4":"2024","5":"76"},{"1":"12.0","2":"Masticated_Leaves","3":"0","4":"2024","5":"78"},{"1":"12.0","2":"Light_Mud","3":"2","4":"2024","5":"80"},{"1":"12.0","2":"Grass","3":"2","4":"2024","5":"82"},{"1":"13.0","2":"Masticated_Leaves","3":"2","4":"2024","5":"85"},{"1":"13.0","2":"Light_Mud","3":"0","4":"2024","5":"85"},{"1":"13.0","2":"Grass","3":"1","4":"2024","5":"86"},{"1":"14.0","2":"Masticated_Leaves","3":"1","4":"2024","5":"88"},{"1":"14.0","2":"Light_Mud","3":"2","4":"2024","5":"90"},{"1":"14.0","2":"Grass","3":"0","4":"2024","5":"90"},{"1":"15.0","2":"Masticated_Leaves","3":"0","4":"2024","5":"91"},{"1":"15.0","2":"Light_Mud","3":"0","4":"2024","5":"91"},{"1":"15.0","2":"Grass","3":"2","4":"2024","5":"93"},{"1":"16.0","2":"Masticated_Leaves","3":"0","4":"2024","5":"93"},{"1":"16.0","2":"Light_Mud","3":"0","4":"2024","5":"93"},{"1":"16.0","2":"Grass","3":"5","4":"2024","5":"98"},{"1":"0.0","2":"Masticated_Leaves","3":"0","4":"2025","5":"0"},{"1":"0.0","2":"Leaves","3":"0","4":"2025","5":"0"},{"1":"0.0","2":"Light_Mud","3":"0","4":"2025","5":"0"},{"1":"0.0","2":"Grass","3":"0","4":"2025","5":"0"},{"1":"1.0","2":"Masticated_Leaves","3":"0","4":"2025","5":"0"},{"1":"1.0","2":"Leaves","3":"0","4":"2025","5":"0"},{"1":"1.0","2":"Light_Mud","3":"2","4":"2025","5":"2"},{"1":"1.0","2":"Grass","3":"1","4":"2025","5":"3"},{"1":"2.0","2":"Masticated_Leaves","3":"0","4":"2025","5":"3"},{"1":"2.0","2":"Leaves","3":"0","4":"2025","5":"3"},{"1":"2.0","2":"Light_Mud","3":"13","4":"2025","5":"16"},{"1":"2.0","2":"Grass","3":"0","4":"2025","5":"16"},{"1":"2.5","2":"Masticated_Leaves","3":"0","4":"2025","5":"20"},{"1":"2.5","2":"Leaves","3":"0","4":"2025","5":"20"},{"1":"2.5","2":"Light_Mud","3":"2","4":"2025","5":"22"},{"1":"2.5","2":"Grass","3":"0","4":"2025","5":"22"},{"1":"3.5","2":"Masticated_Leaves","3":"0","4":"2025","5":"22"},{"1":"3.5","2":"Leaves","3":"0","4":"2025","5":"22"},{"1":"3.5","2":"Light_Mud","3":"5","4":"2025","5":"27"},{"1":"3.5","2":"Grass","3":"0","4":"2025","5":"27"},{"1":"4.0","2":"Masticated_Leaves","3":"0","4":"2025","5":"28"},{"1":"4.0","2":"Leaves","3":"0","4":"2025","5":"28"},{"1":"4.0","2":"Light_Mud","3":"5","4":"2025","5":"33"},{"1":"4.0","2":"Grass","3":"1","4":"2025","5":"34"},{"1":"5.0","2":"Masticated_Leaves","3":"0","4":"2025","5":"37"},{"1":"5.0","2":"Leaves","3":"0","4":"2025","5":"37"},{"1":"5.0","2":"Light_Mud","3":"2","4":"2025","5":"39"},{"1":"5.0","2":"Grass","3":"4","4":"2025","5":"43"},{"1":"6.0","2":"Masticated_Leaves","3":"2","4":"2025","5":"55"},{"1":"6.0","2":"Leaves","3":"0","4":"2025","5":"55"},{"1":"6.0","2":"Light_Mud","3":"4","4":"2025","5":"59"},{"1":"6.0","2":"Grass","3":"4","4":"2025","5":"63"},{"1":"7.0","2":"Masticated_Leaves","3":"1","4":"2025","5":"66"},{"1":"7.0","2":"Leaves","3":"0","4":"2025","5":"66"},{"1":"7.0","2":"Light_Mud","3":"3","4":"2025","5":"69"},{"1":"7.0","2":"Grass","3":"8","4":"2025","5":"77"},{"1":"8.0","2":"Masticated_Leaves","3":"1","4":"2025","5":"81"},{"1":"8.0","2":"Leaves","3":"3","4":"2025","5":"84"},{"1":"8.0","2":"Light_Mud","3":"1","4":"2025","5":"85"},{"1":"8.0","2":"Grass","3":"10","4":"2025","5":"95"},{"1":"9.0","2":"Masticated_Leaves","3":"3","4":"2025","5":"98"},{"1":"9.0","2":"Leaves","3":"0","4":"2025","5":"98"},{"1":"9.0","2":"Light_Mud","3":"0","4":"2025","5":"98"},{"1":"9.0","2":"Grass","3":"7","4":"2025","5":"105"},{"1":"10.0","2":"Masticated_Leaves","3":"6","4":"2025","5":"115"},{"1":"10.0","2":"Leaves","3":"0","4":"2025","5":"115"},{"1":"10.0","2":"Light_Mud","3":"1","4":"2025","5":"116"},{"1":"10.0","2":"Grass","3":"5","4":"2025","5":"121"},{"1":"11.0","2":"Masticated_Leaves","3":"8","4":"2025","5":"131"},{"1":"11.0","2":"Leaves","3":"0","4":"2025","5":"131"},{"1":"11.0","2":"Light_Mud","3":"0","4":"2025","5":"131"},{"1":"11.0","2":"Grass","3":"6","4":"2025","5":"137"},{"1":"12.0","2":"Masticated_Leaves","3":"7","4":"2025","5":"144"},{"1":"12.0","2":"Leaves","3":"1","4":"2025","5":"145"},{"1":"12.0","2":"Light_Mud","3":"1","4":"2025","5":"146"},{"1":"12.0","2":"Grass","3":"3","4":"2025","5":"149"},{"1":"13.0","2":"Masticated_Leaves","3":"2","4":"2025","5":"152"},{"1":"13.0","2":"Leaves","3":"0","4":"2025","5":"152"},{"1":"13.0","2":"Light_Mud","3":"1","4":"2025","5":"153"},{"1":"13.0","2":"Grass","3":"0","4":"2025","5":"153"},{"1":"14.0","2":"Masticated_Leaves","3":"0","4":"2025","5":"159"},{"1":"14.0","2":"Leaves","3":"0","4":"2025","5":"159"},{"1":"14.0","2":"Light_Mud","3":"4","4":"2025","5":"163"},{"1":"14.0","2":"Grass","3":"2","4":"2025","5":"165"},{"1":"15.0","2":"Masticated_Leaves","3":"2","4":"2025","5":"169"},{"1":"15.0","2":"Leaves","3":"0","4":"2025","5":"169"},{"1":"15.0","2":"Light_Mud","3":"0","4":"2025","5":"169"},{"1":"15.0","2":"Grass","3":"0","4":"2025","5":"169"},{"1":"16.0","2":"Masticated_Leaves","3":"2","4":"2025","5":"173"},{"1":"16.0","2":"Leaves","3":"0","4":"2025","5":"173"},{"1":"16.0","2":"Light_Mud","3":"3","4":"2025","5":"176"},{"1":"16.0","2":"Grass","3":"0","4":"2025","5":"176"},{"1":"17.0","2":"Masticated_Leaves","3":"0","4":"2025","5":"180"},{"1":"17.0","2":"Leaves","3":"0","4":"2025","5":"180"},{"1":"17.0","2":"Light_Mud","3":"2","4":"2025","5":"182"},{"1":"17.0","2":"Grass","3":"0","4":"2025","5":"182"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paged_table</span>(combined_df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Week"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Fill_Type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Number_of_Tubes_First_Filled"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Year"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1.0","2":"Debris","3":"0","4":"2023"},{"1":"1.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"1.0","2":"Light_Mud","3":"0","4":"2023"},{"1":"1.0","2":"Leaves","3":"0","4":"2023"},{"1":"1.0","2":"Grass","3":"0","4":"2023"},{"1":"2.0","2":"Debris","3":"0","4":"2023"},{"1":"2.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"2.0","2":"Light_Mud","3":"0","4":"2023"},{"1":"2.0","2":"Leaves","3":"0","4":"2023"},{"1":"2.0","2":"Grass","3":"0","4":"2023"},{"1":"3.0","2":"Debris","3":"1","4":"2023"},{"1":"3.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"3.0","2":"Light_Mud","3":"4","4":"2023"},{"1":"3.0","2":"Leaves","3":"0","4":"2023"},{"1":"3.0","2":"Grass","3":"0","4":"2023"},{"1":"4.0","2":"Debris","3":"0","4":"2023"},{"1":"4.0","2":"Masticated_Leaves","3":"2","4":"2023"},{"1":"4.0","2":"Light_Mud","3":"1","4":"2023"},{"1":"4.0","2":"Leaves","3":"0","4":"2023"},{"1":"4.0","2":"Grass","3":"0","4":"2023"},{"1":"5.0","2":"Debris","3":"1","4":"2023"},{"1":"5.0","2":"Masticated_Leaves","3":"2","4":"2023"},{"1":"5.0","2":"Light_Mud","3":"1","4":"2023"},{"1":"5.0","2":"Leaves","3":"0","4":"2023"},{"1":"5.0","2":"Grass","3":"0","4":"2023"},{"1":"6.0","2":"Debris","3":"7","4":"2023"},{"1":"6.0","2":"Masticated_Leaves","3":"4","4":"2023"},{"1":"6.0","2":"Light_Mud","3":"5","4":"2023"},{"1":"6.0","2":"Leaves","3":"0","4":"2023"},{"1":"6.0","2":"Grass","3":"0","4":"2023"},{"1":"7.0","2":"Debris","3":"2","4":"2023"},{"1":"7.0","2":"Masticated_Leaves","3":"8","4":"2023"},{"1":"7.0","2":"Light_Mud","3":"4","4":"2023"},{"1":"7.0","2":"Leaves","3":"0","4":"2023"},{"1":"7.0","2":"Grass","3":"0","4":"2023"},{"1":"8.0","2":"Debris","3":"0","4":"2023"},{"1":"8.0","2":"Masticated_Leaves","3":"1","4":"2023"},{"1":"8.0","2":"Light_Mud","3":"3","4":"2023"},{"1":"8.0","2":"Leaves","3":"0","4":"2023"},{"1":"8.0","2":"Grass","3":"3","4":"2023"},{"1":"9.0","2":"Debris","3":"0","4":"2023"},{"1":"9.0","2":"Masticated_Leaves","3":"6","4":"2023"},{"1":"9.0","2":"Light_Mud","3":"5","4":"2023"},{"1":"9.0","2":"Leaves","3":"0","4":"2023"},{"1":"9.0","2":"Grass","3":"2","4":"2023"},{"1":"10.0","2":"Debris","3":"0","4":"2023"},{"1":"10.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"10.0","2":"Light_Mud","3":"6","4":"2023"},{"1":"10.0","2":"Leaves","3":"0","4":"2023"},{"1":"10.0","2":"Grass","3":"3","4":"2023"},{"1":"11.0","2":"Debris","3":"1","4":"2023"},{"1":"11.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"11.0","2":"Light_Mud","3":"6","4":"2023"},{"1":"11.0","2":"Leaves","3":"1","4":"2023"},{"1":"11.0","2":"Grass","3":"2","4":"2023"},{"1":"12.0","2":"Debris","3":"1","4":"2023"},{"1":"12.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"12.0","2":"Light_Mud","3":"1","4":"2023"},{"1":"12.0","2":"Leaves","3":"7","4":"2023"},{"1":"12.0","2":"Grass","3":"0","4":"2023"},{"1":"13.0","2":"Debris","3":"0","4":"2023"},{"1":"13.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"13.0","2":"Light_Mud","3":"0","4":"2023"},{"1":"13.0","2":"Leaves","3":"14","4":"2023"},{"1":"13.0","2":"Grass","3":"2","4":"2023"},{"1":"14.0","2":"Debris","3":"1","4":"2023"},{"1":"14.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"14.0","2":"Light_Mud","3":"0","4":"2023"},{"1":"14.0","2":"Leaves","3":"11","4":"2023"},{"1":"14.0","2":"Grass","3":"7","4":"2023"},{"1":"15.0","2":"Debris","3":"0","4":"2023"},{"1":"15.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"15.0","2":"Light_Mud","3":"0","4":"2023"},{"1":"15.0","2":"Leaves","3":"9","4":"2023"},{"1":"15.0","2":"Grass","3":"1","4":"2023"},{"1":"16.0","2":"Debris","3":"0","4":"2023"},{"1":"16.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"16.0","2":"Light_Mud","3":"0","4":"2023"},{"1":"16.0","2":"Leaves","3":"8","4":"2023"},{"1":"16.0","2":"Grass","3":"2","4":"2023"},{"1":"17.0","2":"Debris","3":"0","4":"2023"},{"1":"17.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"17.0","2":"Light_Mud","3":"0","4":"2023"},{"1":"17.0","2":"Leaves","3":"4","4":"2023"},{"1":"17.0","2":"Grass","3":"4","4":"2023"},{"1":"18.0","2":"Debris","3":"0","4":"2023"},{"1":"18.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"18.0","2":"Light_Mud","3":"0","4":"2023"},{"1":"18.0","2":"Leaves","3":"3","4":"2023"},{"1":"18.0","2":"Grass","3":"2","4":"2023"},{"1":"19.0","2":"Debris","3":"0","4":"2023"},{"1":"19.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"19.0","2":"Light_Mud","3":"0","4":"2023"},{"1":"19.0","2":"Leaves","3":"0","4":"2023"},{"1":"19.0","2":"Grass","3":"1","4":"2023"},{"1":"20.0","2":"Debris","3":"0","4":"2023"},{"1":"20.0","2":"Masticated_Leaves","3":"0","4":"2023"},{"1":"20.0","2":"Light_Mud","3":"0","4":"2023"},{"1":"20.0","2":"Leaves","3":"0","4":"2023"},{"1":"20.0","2":"Grass","3":"0","4":"2023"},{"1":"1.0","2":"Masticated_Leaves","3":"0","4":"2024"},{"1":"1.0","2":"Light_Mud","3":"0","4":"2024"},{"1":"1.0","2":"Grass","3":"0","4":"2024"},{"1":"1.0","2":"Silk","3":"0","4":"2024"},{"1":"1.0","2":"Debris","3":"0","4":"2024"},{"1":"2.0","2":"Masticated_Leaves","3":"0","4":"2024"},{"1":"2.0","2":"Light_Mud","3":"1","4":"2024"},{"1":"2.0","2":"Grass","3":"0","4":"2024"},{"1":"2.0","2":"Silk","3":"1","4":"2024"},{"1":"2.0","2":"Debris","3":"0","4":"2024"},{"1":"3.0","2":"Masticated_Leaves","3":"0","4":"2024"},{"1":"3.0","2":"Light_Mud","3":"0","4":"2024"},{"1":"3.0","2":"Grass","3":"0","4":"2024"},{"1":"3.0","2":"Silk","3":"0","4":"2024"},{"1":"3.0","2":"Debris","3":"0","4":"2024"},{"1":"4.0","2":"Masticated_Leaves","3":"0","4":"2024"},{"1":"4.0","2":"Light_Mud","3":"4","4":"2024"},{"1":"4.0","2":"Grass","3":"0","4":"2024"},{"1":"4.0","2":"Silk","3":"0","4":"2024"},{"1":"4.0","2":"Debris","3":"0","4":"2024"},{"1":"7.0","2":"Masticated_Leaves","3":"0","4":"2024"},{"1":"7.0","2":"Light_Mud","3":"8","4":"2024"},{"1":"7.0","2":"Grass","3":"0","4":"2024"},{"1":"7.0","2":"Silk","3":"1","4":"2024"},{"1":"7.0","2":"Debris","3":"1","4":"2024"},{"1":"8.0","2":"Masticated_Leaves","3":"0","4":"2024"},{"1":"8.0","2":"Light_Mud","3":"11","4":"2024"},{"1":"8.0","2":"Grass","3":"3","4":"2024"},{"1":"8.0","2":"Silk","3":"1","4":"2024"},{"1":"8.0","2":"Debris","3":"0","4":"2024"},{"1":"9.0","2":"Masticated_Leaves","3":"4","4":"2024"},{"1":"9.0","2":"Light_Mud","3":"7","4":"2024"},{"1":"9.0","2":"Grass","3":"2","4":"2024"},{"1":"9.0","2":"Silk","3":"0","4":"2024"},{"1":"9.0","2":"Debris","3":"1","4":"2024"},{"1":"10.0","2":"Masticated_Leaves","3":"10","4":"2024"},{"1":"10.0","2":"Light_Mud","3":"8","4":"2024"},{"1":"10.0","2":"Grass","3":"4","4":"2024"},{"1":"10.0","2":"Silk","3":"0","4":"2024"},{"1":"10.0","2":"Debris","3":"0","4":"2024"},{"1":"11.0","2":"Masticated_Leaves","3":"4","4":"2024"},{"1":"11.0","2":"Light_Mud","3":"4","4":"2024"},{"1":"11.0","2":"Grass","3":"1","4":"2024"},{"1":"11.0","2":"Silk","3":"2","4":"2024"},{"1":"11.0","2":"Debris","3":"0","4":"2024"},{"1":"12.0","2":"Masticated_Leaves","3":"0","4":"2024"},{"1":"12.0","2":"Light_Mud","3":"2","4":"2024"},{"1":"12.0","2":"Grass","3":"2","4":"2024"},{"1":"12.0","2":"Silk","3":"1","4":"2024"},{"1":"12.0","2":"Debris","3":"0","4":"2024"},{"1":"13.0","2":"Masticated_Leaves","3":"2","4":"2024"},{"1":"13.0","2":"Light_Mud","3":"0","4":"2024"},{"1":"13.0","2":"Grass","3":"1","4":"2024"},{"1":"13.0","2":"Silk","3":"1","4":"2024"},{"1":"13.0","2":"Debris","3":"0","4":"2024"},{"1":"14.0","2":"Masticated_Leaves","3":"1","4":"2024"},{"1":"14.0","2":"Light_Mud","3":"2","4":"2024"},{"1":"14.0","2":"Grass","3":"0","4":"2024"},{"1":"14.0","2":"Silk","3":"1","4":"2024"},{"1":"14.0","2":"Debris","3":"0","4":"2024"},{"1":"15.0","2":"Masticated_Leaves","3":"0","4":"2024"},{"1":"15.0","2":"Light_Mud","3":"0","4":"2024"},{"1":"15.0","2":"Grass","3":"2","4":"2024"},{"1":"15.0","2":"Silk","3":"0","4":"2024"},{"1":"15.0","2":"Debris","3":"0","4":"2024"},{"1":"16.0","2":"Masticated_Leaves","3":"0","4":"2024"},{"1":"16.0","2":"Light_Mud","3":"0","4":"2024"},{"1":"16.0","2":"Grass","3":"5","4":"2024"},{"1":"16.0","2":"Silk","3":"0","4":"2024"},{"1":"16.0","2":"Debris","3":"0","4":"2024"},{"1":"0.0","2":"Masticated_Leaves","3":"NA","4":"2025"},{"1":"0.0","2":"Intact_Leaves","3":"NA","4":"2025"},{"1":"0.0","2":"Light_Mud","3":"NA","4":"2025"},{"1":"0.0","2":"Grass","3":"NA","4":"2025"},{"1":"0.0","2":"Silk","3":"NA","4":"2025"},{"1":"0.0","2":"Debris","3":"NA","4":"2025"},{"1":"1.0","2":"Masticated_Leaves","3":"NA","4":"2025"},{"1":"1.0","2":"Intact_Leaves","3":"NA","4":"2025"},{"1":"1.0","2":"Light_Mud","3":"2","4":"2025"},{"1":"1.0","2":"Grass","3":"1","4":"2025"},{"1":"1.0","2":"Silk","3":"NA","4":"2025"},{"1":"1.0","2":"Debris","3":"NA","4":"2025"},{"1":"2.0","2":"Masticated_Leaves","3":"NA","4":"2025"},{"1":"2.0","2":"Intact_Leaves","3":"NA","4":"2025"},{"1":"2.0","2":"Light_Mud","3":"13","4":"2025"},{"1":"2.0","2":"Grass","3":"NA","4":"2025"},{"1":"2.0","2":"Silk","3":"NA","4":"2025"},{"1":"2.0","2":"Debris","3":"4","4":"2025"},{"1":"2.5","2":"Masticated_Leaves","3":"NA","4":"2025"},{"1":"2.5","2":"Intact_Leaves","3":"NA","4":"2025"},{"1":"2.5","2":"Light_Mud","3":"2","4":"2025"},{"1":"2.5","2":"Grass","3":"NA","4":"2025"},{"1":"2.5","2":"Silk","3":"NA","4":"2025"},{"1":"2.5","2":"Debris","3":"NA","4":"2025"},{"1":"3.5","2":"Masticated_Leaves","3":"NA","4":"2025"},{"1":"3.5","2":"Intact_Leaves","3":"NA","4":"2025"},{"1":"3.5","2":"Light_Mud","3":"5","4":"2025"},{"1":"3.5","2":"Grass","3":"NA","4":"2025"},{"1":"3.5","2":"Silk","3":"1","4":"2025"},{"1":"3.5","2":"Debris","3":"NA","4":"2025"},{"1":"4.0","2":"Masticated_Leaves","3":"NA","4":"2025"},{"1":"4.0","2":"Intact_Leaves","3":"NA","4":"2025"},{"1":"4.0","2":"Light_Mud","3":"5","4":"2025"},{"1":"4.0","2":"Grass","3":"1","4":"2025"},{"1":"4.0","2":"Silk","3":"NA","4":"2025"},{"1":"4.0","2":"Debris","3":"3","4":"2025"},{"1":"5.0","2":"Masticated_Leaves","3":"NA","4":"2025"},{"1":"5.0","2":"Intact_Leaves","3":"NA","4":"2025"},{"1":"5.0","2":"Light_Mud","3":"2","4":"2025"},{"1":"5.0","2":"Grass","3":"4","4":"2025"},{"1":"5.0","2":"Silk","3":"NA","4":"2025"},{"1":"5.0","2":"Debris","3":"10","4":"2025"},{"1":"6.0","2":"Masticated_Leaves","3":"2","4":"2025"},{"1":"6.0","2":"Intact_Leaves","3":"NA","4":"2025"},{"1":"6.0","2":"Light_Mud","3":"4","4":"2025"},{"1":"6.0","2":"Grass","3":"4","4":"2025"},{"1":"6.0","2":"Silk","3":"NA","4":"2025"},{"1":"6.0","2":"Debris","3":"2","4":"2025"},{"1":"7.0","2":"Masticated_Leaves","3":"1","4":"2025"},{"1":"7.0","2":"Intact_Leaves","3":"NA","4":"2025"},{"1":"7.0","2":"Light_Mud","3":"3","4":"2025"},{"1":"7.0","2":"Grass","3":"8","4":"2025"},{"1":"7.0","2":"Silk","3":"NA","4":"2025"},{"1":"7.0","2":"Debris","3":"3","4":"2025"},{"1":"8.0","2":"Masticated_Leaves","3":"1","4":"2025"},{"1":"8.0","2":"Intact_Leaves","3":"3","4":"2025"},{"1":"8.0","2":"Light_Mud","3":"1","4":"2025"},{"1":"8.0","2":"Grass","3":"10","4":"2025"},{"1":"8.0","2":"Silk","3":"NA","4":"2025"},{"1":"8.0","2":"Debris","3":"NA","4":"2025"},{"1":"9.0","2":"Masticated_Leaves","3":"3","4":"2025"},{"1":"9.0","2":"Intact_Leaves","3":"NA","4":"2025"},{"1":"9.0","2":"Light_Mud","3":"NA","4":"2025"},{"1":"9.0","2":"Grass","3":"7","4":"2025"},{"1":"9.0","2":"Silk","3":"2","4":"2025"},{"1":"9.0","2":"Debris","3":"2","4":"2025"},{"1":"10.0","2":"Masticated_Leaves","3":"6","4":"2025"},{"1":"10.0","2":"Intact_Leaves","3":"NA","4":"2025"},{"1":"10.0","2":"Light_Mud","3":"1","4":"2025"},{"1":"10.0","2":"Grass","3":"5","4":"2025"},{"1":"10.0","2":"Silk","3":"2","4":"2025"},{"1":"10.0","2":"Debris","3":"NA","4":"2025"},{"1":"11.0","2":"Masticated_Leaves","3":"8","4":"2025"},{"1":"11.0","2":"Intact_Leaves","3":"NA","4":"2025"},{"1":"11.0","2":"Light_Mud","3":"NA","4":"2025"},{"1":"11.0","2":"Grass","3":"6","4":"2025"},{"1":"11.0","2":"Silk","3":"NA","4":"2025"},{"1":"11.0","2":"Debris","3":"NA","4":"2025"},{"1":"12.0","2":"Masticated_Leaves","3":"7","4":"2025"},{"1":"12.0","2":"Intact_Leaves","3":"1","4":"2025"},{"1":"12.0","2":"Light_Mud","3":"1","4":"2025"},{"1":"12.0","2":"Grass","3":"3","4":"2025"},{"1":"12.0","2":"Silk","3":"NA","4":"2025"},{"1":"12.0","2":"Debris","3":"1","4":"2025"},{"1":"13.0","2":"Masticated_Leaves","3":"2","4":"2025"},{"1":"13.0","2":"Intact_Leaves","3":"NA","4":"2025"},{"1":"13.0","2":"Light_Mud","3":"1","4":"2025"},{"1":"13.0","2":"Grass","3":"NA","4":"2025"},{"1":"13.0","2":"Silk","3":"2","4":"2025"},{"1":"13.0","2":"Debris","3":"4","4":"2025"},{"1":"14.0","2":"Masticated_Leaves","3":"NA","4":"2025"},{"1":"14.0","2":"Intact_Leaves","3":"NA","4":"2025"},{"1":"14.0","2":"Light_Mud","3":"4","4":"2025"},{"1":"14.0","2":"Grass","3":"2","4":"2025"},{"1":"14.0","2":"Silk","3":"1","4":"2025"},{"1":"14.0","2":"Debris","3":"1","4":"2025"},{"1":"15.0","2":"Masticated_Leaves","3":"2","4":"2025"},{"1":"15.0","2":"Intact_Leaves","3":"NA","4":"2025"},{"1":"15.0","2":"Light_Mud","3":"NA","4":"2025"},{"1":"15.0","2":"Grass","3":"NA","4":"2025"},{"1":"15.0","2":"Silk","3":"NA","4":"2025"},{"1":"15.0","2":"Debris","3":"2","4":"2025"},{"1":"16.0","2":"Masticated_Leaves","3":"2","4":"2025"},{"1":"16.0","2":"Intact_Leaves","3":"NA","4":"2025"},{"1":"16.0","2":"Light_Mud","3":"3","4":"2025"},{"1":"16.0","2":"Grass","3":"NA","4":"2025"},{"1":"16.0","2":"Silk","3":"NA","4":"2025"},{"1":"16.0","2":"Debris","3":"4","4":"2025"},{"1":"17.0","2":"Masticated_Leaves","3":"NA","4":"2025"},{"1":"17.0","2":"Intact_Leaves","3":"NA","4":"2025"},{"1":"17.0","2":"Light_Mud","3":"2","4":"2025"},{"1":"17.0","2":"Grass","3":"NA","4":"2025"},{"1":"17.0","2":"Silk","3":"1","4":"2025"},{"1":"17.0","2":"Debris","3":"4","4":"2025"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="unit-of-observation" class="level2">
+<h2 class="anchored" data-anchor-id="unit-of-observation">Unit of Observation</h2>
+<p>The primary unit of observation is:</p>
+<ul>
+<li>one nesting tube observed during one week at one location</li>
+</ul>
+</section>
+<section id="key-variables" class="level2">
+<h2 class="anchored" data-anchor-id="key-variables">Key Variables</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Week</code></td>
+<td>Week of seasonal monitoring</td>
+</tr>
+<tr class="even">
+<td><code>Year</code></td>
+<td>Sampling year</td>
+</tr>
+<tr class="odd">
+<td><code>Location</code></td>
+<td>Habitat site</td>
+</tr>
+<tr class="even">
+<td><code>Fill_Type</code></td>
+<td>Material used to seal tube</td>
+</tr>
+<tr class="odd">
+<td><code>Number_of_Tubes_First_Filled</code></td>
+<td>Number of newly occupied tubes</td>
+</tr>
+<tr class="even">
+<td><code>Inhabitant</code></td>
+<td>Species or taxonomic identity</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="study-locations" class="level2">
+<h2 class="anchored" data-anchor-id="study-locations">Study Locations</h2>
+<p>The nesting boxes were placed in several habitat types around SUNY Geneseo and the Island Preserve, including:</p>
+<ul>
+<li>Arboretum</li>
+<li>Bee Barn</li>
+<li>E-Garden</li>
+<li>ISC / Greenhouse</li>
+<li>No-Mow Zone</li>
+<li>Island Preserve</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="data-transformation-and-descriptive-statistics" class="level1">
+<h1>Data Transformation and Descriptive Statistics</h1>
+<section id="data-cleaning" class="level2">
+<h2 class="anchored" data-anchor-id="data-cleaning">Data Cleaning</h2>
+<p>The raw datasets required several cleaning and preparation steps before analysis.</p>
+<p>These transformations included:</p>
+<ul>
+<li>combining yearly datasets</li>
+<li>standardizing fill-type labels</li>
+<li>replacing missing values</li>
+<li>grouping observations by week and year</li>
+<li>calculating cumulative totals</li>
+<li>reshaping datasets for visualization</li>
+<li>joining habitat metadata</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA WRANGLING CODE HERE</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fill_2023_cleaned &lt;- fill_2023 |&gt; </span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   mutate(Year = 2023,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#          Number_of_Tubes_First_Filled = ifelse(is.na(Number_of_Tubes_First_Filled), 0, Number_of_Tubes_First_Filled))</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># fill_2024_cleaned &lt;- fill_2024 |&gt; </span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   mutate(Number_of_Tubes_First_Filled = Number_of_Tubes_First.Filled,</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#          Number_of_Tubes_First_Filled = ifelse(is.na(Number_of_Tubes_First_Filled), 0, Number_of_Tubes_First_Filled),</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#          Year = 2024)|&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#   select(Week, Year, Number_of_Tubes_First_Filled, Fill_Type)</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># fill_2025_cleaned &lt;- fill_2025_clean|&gt; </span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#   mutate(Year = 2025,</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#          Number_of_Tubes_First_Filled = Number_of_Tubes_First.Filled,</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#          Number_of_Tubes_First_Filled = ifelse(is.na(Number_of_Tubes_First_Filled), 0, Number_of_Tubes_First_Filled))|&gt;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#   select(Week, Year, Number_of_Tubes_First_Filled, Fill_Type)</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># combined_df &lt;- bind_rows(fill_2023_cleaned, fill_2024_cleaned, fill_2025_cleaned)</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># fill_2023_cum &lt;- fill_2023_cleaned |&gt;</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#   mutate(cum_sum = cumsum(Number_of_Tubes_First_Filled))</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co"># fill_2024_cum &lt;- fill_2024_cleaned |&gt;</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">#   mutate(cum_sum = cumsum(Number_of_Tubes_First_Filled))</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co"># fill_2025_clean_cum &lt;- fill_2025_cleaned |&gt;</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co">#   mutate(</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co">#     cum_sum = cumsum(Number_of_Tubes_First_Filled)</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co"># ID_freq_comp = read.csv("Data Analysis/Proportion_of_Fill_By_Location - 2025-2026.csv")</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="co"># sample_sizes = data.frame(Location = c("Arboretum", "ISC/Greenhouse", "No Mow Zone", "EGarden", "Island Preserve"),</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="co">#                           Sample_Size = c(140, 40, 20, 20, 160))</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="co"># ID_freq_comp$Fill_Type &lt;- factor(ID_freq_comp$Fill_Type,</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="co">#                                  levels = c("Empty", "Debris", "Silk", "Grass", "Light_Mud",</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co">#                                             "Intact_Leaves", "Masticated_Leaves"))</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="co"># fill_2023_cum_fill &lt;- fill_2023_cleaned |&gt;</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="co">#   group_by(Fill_Type)|&gt;</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="co">#   mutate(cum_sum = cumsum(Number_of_Tubes_First_Filled))</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="co"># fill_2024_cum_fill &lt;- fill_2024_cleaned |&gt;</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="co">#   group_by(Fill_Type)|&gt;</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="co">#   mutate(cum_sum = cumsum(Number_of_Tubes_First_Filled))</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="co"># fill_2025_clean_cum_fill &lt;- fill_2025_cleaned |&gt;</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="co">#   group_by(Fill_Type)|&gt;</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="co">#   mutate(</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="co">#     cum_sum = cumsum(Number_of_Tubes_First_Filled)</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="co"># full_cum &lt;- bind_rows(fill_2023_cum, fill_2024_cum, fill_2025_clean_cum)</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="co"># full_cum_fill &lt;- bind_rows(fill_2023_cum_fill, fill_2024_cum_fill, fill_2025_clean_cum_fill)</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="co"># full_cum_clean &lt;- full_cum |&gt;</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="co">#   mutate(</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="co">#     Fill_Type = recode(Fill_Type,</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="co">#                        "Leaves" = "Leaves",</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="co">#                        "Intact_Leaves" = "Leaves"   # combine here</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="co">#     )</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="co">#   ) |&gt;</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="co">#   filter(!Fill_Type %in% c("Silk", "Debris"))</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="co"># full_cum_clean_fill &lt;- full_cum_fill |&gt;</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="co">#   mutate(</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="co">#     Fill_Type = recode(Fill_Type,</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="co">#                        "Leaves" = "Leaves",</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="co">#                        "Intact_Leaves" = "Leaves"   # combine here</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="co">#     )</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="co">#   ) |&gt;</span></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="co">#   filter(!Fill_Type %in% c("Silk", "Debris"))</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="co"># bee_fill_comp &lt;- c(</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="co">#   "Grass"             = "Grass\n(Grass Wasp)",</span></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="co">#   "Leaves"            = "Leaves\n(Leafcutter Bee)",</span></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="co">#   "Light_Mud"         = "Light Mud\n(Square-headed Wasp, Potter Wasp)",</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="co">#   "Masticated_Leaves" = "Masticated Leaves\n(Leafcutter Bee, Mason Bee)",</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="co">#   "Empty"             = "Empty"</span></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a><span class="co"># #Make leaves and intact leaves the same thing, remove non-cavity nester fill</span></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="co"># full_cum_clean &lt;- full_cum |&gt;</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a><span class="co">#   mutate(</span></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="co">#     Fill_Type = recode(Fill_Type,</span></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="co">#                        "Leaves" = "Leaves",</span></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="co">#                        "Intact_Leaves" = "Leaves"   # combine here</span></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a><span class="co">#     )</span></span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="co">#   ) |&gt;</span></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="co">#   filter(!Fill_Type %in% c("Silk", "Debris"))</span></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a><span class="co"># full_cum_clean_fill &lt;- full_cum_fill |&gt;</span></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="co">#   mutate(</span></span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a><span class="co">#     Fill_Type = recode(Fill_Type,</span></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a><span class="co">#                        "Leaves" = "Leaves",</span></span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a><span class="co">#                        "Intact_Leaves" = "Leaves"   # combine here</span></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="co">#     )</span></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a><span class="co">#   ) |&gt;</span></span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a><span class="co">#   filter(!Fill_Type %in% c("Silk", "Debris"))</span></span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a><span class="co"># bee_fill_comp &lt;- c(</span></span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a><span class="co">#   "Grass"             = "Grass\n(Grass Wasp)",</span></span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a><span class="co">#   "Leaves"            = "Leaves\n(Leafcutter Bee)",</span></span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a><span class="co">#   "Light_Mud"         = "Light Mud\n(Square-headed Wasp, Potter Wasp)",</span></span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a><span class="co">#   "Masticated_Leaves" = "Masticated Leaves\n(Leafcutter Bee, Mason Bee)",</span></span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a><span class="co">#   "Empty"             = "Empty"</span></span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="descriptive-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive Statistics</h2>
+<p>Initial summaries were used to examine:</p>
+<ul>
+<li>total occupancy by year</li>
+<li>average weekly tube fills</li>
+<li>dominant fill materials</li>
+<li>variation across habitats</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SUMMARY STATISTICS TABLE HERE</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ID_freq_comp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Location              Fill_Type Proportion_of_Fill   Tally.of.Fill
+ Length   :35   Empty            :5   Min.   :0.00000    Length   :35   
+ N.unique : 5   Debris           :5   1st Qu.:0.06071    N.unique :12   
+ N.blank  : 0   Silk             :5   Median :0.10000    N.blank  : 8   
+ Min.nchar: 7   Grass            :5   Mean   :0.14286    Min.nchar: 0   
+ Max.nchar:15   Light_Mud        :5   3rd Qu.:0.18125    Max.nchar:28   
+                Intact_Leaves    :5   Max.   :0.58750                   
+                Masticated_Leaves:5                                     
+ Number.Filled    Total.Tubes   Second.count    Sample_Size 
+ Min.   : 0.00   Min.   : 20   Min.   : 1.00   Min.   : 20  
+ 1st Qu.: 2.00   1st Qu.: 20   1st Qu.: 3.25   1st Qu.: 20  
+ Median : 4.00   Median : 40   Median : 8.00   Median : 40  
+ Mean   :10.86   Mean   : 76   Mean   :11.00   Mean   : 76  
+ 3rd Qu.:11.00   3rd Qu.:140   3rd Qu.:18.00   3rd Qu.:140  
+ Max.   :94.00   Max.   :160   Max.   :26.00   Max.   :160  
+                               NAs    :29                   </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fill_df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Week            Fill_Type   Number_of_Tubes_First_Filled      Year     
+ Min.   : 0.000   Length   :179   Min.   : 0.000               Min.   :2023  
+ 1st Qu.: 4.000   N.unique :  4   1st Qu.: 0.000               1st Qu.:2023  
+ Median : 9.000   N.blank  :  0   Median : 1.000               Median :2024  
+ Mean   : 9.402   Min.nchar:  5   Mean   : 2.323               Mean   :2024  
+ 3rd Qu.:14.000   Max.nchar: 17   3rd Qu.: 4.000               3rd Qu.:2025  
+ Max.   :20.000                   Max.   :14.000               Max.   :2025  
+                                  NAs    :21                                 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_cum_clean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Week            Fill_Type   Number_of_Tubes_First_Filled      Year     
+ Min.   : 0.000   Length   :198   Min.   : 0.000               Min.   :2023  
+ 1st Qu.: 4.000   N.unique :  4   1st Qu.: 0.000               1st Qu.:2023  
+ Median : 9.000   N.blank  :  0   Median : 0.000               Median :2024  
+ Mean   : 9.288   Min.nchar:  5   Mean   : 1.874               Mean   :2024  
+ 3rd Qu.:14.000   Max.nchar: 17   3rd Qu.: 3.000               3rd Qu.:2025  
+ Max.   :20.000                   Max.   :14.000               Max.   :2025  
+    cum_sum      
+ Min.   :  0.00  
+ 1st Qu.: 20.50  
+ Median : 71.00  
+ Mean   : 74.69  
+ 3rd Qu.:129.50  
+ Max.   :182.00  </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(combined_df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Week            Fill_Type   Number_of_Tubes_First_Filled      Year     
+ Min.   : 0.000   Length   :284   Min.   : 0.000               Min.   :2023  
+ 1st Qu.: 4.000   N.unique :  7   1st Qu.: 0.000               1st Qu.:2023  
+ Median : 9.000   N.blank  :  0   Median : 1.000               Median :2024  
+ Mean   : 9.194   Min.nchar:  4   Mean   : 1.965               Mean   :2024  
+ 3rd Qu.:14.000   Max.nchar: 17   3rd Qu.: 3.000               3rd Qu.:2025  
+ Max.   :20.000                   Max.   :14.000               Max.   :2025  
+                                  NAs    :58                                 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># OPTIONAL STATIC SUMMARY GRAPH HERE</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(full_cum_clean,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Week,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> cum_sum,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="fu">factor</span>(Year),</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">group =</span> Year)) <span class="sc">+</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()<span class="sc">+</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Cumulative Fills"</span>,</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Cumulative Sums of Fill Types by Year"</span>,</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Year"</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#FDE725FF"</span>, <span class="st">"#29AF7FFF"</span>, <span class="st">"#33638DFF"</span>), </span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"2023"</span>, <span class="st">"2024"</span>, <span class="st">"2025"</span>)) <span class="sc">+</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  mytheme <span class="sc">+</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="310Webpage_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(full_cum_clean_fill,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Week,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> cum_sum,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> Fill_Type)) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Year) <span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Cumulative Fills"</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Cumulative Sums of Fill Types by Year"</span>,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Fill Type"</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> my_colors,</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> bee_fill_comp</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>),</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">60</span>)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>  mytheme</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="310Webpage_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="seasonal-occupancy-trends" class="level2">
+<h2 class="anchored" data-anchor-id="seasonal-occupancy-trends">Seasonal Occupancy Trends</h2>
+<p>Across all years, occupancy generally increased through the middle of the summer before declining toward September. Different fill materials appeared at distinct periods of the season, reflecting the reproductive timing of different bee and wasp taxa.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># OPTIONAL DESCRIPTIVE TIME SERIES GRAPH HERE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="data-visualization-and-storytelling" class="level1">
+<h1>Data Visualization and Storytelling</h1>
+<section id="seasonal-activity-across-years" class="level2">
+<h2 class="anchored" data-anchor-id="seasonal-activity-across-years">Seasonal Activity Across Years</h2>
+<p>This visualization compares cumulative nesting activity across years. The graph highlights differences in occupancy timing and overall seasonal productivity.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># INTERACTIVE PLOTLY GRAPH HERE</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>combined_df<span class="sc">$</span>Fill_Type <span class="ot">&lt;-</span> <span class="fu">factor</span>(combined_df<span class="sc">$</span>Fill_Type,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Debris"</span>, <span class="st">"Silk"</span>, <span class="st">"Grass"</span>, <span class="st">"Light_Mud"</span>, <span class="st">"Leaves"</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                                           <span class="st">"Masticated_Leaves"</span>))</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_df, <span class="fu">aes</span>(<span class="at">x=</span>Week, <span class="at">y=</span>Number_of_Tubes_First_Filled,<span class="at">fill=</span>Fill_Type)) <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Year, <span class="at">scales =</span> <span class="st">"free_x"</span>)<span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> my_colors, <span class="at">labels =</span> my_labels) <span class="sc">+</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># scale_fill_viridis_d() +</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">" Timing of First Fill by Year"</span>, <span class="at">x =</span> <span class="st">"Week"</span>, <span class="at">y =</span> <span class="st">"Number of Tubes First Filled"</span>, <span class="at">fill =</span> <span class="st">"Fill Type"</span>) <span class="sc">+</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">"stack"</span>, <span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">#For scaling the tickmarks along the axes</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="at">by=</span><span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="at">by=</span><span class="dv">2</span>))<span class="sc">+</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  mytheme</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="310Webpage_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The visualization demonstrates how nesting activity changes over time and allows comparison between years. Hover interactions provide exact occupancy values for each week.</p>
+<hr>
+</section>
+<section id="weekly-fill-type-dynamics" class="level2">
+<h2 class="anchored" data-anchor-id="weekly-fill-type-dynamics">Weekly Fill-Type Dynamics</h2>
+<p>Different fill materials correspond to different nesting taxa. This animation tracks how fill-type composition changes throughout the season.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ANIMATED GGANIMATE GRAPH HERE</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fill_df,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Week,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Number_of_Tubes_First_Filled,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> Fill_Type)) <span class="sc">+</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span>Fill_Type,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">scales =</span> <span class="st">"free_x"</span>,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">Fill_Type =</span> <span class="fu">c</span>(</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Light_Mud"</span> <span class="ot">=</span> <span class="st">"Light Mud"</span>,</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Masticated_Leaves"</span> <span class="ot">=</span> <span class="st">"Masticated Leaves"</span>,</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Intact_Leaves"</span> <span class="ot">=</span> <span class="st">"Intact Leaves"</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"stack"</span>, <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> my_colors,</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Grass"</span> <span class="ot">=</span> <span class="st">"Grass"</span>,</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Leaves"</span> <span class="ot">=</span> <span class="st">"Leaves"</span>,</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Light_Mud"</span> <span class="ot">=</span> <span class="st">"Light Mud"</span>,</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Masticated_Leaves"</span> <span class="ot">=</span> <span class="st">"Masticated Leaves"</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Timing of First Fill by Fill Type: Summary Across Years"</span>,</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Week"</span>,</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Tubes First Filled"</span>,</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Fill Type"</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>  mytheme <span class="sc">+</span></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>)</span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="310Webpage_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The animation illustrates the seasonal succession of nesting activity, showing how mud-associated wasps appear earlier in the season while leafcutter bees become more common later in the summer.</p>
+<hr>
+</section>
+<section id="habitat-comparisons-ecological-relationships" class="level2">
+<h2 class="anchored" data-anchor-id="habitat-comparisons-ecological-relationships">Habitat Comparisons &amp; Ecological Relationships</h2>
+<p>Habitat conditions strongly influenced occupancy patterns and diversity across locations.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># HABITAT COMPARISON VISUALIZATION HERE</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ID_freq_comp <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Fill_Type <span class="sc">!=</span> <span class="st">"Empty"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Fill_Type, <span class="at">y =</span> Location, <span class="at">fill =</span> Proportion_of_Fill)) <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Fill Type"</span>, <span class="at">y =</span> <span class="st">"Location"</span>, <span class="at">fill =</span> <span class="st">"Proportion"</span>) <span class="sc">+</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  mytheme <span class="sc">+</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">30</span>, <span class="at">vjust =</span> .<span class="dv">5</span>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="310Webpage_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The visualization compares the proportional composition of fill types among habitat locations and highlights ecological differences between managed and naturalized environments.Relationships between fill materials and occupant taxa can also be visualized to better understand ecological interactions within nesting communities.</p>
+<hr>
+</section>
+<section id="species-composition" class="level2">
+<h2 class="anchored" data-anchor-id="species-composition">Species Composition</h2>
+<p>Species-level identifications provide insight into the diversity of cavity-nesting insects observed across locations.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="310Webpage_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The results indicate that certain habitats supported greater species richness and higher proportions of native pollinator taxa.</p>
+<hr>
+</section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>The goal of this research is to gain baseline information on the cavity-nesting bees and wasps in Geneseo, NY. Populations of wild bees are declining as a result of declines in floral resources. Monitoring and supporting cavity nesting bees and wasps is crucial; they are beneficial to both local ecosystems and economies. Surveying bee and wasp species provides information on the ecological state of an area. Due to their specific habitat requirements, trophic diversity, and roles as pollinators, cavity-nesters can serve as an indication of environmental change and influences of invasive species. Wild bees pollinate flowers when feeding on nectar and pollen. Solitary adult wasps also feed on nectar providing pollination. Wasp larvae however, feed on arthropod populations as the adults lay their eggs with arthropod provisions. Crops and plants rely on cavity-nesting pollinators to facilitate reproduction. Increased wildflowers plantings result in increased wild bee diversity and abundance. This has been utilized by commercial farms, which plant wildflower gardens adjacent to agricultural fields in order to take advantage of these ecological links. In Geneseo, a town dominated by agricultural fields, monitoring cavity-nesting bees and wasps is essential to local communities.</p>
+<p>Several major patterns emerged:</p>
+<ul>
+<li>nesting activity followed consistent seasonal timing</li>
+<li>fill materials reflected predictable taxonomic patterns</li>
+<li>habitats with native vegetation supported greater diversity</li>
+<li>occupancy composition varied strongly across locations</li>
+<li>certain pollinator taxa consistently dominated specific habitats</li>
+</ul>
+<p>These findings contribute to broader efforts aimed at monitoring pollinator populations and understanding how habitat management influences biodiversity in agricultural and suburban landscapes.</p>
+<hr>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<ul>
+<li>NA</li>
+<li>NA</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="text/javascript" src="links.js"></script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Powered with GitHub and Quarto<br>© Christopher Taratko, 2023</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

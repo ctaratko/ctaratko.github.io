@@ -1,0 +1,36 @@
+Location,Fill_Type,Proportion_of_Fill
+Arboretum,Masticated_Leaves,0.1928571429
+Arboretum,Intact_Leaves,0.007142857143
+Arboretum,Light_Mud,0.1357142857
+Arboretum,Grass,0.1
+Arboretum,Silk,0.04285714286
+Arboretum,Debris,0.06428571429
+Arboretum,Empty,0.4571428571
+ISC/Greenhouse,Masticated_Leaves,0.05
+ISC/Greenhouse,Intact_Leaves,0.075
+ISC/Greenhouse,Light_Mud,0.1
+ISC/Greenhouse,Grass,0.075
+ISC/Greenhouse,Silk,0.05
+ISC/Greenhouse,Debris,0.1
+ISC/Greenhouse,Empty,0.55
+No Mow Zone,Masticated_Leaves,0
+No Mow Zone,Intact_Leaves,0.10
+No Mow Zone,Light_Mud,0.1
+No Mow Zone,Grass,0.3
+No Mow Zone,Silk,0.15
+No Mow Zone,Debris,0.1
+No Mow Zone,Empty,0.25
+EGarden,Masticated_Leaves,0.15
+EGarden,Intact_Leaves,0
+EGarden,Light_Mud,0.25
+EGarden,Grass,0.25
+EGarden,Silk,0.05
+EGarden,Debris,0.15
+EGarden,Empty,0.15
+Island Preserve,Masticated_Leaves,0.0875
+Island Preserve,Intact_Leaves,0
+Island Preserve,Light_Mud,0.1277777778
+Island Preserve,Grass,0.1625
+Island Preserve,Silk,0.01875
+Island Preserve,Debris,0.0375
+Island Preserve,Empty,0.55

@@ -4,7 +4,14 @@ author: "Christopher Taratko"
 format:
   html:
     backgroundcolor: "#fdf6e3"
-toc: true
+    toc: true
+    include-in-header:
+      - text: |
+          <style>
+          h1, h2, h3, h4, h5, h6 {
+            color: #000080;
+          }
+          </style>
 ---
 
 ```{r, include=FALSE}
@@ -443,6 +450,10 @@ Overall, the differences between the FE and TWFE models suggest that unobserved 
 **Glaeser, E. L., & Gyourko, J. (2018)**. The economic implications of housing supply. *Journal of Economic Perspectives, 32*(1), 3–30.
 
 **Mian, A., & Sufi, A. (2011)**. House prices, home equity-based borrowing, and the U.S. household leverage crisis. *American Economic Review, 101*(5), 2132–2156.
+
+**OpenAI. (2025)**. *ChatGPT* (Mar 14 version) \[Large language model\]. <https://chat.openai.com/chat>
+
+**Microsoft Copilot. (2026)**. *Co-pilot* (Mar 14 version) \[Large language model\]. <https://m365.cloud.microsoft/chat/>
 
 **Saiz, A. (2010)**. The geographic determinants of housing supply. *Quarterly Journal of Economics, 125*(3), 1253–1296.
 
