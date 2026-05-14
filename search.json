@@ -401,42 +401,42 @@
   {
     "objectID": "Spring2026Projects/Capstone-paper.html",
     "href": "Spring2026Projects/Capstone-paper.html",
-    "title": "Capstone-Paper",
+    "title": "Capstone Paper: Household Financial Health",
     "section": "",
     "text": "Current households face the question of whether or not they should spend money to build up their assets, more specifically their long term assets. Long Term Assets is a broad classification of assets, but when specified under a Household, it normally pertains to assets such as:\n\nHouses\nCar\nSmall Businesses\n\nthe US consumer body as a whole is at a state where its becoming less and less common to have a larger amount of debt relative to one’s income, as as financially sound this is, it also creates concern for future innovation. Entrepreneurship requires risks to be taken, and the US has been the global powerhouse for innovation and research for new products and services, and the US government has backed this innovation with the amount of debt that’s been acquired.\nAs of recently, it is able to be seen that individuals have began choosing new methods of acquiring debt, but for less innovative or valued purposes, but instead for financially illiterate purposes. It is common for people to overspend on their line(s) of revolving credit (credit cards) that have balances due at the end of each month, or else they’ll be charged interest on the balance. Other options are people will over-spend on their debit card, and end up utilizing methods such as “Buy-Now-Pay-Later”, or “Pay-Day” Loans.\n\n\n\nWhat levels of DTI Ratios (Debt-to-Income) and HPI conditions have been sustainably manageable for the U.S. households based on the ML Outputs?\n\nWhat factors best represent the overall health of Household finances in the United States?\nHow have US financial factors changed over time, and what patterns have emerged from the changes?"
   },
   {
     "objectID": "Spring2026Projects/Capstone-paper.html#thesis-question",
     "href": "Spring2026Projects/Capstone-paper.html#thesis-question",
-    "title": "Capstone-Paper",
+    "title": "Capstone Paper: Household Financial Health",
     "section": "",
     "text": "What levels of DTI Ratios (Debt-to-Income) and HPI conditions have been sustainably manageable for the U.S. households based on the ML Outputs?\n\nWhat factors best represent the overall health of Household finances in the United States?\nHow have US financial factors changed over time, and what patterns have emerged from the changes?"
   },
   {
     "objectID": "Spring2026Projects/Capstone-paper.html#summary-statistics",
     "href": "Spring2026Projects/Capstone-paper.html#summary-statistics",
-    "title": "Capstone-Paper",
+    "title": "Capstone Paper: Household Financial Health",
     "section": "Summary Statistics",
-    "text": "Summary Statistics\n\nDelinquency Rates\n\n\n\n\n\n\n\n\n\nOver the past 10 years, delinquent payments have become less and less of an issue. While this is seen as a good\n\n\nDebt-to-Income Ratios Over Time"
+    "text": "Summary Statistics\n\nDelinquency Rates\n\n\n\n\n\n\n\n\n\nOver the past 10 years, delinquent payments have become less and less of an issue. This is seen as an overall good measurement in terms of\n\nsummary(model_prep)\n\n       state          year         quarter       DebtValue      Median_H_Inc  \n Length   :672   Min.   :2003   Min.   :1.00   Min.   :24.42   Min.   :58630  \n N.unique :  8   1st Qu.:2008   1st Qu.:1.75   1st Qu.:37.04   1st Qu.:66690  \n N.blank  :  0   Median :2013   Median :2.50   Median :45.63   Median :71149  \n Min.nchar:  2   Mean   :2013   Mean   :2.50   Mean   :47.15   Mean   :72693  \n Max.nchar:  2   3rd Qu.:2018   3rd Qu.:3.25   3rd Qu.:52.25   3rd Qu.:77815  \n                 Max.   :2023   Max.   :4.00   Max.   :88.01   Max.   :94660  \n    mean_AGI         MinWage            HPI        Delinquency_pct \n Min.   : 45370   Min.   : 4.250   Min.   :140.5   Min.   : 0.950  \n 1st Qu.: 57793   1st Qu.: 6.859   1st Qu.:170.9   1st Qu.: 2.418  \n Median : 66332   Median : 7.625   Median :192.6   Median : 3.570  \n Mean   : 69213   Mean   : 7.913   Mean   :213.2   Mean   : 4.365  \n 3rd Qu.: 77308   3rd Qu.: 8.606   3rd Qu.:242.4   3rd Qu.: 5.190  \n Max.   :117000   Max.   :15.500   Max.   :474.3   Max.   :18.150  \n   Mean_Mpct          Med_Mpct          mean_CPI     ForeclosureRate  \n Min.   : 0.2300   Min.   : 0.2000   Min.   :101.7   Min.   :0.00200  \n 1st Qu.: 0.7703   1st Qu.: 0.7463   1st Qu.:202.2   1st Qu.:0.02300  \n Median : 1.6953   Median : 1.6575   Median :229.6   Median :0.05000  \n Mean   : 3.1471   Mean   : 3.1158   Mean   :224.3   Mean   :0.08814  \n 3rd Qu.: 4.0226   3rd Qu.: 3.9997   3rd Qu.:253.1   3rd Qu.:0.11000  \n Max.   :19.1916   Max.   :18.8906   Max.   :328.4   Max.   :0.64000  \n   DTI_ratio           time           \n Min.   :0.9437   Min.   :2003-01-01  \n 1st Qu.:1.8783   1st Qu.:2008-03-09  \n Median :2.3065   Median :2013-05-16  \n Mean   :2.4832   Mean   :2013-05-16  \n 3rd Qu.:3.0870   3rd Qu.:2018-07-24  \n Max.   :5.5825   Max.   :2023-10-01  \n\n\n\n\nDebt-to-Income Ratios Over Time"
   },
   {
     "objectID": "Spring2026Projects/Capstone-paper.html#pooled-ols-model",
     "href": "Spring2026Projects/Capstone-paper.html#pooled-ols-model",
-    "title": "Capstone-Paper",
+    "title": "Capstone Paper: Household Financial Health",
     "section": "Pooled OLS Model",
     "text": "Pooled OLS Model\n\\[\\begin{aligned}\n\\log(DTI\\_ratio_{it}) =\\;&\n\\beta_1 \\log(DebtValue_{it})\n+ \\beta_2 \\log(Median\\_H\\_Inc_{it})\n+ \\beta_3 MinWage_{it} \\\\\n&+ \\beta_4 \\log(HPI_{it})\n+ \\beta_5 Delinquency\\_pct_{it}\n+ \\beta_6 Med\\_Mpct_{it} \\\\\n&+ \\beta_7 \\log(mean\\_CPI_{it})\n+ \\beta_8 ForeclosureRate_{it}\n+ \\varepsilon_{it}\n\\end{aligned}\\]"
   },
   {
     "objectID": "Spring2026Projects/Capstone-paper.html#fixed-effect-model",
     "href": "Spring2026Projects/Capstone-paper.html#fixed-effect-model",
-    "title": "Capstone-Paper",
+    "title": "Capstone Paper: Household Financial Health",
     "section": "Fixed Effect Model",
     "text": "Fixed Effect Model\n\\[\\begin{aligned}\n\\log(DTI\\_ratio_{it}) =\\;&\n\\beta_1 \\log(DebtValue_{it})\n+ \\beta_2 \\log(Median\\_H\\_Inc_{it})\n+ \\beta_3 MinWage_{it} \\\\\n&+ \\beta_4 \\log(HPI_{it})\n+ \\beta_5 Delinquency\\_pct_{it}\n+ \\beta_6 Med\\_Mpct_{it} \\\\\n&+ \\beta_7 \\log(mean\\_CPI_{it})\n+ \\beta_8 ForeclosureRate_{it}\n+ \\alpha_i\n+ \\varepsilon_{it}\n\\end{aligned}\\]\n\nInterpretation:\n\n\\(\\alpha_i\\): captures all time-invariant state characteristics"
   },
   {
     "objectID": "Spring2026Projects/Capstone-paper.html#two-way-fixed-effect-model",
     "href": "Spring2026Projects/Capstone-paper.html#two-way-fixed-effect-model",
-    "title": "Capstone-Paper",
+    "title": "Capstone Paper: Household Financial Health",
     "section": "Two-Way Fixed Effect Model",
     "text": "Two-Way Fixed Effect Model\n\\[\\begin{aligned}\n\\log(DTI\\_ratio_{it}) =\\;&\n\\beta_1 \\log(DebtValue_{it})\n+ \\beta_2 \\log(Median\\_H\\_Inc_{it})\n+ \\beta_3 MinWage_{it} \\\\\n&+ \\beta_4 \\log(HPI_{it})\n+ \\beta_5 Delinquency\\_pct_{it}\n+ \\beta_6 Med\\_Mpct_{it} \\\\\n&+ \\beta_7 \\log(mean\\_CPI_{it})\n+ \\beta_8 ForeclosureRate_{it}\n+ \\alpha_i\n+ \\gamma_t\n+ \\varepsilon_{it}\n\\end{aligned}\\]\n\nInterpretation:\n\n\\(\\alpha_i\\)​: state fixed effects\n\\(\\gamma_t\\)​: time fixed effects (e.g., macro shocks)"
   },
@@ -453,5 +453,19 @@
     "title": "Capstone-Paper",
     "section": "Two-Way Fixed Effect Model",
     "text": "Two-Way Fixed Effect Model\n\\[\n\\begin{aligned}\n\\log(DTI\\_ratio_{it}) =\\;&\n\\beta_1 \\log(DebtValue_{it})\n+ \\beta_2 \\log(Median\\_H\\_Inc_{it})\n+ \\beta_3 MinWage_{it} \\\\\n&+ \\beta_4 \\log(HPI_{it})\n+ \\beta_5 Delinquency\\_pct_{it}\n+ \\beta_6 Med\\_Mpct_{it} \\\\\n&+ \\beta_7 \\log(mean\\_CPI_{it})\n+ \\beta_8 ForeclosureRate_{it}\n+ \\alpha_i\n+ \\gamma_t\n+ \\varepsilon_{it}\n\\end{aligned}\n\\]\n\nInterpretation:\n\nαi​: state fixed effects\n\n\n\nγtγt​: time fixed effects (e.g., macro shocks)"
+  },
+  {
+    "objectID": "Spring2026Projects/Capstone-paper.html#public-policy",
+    "href": "Spring2026Projects/Capstone-paper.html#public-policy",
+    "title": "Capstone Paper: Household Financial Health",
+    "section": "Public Policy",
+    "text": "Public Policy\nThere are many public policies that can be implemented when it comes to the results of the data. Starting off, Income based debt relief programs are a very easy and direct form of assisting public financial health. While this only solves the problem in the Short Run, it does allow individuals to be given a second chance on debt they would’ve otherwise been unable to pay back. For the second option, there’s the use of Financial Literacy Courses. Courses like these would have the opportunity to be implemented within any school, preferably targeted towards High-School students that are close to graduating. While this can be effective for teaching individuals who will begin facing the use of debt, it would also be effective to offer programs to individuals that are already established in their career or outside of primary schooling. This would be the most beneficial, allowing people to get practice with financial situations they may come across, and create a baseline of financial literacy to allow people to know their limits in relation to their finances and the economy overall. Lastly, a viable public policy would be to implement a sub division of the Federal Housing Finance Agency, one that would would create a financial database of understanding housing valuations via the specifications of the houses. Starting points would consist of County/State locations, House Age, House-owned Appliances retained through sale of the home, and ratings of local education."
+  },
+  {
+    "objectID": "Spring2026Projects/Capstone-paper.html#business-implications",
+    "href": "Spring2026Projects/Capstone-paper.html#business-implications",
+    "title": "Capstone Paper: Household Financial Health",
+    "section": "Business Implications",
+    "text": "Business Implications\nBusinesses play an integral role in terms of Household Financial Health. Individuals rely on larger institutions to provide loans and the terms to be agreeable on both ends of the contract. With that said, companies are able to provide different loans, such as “Pay-Day” loans, or even “Buy-Now Pay-Later” Structures that are sold through third parties, but backed by large financial institutions. These structures are easy ways to get access to money or to even stretch payments over a period of time. The issue that presents itself here is the background checks and the usage of these financial instruments. These instruments can be used on non-essentials, and have less restrictions state-by-state in terms of capping their interest rates & debt collection. These loans aren’t FDIC backed, but have large financial institutions putting forth equity on them, despite their debt collection being minimally invasive in relation to delinquent payments. This implies that the debt on these loans are utilized on the books for their high interest rates to be collected in the future. These are high risk investments due to their lack of debt collection, but the issue is significant due to it being monetarily backed by Financial Institutions. This can cause increase in rates on normal loans to offset the risk of this investment, but could cause macro-economic issues if the monetary value is large enough. Overall, the business implication from this data is to regulate these financial instruments in order to balance the incentive of utilizing backed, standardized financial instruments with lower risk."
   }
 ]

@@ -1,5 +1,5 @@
 ---
-title: "Capstone-Paper"
+title: "Capstone Paper: Household Financial Health"
 author: "Christopher Taratko"
 format:
   html:
@@ -78,7 +78,7 @@ As of recently, it is able to be seen that individuals have began choosing new m
 
 # Background and Related Literature
 
-Throughout the process of learning about the data itself, a key
+Throughout the process of learning about the data itself, key ideas that were needed to be known going into the research and understanding of this financial data is the connection between financial instruments and the housing market as a whole. The article "House Prices, Home Equity-Based Borrowing, and the US Household Leverage Crisis (*Mian, A, & Sufi, A, 2011*), is a critical analysis of the 2008 Housing Crisis and the ties to household valuations. From this paper, one of the key concepts is how the housing boom didn't only raise household values, but rather encouraged heavy borrowing against rising home equity. This was one of the large factors and and a signficant catalyst for why the collapse of the housing market was so burdening to the general public. The paper analyzed from 1997 all the way up to 2008, understanding individual credit data and how people borrowed against their equity. The finding within this article was that households borrowed \$0.25 for every \$1.00 increase in home equity.
 
 # Data
 
@@ -141,7 +141,13 @@ model_prep |>
   )
 ```
 
-Over the past 10 years, delinquent payments have become less and less of an issue. While this is seen as a good
+Over the past 10 years, delinquent payments have become less and less of an issue. This is seen as an overall good measurement in terms of individuals taking the risk of over-exerting their finances. These values are returning to pre-2008 Delinquency Rates.
+
+### General Descriptive Stats
+
+```{r, echo=FALSE, warning=FALSE}
+summary(model_prep)
+```
 
 ### Debt-to-Income Ratios Over Time
 
@@ -166,6 +172,46 @@ model_prep |>
   labs(
     x = "Log(Foreclosure Rate)",
     y = "Debt-to-Income Ratio"
+  )
+```
+
+```{r, warning=FALSE, echo=FALSE}
+model_prep |> 
+  group_by(state) |> 
+  arrange(time) |> 
+  mutate(
+    start_inc = first(Median_H_Inc),
+    cum_inflation = cumprod(1 + mean_CPI), 
+    state_inflation_line = first(Median_H_Inc) * (mean_CPI / first(mean_CPI))
+  ) |> 
+  ungroup() |>
+  mutate(state = fct_reorder2(state, time, Median_H_Inc)) |>
+  ggplot(aes(x = time, y = Median_H_Inc)) +
+  geom_line(aes(y = state_inflation_line), 
+            color = "black", 
+            linetype = "dashed", 
+            alpha = 0.6) +
+  geom_line(aes(color = state), size = 0.6) +
+  facet_wrap(~state, ncol = 2) +
+  geom_vline(xintercept = as.Date("2008-01-01"), size = .2, alpha = 0.5) +
+  geom_vline(xintercept = as.Date("2020-03-01"), size = .2, alpha = 0.5) +
+  scale_y_continuous(labels = scales::dollar) +
+  scale_color_solarized() +
+  theme_solarized() +
+  labs(
+    y = "Median Household Income",
+    x = "Time (in quarters)",
+    title = "Median Household Income vs. 1.5% Inflation (Low End)",
+    subtitle = "Dashed line represents standard inflation baseline from 2003",
+    caption = "Vlines: 2008 Housing Crisis, 2020 COVID\nDash: 2% Inflation Baseline - www.minneapolisfed.org",
+  ) +
+  my_theme +
+  theme(
+    legend.position = "none",
+    strip.background = element_rect(fill = "#eee8d5"),
+    strip.text = element_text(family = "Times New Roman", face = "bold"),
+    text = element_text(family = "Times New Roman"),
+    plot.title = element_text(family = "Times New Roman", color = "#700000", face = 'bold'),
   )
 ```
 
@@ -235,35 +281,6 @@ According to all three plots, there is high statistical significance from majori
 Key notes to be taken about specific variables would be the $\log(DebtValue)$, which is always negative and highly significant, ranging between -1.05 and -1.21. For a 1% increase in the total debt is associated with about 1.05% - 1.21% decrease within the Debt-to-Income Ratio. As for the next significant variable, $\log(Median Household Income)$, has stronger effects within the Fixed-Effect & Pooled OLS (Ordinary Least Squares) Model. With the opposite effect of the DebtValue, it's *positive* relationship has an effect of 1% increase in Median Household Income resulting in an increase of the Debt-to-Income Ratio by \~0.75% - 1.07%.
 
 ```{r, warning=FALSE, echo=FALSE}
-# model_fe <- plm(
-#   log(DTI_ratio) ~ DebtValue + Median_H_Inc + MinWage + HPI +
-#     Delinquency_pct + Med_Mpct + mean_CPI + ForeclosureRate,
-#   data = model_prep,
-#   index = c("state", "time"),
-#   model = "within",
-#   effect = "individual"
-# )
-# 
-# model_twfe <- plm(
-#   log(DTI_ratio) ~ log(DebtValue) + log(Median_H_Inc) + MinWage +
-#     log(HPI) + Delinquency_pct + Med_Mpct + log(mean_CPI) +
-#     ForeclosureRate,
-#   data = model_prep,
-#   index = c("state", "time"),
-#   model = "within",
-#   effect = "twoways"
-# )
-# # stargazer(model_log_fe, type = "text")
-# 
-# model_pols <- plm(
-#   log(DTI_ratio) ~ log(Median_H_Inc) + MinWage +
-#     log(HPI) + Delinquency_pct + Med_Mpct + log(mean_CPI) +
-#     ForeclosureRate,
-#   data = model_prep,
-#   index = c("state", "time"),
-#   model = "pooling"
-# )
-#===========================================================================#
 model_fe <- plm(
   log(DTI_ratio) ~ log(DebtValue) + log(Median_H_Inc) + MinWage +
     log(HPI) + Delinquency_pct + Med_Mpct + log(mean_CPI) +
@@ -300,7 +317,23 @@ stargazer(model_fe,model_twfe,model_pols, type = "text", column.labels = c("Fixe
 
 # Discussion and Implications
 
+## Public Policy
+
+There are many public policies that can be implemented when it comes to the results of the data. Starting off, Income based debt relief programs are a very easy and direct form of assisting public financial health. While this only solves the problem in the Short Run, it does allow individuals to be given a second chance on debt they would've otherwise been unable to pay back. For the second option, there's the use of Financial Literacy Courses. Courses like these would have the opportunity to be implemented within any school, preferably targeted towards High-School students that are close to graduating. While this can be effective for teaching individuals who will begin facing the use of debt, it would also be effective to offer programs to individuals that are already established in their career or outside of primary schooling. This would be the most beneficial, allowing people to get practice with financial situations they may come across, and create a baseline of financial literacy to allow people to know their limits in relation to their finances and the economy overall. Lastly, a viable public policy would be to implement a sub division of the Federal Housing Finance Agency, one that would would create a financial database of understanding housing valuations via the specifications of the houses. Starting points would consist of County/State locations, House Age, House-owned Appliances retained through sale of the home, and ratings of local education.
+
+## Business Implications
+
+Businesses play an integral role in terms of Household Financial Health. Individuals rely on larger institutions to provide loans and the terms to be agreeable on both ends of the contract. With that said, companies are able to provide different loans, such as "Pay-Day" loans, or even "Buy-Now Pay-Later" Structures that are sold through third parties, but backed by large financial institutions. These structures are easy ways to get access to money or to even stretch payments over a period of time. The issue that presents itself here is the background checks and the usage of these financial instruments. These instruments can be used on non-essentials, and have less restrictions state-by-state in terms of capping their interest rates & debt collection. These loans aren't FDIC backed, but have large financial institutions putting forth equity on them, despite their debt collection being minimally invasive in relation to delinquent payments. This implies that the debt on these loans are utilized on the books for their high interest rates to be collected in the future. These are high risk investments due to their lack of debt collection, but the issue is significant due to it being monetarily backed by Financial Institutions. This can cause increase in rates on normal loans to offset the risk of this investment, but could cause macro-economic issues if the monetary value is large enough. Overall, the business implication from this data is to regulate these financial instruments in order to balance the incentive of utilizing backed, standardized financial instruments with lower risk.
+
 # Conclusion
+
+Debt-to-Income ratios are based on the premise that individuals and entities can only acquire so much debt until they become over-burdened. Companies are known for higher DTI ratios due to their ability to continuously generate profit as long as there's no significant likelihood for *Going Concern*. Some companies are more debt heavy than others, usually pertaining to specific Sectors or Industries of the market. The same relates to individuals and households, just at lower levels.
+
+The Regression table estimates from pooled OLS, state fixed effects (FE), and two-way fixed effects (TWFE) models. Across all specifications, debt value and housing prices exhibit statistically significant negative relationships with the debt-to-income ratio, while median household income is consistently positive and significant. The magnitude of these coefficients remains relatively stable across models, suggesting robust relationships.
+
+However, several variables—such as minimum wage, delinquency rates, and foreclosure rates—lose statistical significance in the TWFE specification. This indicates that their apparent effects in simpler models are likely driven by time-specific shocks rather than within-state variation. In particular, the coefficient on CPI changes sign when time fixed effects are included, highlighting the importance of controlling for macroeconomic trends.
+
+Overall, the differences between the FE and TWFE models suggest that unobserved time effects play a substantial role in explaining variation in the debt-to-income ratio, and failure to account for these effects may lead to biased estimates.
 
 # References
 
@@ -311,6 +344,8 @@ stargazer(model_fe,model_twfe,model_pols, type = "text", column.labels = c("Fixe
 **Federal Housing Finance Agency (FHFA)**. (n.d.). *House price index data.* <https://www.fhfa.gov>
 
 **Federal Reserve Economic Data (FRED)**. (n.d.). *Economic research data.* Federal Reserve Bank of St. Louis. <https://fred.stlouisfed.org>
+
+**Federal Reserve Bank of Minneapolis**. (n.d.). \*Research and data.\* https://www.minneapolisfed.org
 
 **Glaeser, E. L., & Gyourko, J. (2018)**. The economic implications of housing supply. *Journal of Economic Perspectives, 32*(1), 3–30.
 

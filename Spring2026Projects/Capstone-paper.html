@@ -8,7 +8,7 @@
 
 <meta name="author" content="Christopher Taratko">
 
-<title>Capstone-Paper – Christopher Taratko</title>
+<title>Capstone Paper: Household Financial Health – Christopher Taratko</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -405,7 +440,11 @@ window.Quarto = {
   </ul></li>
   </ul></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
-  <li><a href="#discussion-and-implications" id="toc-discussion-and-implications" class="nav-link" data-scroll-target="#discussion-and-implications">Discussion and Implications</a></li>
+  <li><a href="#discussion-and-implications" id="toc-discussion-and-implications" class="nav-link" data-scroll-target="#discussion-and-implications">Discussion and Implications</a>
+  <ul class="collapse">
+  <li><a href="#public-policy" id="toc-public-policy" class="nav-link" data-scroll-target="#public-policy">Public Policy</a></li>
+  <li><a href="#business-implications" id="toc-business-implications" class="nav-link" data-scroll-target="#business-implications">Business Implications</a></li>
+  </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -417,7 +456,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Capstone-Paper</h1>
+<h1 class="title">Capstone Paper: Household Financial Health</h1>
 </div>
 
 
@@ -517,7 +556,40 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>Over the past 10 years, delinquent payments have become less and less of an issue. While this is seen as a good</p>
+<p>Over the past 10 years, delinquent payments have become less and less of an issue. This is seen as an overall good measurement in terms of</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_prep)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       state          year         quarter       DebtValue      Median_H_Inc  
+ Length   :672   Min.   :2003   Min.   :1.00   Min.   :24.42   Min.   :58630  
+ N.unique :  8   1st Qu.:2008   1st Qu.:1.75   1st Qu.:37.04   1st Qu.:66690  
+ N.blank  :  0   Median :2013   Median :2.50   Median :45.63   Median :71149  
+ Min.nchar:  2   Mean   :2013   Mean   :2.50   Mean   :47.15   Mean   :72693  
+ Max.nchar:  2   3rd Qu.:2018   3rd Qu.:3.25   3rd Qu.:52.25   3rd Qu.:77815  
+                 Max.   :2023   Max.   :4.00   Max.   :88.01   Max.   :94660  
+    mean_AGI         MinWage            HPI        Delinquency_pct 
+ Min.   : 45370   Min.   : 4.250   Min.   :140.5   Min.   : 0.950  
+ 1st Qu.: 57793   1st Qu.: 6.859   1st Qu.:170.9   1st Qu.: 2.418  
+ Median : 66332   Median : 7.625   Median :192.6   Median : 3.570  
+ Mean   : 69213   Mean   : 7.913   Mean   :213.2   Mean   : 4.365  
+ 3rd Qu.: 77308   3rd Qu.: 8.606   3rd Qu.:242.4   3rd Qu.: 5.190  
+ Max.   :117000   Max.   :15.500   Max.   :474.3   Max.   :18.150  
+   Mean_Mpct          Med_Mpct          mean_CPI     ForeclosureRate  
+ Min.   : 0.2300   Min.   : 0.2000   Min.   :101.7   Min.   :0.00200  
+ 1st Qu.: 0.7703   1st Qu.: 0.7463   1st Qu.:202.2   1st Qu.:0.02300  
+ Median : 1.6953   Median : 1.6575   Median :229.6   Median :0.05000  
+ Mean   : 3.1471   Mean   : 3.1158   Mean   :224.3   Mean   :0.08814  
+ 3rd Qu.: 4.0226   3rd Qu.: 3.9997   3rd Qu.:253.1   3rd Qu.:0.11000  
+ Max.   :19.1916   Max.   :18.8906   Max.   :328.4   Max.   :0.64000  
+   DTI_ratio           time           
+ Min.   :0.9437   Min.   :2003-01-01  
+ 1st Qu.:1.8783   1st Qu.:2008-03-09  
+ Median :2.3065   Median :2013-05-16  
+ Mean   :2.4832   Mean   :2013-05-16  
+ 3rd Qu.:3.0870   3rd Qu.:2018-07-24  
+ Max.   :5.5825   Max.   :2023-10-01  </code></pre>
+</div>
+</div>
 </section>
 <section id="debt-to-income-ratios-over-time" class="level3">
 <h3 class="anchored" data-anchor-id="debt-to-income-ratios-over-time">Debt-to-Income Ratios Over Time</h3>
@@ -525,7 +597,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Capstone-paper_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Capstone-paper_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -534,7 +606,16 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Capstone-paper_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Capstone-paper_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Capstone-paper_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -659,9 +740,21 @@ Note:                                                                *p&lt;0.1; 
 </section>
 <section id="discussion-and-implications" class="level1">
 <h1>Discussion and Implications</h1>
+<section id="public-policy" class="level2">
+<h2 class="anchored" data-anchor-id="public-policy">Public Policy</h2>
+<p>There are many public policies that can be implemented when it comes to the results of the data. Starting off, Income based debt relief programs are a very easy and direct form of assisting public financial health. While this only solves the problem in the Short Run, it does allow individuals to be given a second chance on debt they would’ve otherwise been unable to pay back. For the second option, there’s the use of Financial Literacy Courses. Courses like these would have the opportunity to be implemented within any school, preferably targeted towards High-School students that are close to graduating. While this can be effective for teaching individuals who will begin facing the use of debt, it would also be effective to offer programs to individuals that are already established in their career or outside of primary schooling. This would be the most beneficial, allowing people to get practice with financial situations they may come across, and create a baseline of financial literacy to allow people to know their limits in relation to their finances and the economy overall. Lastly, a viable public policy would be to implement a sub division of the Federal Housing Finance Agency, one that would would create a financial database of understanding housing valuations via the specifications of the houses. Starting points would consist of County/State locations, House Age, House-owned Appliances retained through sale of the home, and ratings of local education.</p>
+</section>
+<section id="business-implications" class="level2">
+<h2 class="anchored" data-anchor-id="business-implications">Business Implications</h2>
+<p>Businesses play an integral role in terms of Household Financial Health. Individuals rely on larger institutions to provide loans and the terms to be agreeable on both ends of the contract. With that said, companies are able to provide different loans, such as “Pay-Day” loans, or even “Buy-Now Pay-Later” Structures that are sold through third parties, but backed by large financial institutions. These structures are easy ways to get access to money or to even stretch payments over a period of time. The issue that presents itself here is the background checks and the usage of these financial instruments. These instruments can be used on non-essentials, and have less restrictions state-by-state in terms of capping their interest rates &amp; debt collection. These loans aren’t FDIC backed, but have large financial institutions putting forth equity on them, despite their debt collection being minimally invasive in relation to delinquent payments. This implies that the debt on these loans are utilized on the books for their high interest rates to be collected in the future. These are high risk investments due to their lack of debt collection, but the issue is significant due to it being monetarily backed by Financial Institutions. This can cause increase in rates on normal loans to offset the risk of this investment, but could cause macro-economic issues if the monetary value is large enough. Overall, the business implication from this data is to regulate these financial instruments in order to balance the incentive of utilizing backed, standardized financial instruments with lower risk.</p>
+</section>
 </section>
 <section id="conclusion" class="level1">
 <h1>Conclusion</h1>
+<p>Debt-to-Income ratios are based on the premise that individuals and entities can only acquire so much debt until they become over-burdened. Companies are known for higher DTI ratios due to their ability to continuously generate profit as long as there’s no significant likelihood for <em>Going Concern</em>. Some companies are more debt heavy than others, usually pertaining to specific Sectors or Industries of the market. The same relates to individuals and households, just at lower levels.</p>
+<p>The Regression table estimates from pooled OLS, state fixed effects (FE), and two-way fixed effects (TWFE) models. Across all specifications, debt value and housing prices exhibit statistically significant negative relationships with the debt-to-income ratio, while median household income is consistently positive and significant. The magnitude of these coefficients remains relatively stable across models, suggesting robust relationships.</p>
+<p>However, several variables—such as minimum wage, delinquency rates, and foreclosure rates—lose statistical significance in the TWFE specification. This indicates that their apparent effects in simpler models are likely driven by time-specific shocks rather than within-state variation. In particular, the coefficient on CPI changes sign when time fixed effects are included, highlighting the importance of controlling for macroeconomic trends.</p>
+<p>Overall, the differences between the FE and TWFE models suggest that unobserved time effects play a substantial role in explaining variation in the debt-to-income ratio, and failure to account for these effects may lead to biased estimates.</p>
 </section>
 <section id="references" class="level1">
 <h1>References</h1>
@@ -669,6 +762,7 @@ Note:                                                                *p&lt;0.1; 
 <p><strong>Bureau of Labor Statistics (BLS)</strong>. (n.d.). City <em>CPI Data and Cumulative State CPI Data.</em> <a href="https://www.bls.gov" class="uri">https://www.bls.gov</a></p>
 <p><strong>Federal Housing Finance Agency (FHFA)</strong>. (n.d.). <em>House price index data.</em> <a href="https://www.fhfa.gov" class="uri">https://www.fhfa.gov</a></p>
 <p><strong>Federal Reserve Economic Data (FRED)</strong>. (n.d.). <em>Economic research data.</em> Federal Reserve Bank of St.&nbsp;Louis. <a href="https://fred.stlouisfed.org" class="uri">https://fred.stlouisfed.org</a></p>
+<p><strong>Federal Reserve Bank of Minneapolis</strong>. (n.d.). *Research and data.* https://www.minneapolisfed.org</p>
 <p><strong>Glaeser, E. L., &amp; Gyourko, J. (2018)</strong>. The economic implications of housing supply. <em>Journal of Economic Perspectives, 32</em>(1), 3–30.</p>
 <p><strong>Mian, A., &amp; Sufi, A. (2011)</strong>. House prices, home equity-based borrowing, and the U.S. household leverage crisis. <em>American Economic Review, 101</em>(5), 2132–2156.</p>
 <p><strong>Saiz, A. (2010)</strong>. The geographic determinants of housing supply. <em>Quarterly Journal of Economics, 125</em>(3), 1253–1296.</p>
