@@ -11,14 +11,14 @@
 # ---
   
 
-knitr::opts_chunk$set(
-  echo    = TRUE,
-  message = FALSE,
-  warning = FALSE,
-  fig.width  = 11,
-  fig.height = 7,
-  dpi     = 150
-)
+# knitr::opts_chunk$set(
+#   echo    = TRUE,
+#   message = FALSE,
+#   warning = FALSE,
+#   fig.width  = 11,
+#   fig.height = 7,
+#   dpi     = 150
+# )
 
 # AI was utilized on this initial code chunk to create the package installer, ticker colors, and understanding small 
 # ── Packages ──────────────────────────────────────────────────────────────────
