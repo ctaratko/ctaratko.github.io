@@ -7,10 +7,6 @@ website:
   navbar:
     pinned: true
     left:
-      - text: Project
-        href: project.qmd
-      #- text: Portfolio Development
-      #  href: PortfolioDevelopment.qmd
       - text: Blog
         href: blog-listing.qmd
       - text: Lab Review
@@ -28,7 +24,7 @@ website:
         - text: 310 Project
           href: Spring2026Projects/DANL 310 Project/Final/310Webpage.qmd
         - text: 320 Project
-          href: Spring2026Projects/DANL320Page.qmd
+          href: Spring2026Projects/DANL 320 Project/DANL320Page.qmd
         - text: 310 Dashboard
           href: Spring2026Projects/DANL 310 Project/Final/danl_310_taratko_christopher_project_dashboard.qmd
   page-footer: 

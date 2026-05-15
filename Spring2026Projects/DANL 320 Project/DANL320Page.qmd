@@ -1,0 +1,516 @@
+---
+title: "AI Market - Forecasting Values"
+author: "Christopher Taratko"
+format:
+  html:
+    backgroundcolor: "#fdf6e3"
+    toc: true
+    include-in-header:
+      - text: |
+          <style>
+          h1, h2, h3, h4, h5, h6 {
+            color: #000080;
+          }
+          </style>
+---
+
+```{r, message=FALSE, echo=FALSE}
+source("Stock320.R")
+```
+
+## 1. Introduction
+
+AI Markets are a large part of today's society, making its way as one of the largest industries in today's financial markets. AI is a versatile too, that can be used both for large scale and small scale businesses, as well as in the hands of the consumer. There are multiple sectors and industries that are correlated to the AI industry, such as Tech, Energy, and Industrials/Manufacturing. These sectors are a very large portion of the pipeline of creating AI tools, infrastructure, and outcomes. Companies chosen to be researched within this project are companies like Nvidia, Microsoft, Meta, Oracle, Taiwan Semiconductor Metals, Equinix, and a variation of others. The chosen spread of companies to be analyzed is due to their relation to the AI industry, whether on the manufacturing end of Semiconductor metals ready to be used in creating the products, the manufacturers & architects of the units of compute (GPU, CPU, Motherboards, etc.), Data Center companies, or companies that heavily utilize the benefits of AI models / LLMs.
+
+## 2. Literature Review
+
+Three important Podcasts & Articles that built up the incentive to want to research this set of data came from sources like *Wall Street Breakfast*, *How Money Works*, and *Time to Worry About AI's Circular Deals* (Smith, N, 2025, *Asia Times*). With the biases a few of these articles/podcasts contain, there is an underlying truth that relates there's sources to macroeconomic influences in the market and how certain structures within companies can effect the market as a whole.
+
+## 3. Data
+
+The data was collected from the Quantmod R Package, an unofficial API that scrapes multiple financial platforms. In this case, the data came from Finance Yahoo, with the data being Daily values from 2014-01-01 till 2025-12-31. With that said, for the predictive nature, 2026+ data was overlain at the end to distinguish the current predictive nature of the model.
+
+Variables utilized in this dataset are from both the standard data, as well as prepared data through cleaning & preparation:
+
+**Standard Data**
+
+- Open
+
+- Close
+
+- High
+
+- Low
+
+- Adj. Close
+
+- Volume
+
+**Prepared Data**
+
+- $\alpha$ (Jensen's Alpha $\alpha$)
+
+- $\beta$
+
+- Sharpe Ratio
+
+- Treynor's Ratio
+
+The prepared data consists of important financial indicators of company and macro health of the economy. $\alpha$ is the *Excess Return against the index (or benchmark)*, while $\beta$ is the *Volatility of a stock compared to the overall market*. For this set of data, the chosen benchmark for the Market was the SPY, specifically due to it's market-capitalization-weighted-allocation, meaning the market-cap of the company determines how much the fund will allocate to it, but limited to S&P 500 companies only.
+
+### Data Visualizations
+
+**Company Correlation**
+
+```{r, echo=FALSE}
+#| fig-align: center
+#| out-width: "100%"
+#| fig-width: 8
+#| fig-height: 7
+ggcorrplot(
+  cor_pairwise,
+  hc.order  = TRUE,
+  hc.method = "ward.D2",
+  type      = "lower",
+  lab       = TRUE,
+  lab_size  = 3.2,
+  colors    = c("#d73027", "#ffffbf", "#4575b4"),
+  title     = "Pearson Correlation — Pairwise Full History (2014–2025)",
+  ggtheme   = theme_minimal(base_size = 12)
+) +
+  mytheme +
+  theme(
+    plot.title = element_text(hjust = .5)
+  )
+```
+
+```{r, echo=FALSE}
+#| fig-align: center
+#| out-width: "100%"
+#| fig-width: 8
+#| fig-height: 7
+ggcorrplot(
+  cor_complete,
+  hc.order  = TRUE,
+  hc.method = "ward.D2",
+  type      = "lower",
+  lab       = TRUE,
+  lab_size  = 3.2,
+  colors    = c("#d73027", "#ffffbf", "#4575b4"),
+  title     = paste0("Pearson Correlation — Complete Window (",
+                     format(start(log_ret_complete)), " – ",
+                     format(end(log_ret_complete)), ")"),
+  ggtheme   = theme_minimal(base_size = 12)
+) +
+  mytheme +
+  theme(
+    plot.title = element_text(hjust = .5)
+  )
+```
+
+```{r, echo=FALSE}
+#| fig-align: center
+#| out-width: "100%"
+#| fig-width: 8
+#| fig-height: 7
+ggcorrplot(
+  cor_spearman,
+  hc.order  = TRUE,
+  hc.method = "ward.D2",
+  type      = "lower",
+  lab       = TRUE,
+  lab_size  = 3.2,
+  colors    = c("#d73027", "#ffffbf", "#4575b4"),
+  title     = "Spearman Rank Correlation — Complete Window",
+  ggtheme   = theme_minimal(base_size = 12)
+) +
+  mytheme +
+  theme(
+    plot.title = element_text(hjust = .5)
+  )
+```
+
+Within these three models, consisting of 2 Pearson Correlation Maps & 1 Spearman Rank Correlation, the company with the highest correlation to most companies would be Nvidia, despite the large heat center among Google, Microsoft, Amazon, and Meta. Nvidia retains the highest average correlation to the most companies, and this can be attributed to its essential positioning between the industrial manufacturers and the end product infrastructure.
+
+## 4. Supervised Machine Learning Analysis
+
+For this project, the supervised models that were used consisted of XGBoost and Random Forest due to their nature in predictive analysis. These two Supervised ML models were chosen because of their ability to break up data in a manner that identifies complex, non-linear trends within the data.
+
+### Random Forest
+
+```{r, echo=FALSE}
+ggplot(imp_df, aes(x = reorder(Feature, MDA), y = MDA)) +
+  geom_col(fill = "#4575b4", alpha = 0.85) +
+  geom_text(aes(label = round(MDA, 2)), hjust = -0.1, size = 3.2) +
+  coord_flip(ylim = c(0, max(imp_df$MDA) * 1.2)) +
+  labs(
+    title    = "Random Forest — Feature Importance (Mean Decrease Accuracy)",
+    subtitle = paste0("500 trees  ·  mtry = ", floor(sqrt(ncol(X_train))),
+                      "  ·  Test AUC = ", round(auc(rf_roc), 3)),
+    x = NULL, y = "Mean Decrease in Accuracy"
+  ) +
+  theme_minimal(base_size = 12) +
+  mytheme +
+  theme(plot.title = element_text(face = "bold"))
+```
+
+### XGBoost
+
+```{r, echo=FALSE}
+ggplot(xgb_imp, aes(x = reorder(Feature, Gain), y = Gain)) +
+  geom_col(fill = "#d73027", alpha = 0.85) +
+  geom_text(aes(label = round(Gain, 3)), hjust = -0.1, size = 3.2) +
+  coord_flip(ylim = c(0, max(xgb_imp$Gain) * 1.2)) +
+  labs(
+    title    = "XGBoost — Feature Importance (Gain)",
+    subtitle = paste0("Best round = ", xgb_fit$best_iteration,
+                      "  ·  Test AUC = ", round(auc(xgb_roc), 3)),
+    x = NULL, y = "Gain"
+  ) +
+  theme_minimal(base_size = 12) +
+  mytheme +
+  theme(plot.title = element_text(face = "bold"))
+
+```
+
+### XGBoost & Random Forest Comparison
+
+```{r, echo=FALSE}
+ggplot(roc_all, aes(x = FPR, y = TPR, color = Model)) +
+  geom_line(linewidth = 1) +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "grey60") +
+  scale_color_manual(values = c("#4575b4", "#d73027")) +
+  scale_x_continuous(labels = percent_format()) +
+  scale_y_continuous(labels = percent_format()) +
+  labs(
+    title    = "ROC Curve Comparison — Random Forest vs XGBoost",
+    subtitle = "Predicting next-day NVDA return direction  ·  Held-out test set (252 days)",
+    x        = "False Positive Rate", y = "True Positive Rate", color = NULL
+  ) +
+  theme_minimal(base_size = 12) +
+  mytheme +
+  theme(
+    plot.title      = element_text(face = "bold"),
+    legend.position = "bottom"
+  )
+```
+
+```{r, echo=FALSE}
+model_summary <- data.frame(
+  Model    = c("Random Forest", "XGBoost"),
+  Accuracy = round(c(rf_cm$overall["Accuracy"], xgb_cm$overall["Accuracy"]), 4),
+  Kappa    = round(c(rf_cm$overall["Kappa"],    xgb_cm$overall["Kappa"]),    4),
+  AUC      = round(c(auc(rf_roc),              auc(xgb_roc)),               4),
+  Sensitivity = round(c(rf_cm$byClass["Sensitivity"], xgb_cm$byClass["Sensitivity"]), 4),
+  Specificity = round(c(rf_cm$byClass["Specificity"], xgb_cm$byClass["Specificity"]), 4)
+)
+model_summary
+```
+
+Learning from these two supervised learning models, it is apparent that there is a signifiicant amount of noise that is still within the data, especially due to the fact the accuracy of both models hovers within 4.4% of the 50% range. While XGBoost is better in terms of accuracy, it's low specificity means that there'll be a lot of flags within the data, ending with huge false positives. Overall, with my assumption that the Random Forest model performed better, the end results don't show adequate performance from either model.
+
+## 5. Unsupervised Learning Analysis
+
+For the Unsupervised learning Analysis, the methods chosen were the PCA and K-Means Clustering. PCA. In the goal of trying to uncover harder-to-see trends within the list of companies, PCA allows us to figure out those smaller relationships that may have a larger impact than once believed. As for K-Means Clustering, it also performs a similar purpose by breaking down the data into different groups based on performance metrics, and slowly creates more and more distinction between the groupings.
+
+### PCA
+
+```{r, echo=FALSE}
+ggplot(var_df, aes(x = PC)) +
+  geom_col(aes(y = PropVar), fill = "#4575b4", alpha = 0.8) +
+  geom_line(aes(y = CumVar, group = 1), color = "#d73027", linewidth = 1) +
+  geom_point(aes(y = CumVar), color = "#d73027", size = 2.5) +
+  geom_hline(yintercept = 80, linetype = "dashed", color = "grey50") +
+  scale_y_continuous(
+    name     = "Proportion of Variance Explained (%)",
+    sec.axis = sec_axis(~., name = "Cumulative Variance (%)")
+  ) +
+  labs(
+    title    = "PCA — Scree Plot",
+    subtitle = "Bars = individual PC variance  ·  Dashed = 80% threshold",
+    x        = NULL
+  ) +
+  theme_minimal(base_size = 12) +
+  mytheme +
+  theme(plot.title = element_text(face = "bold"))
+```
+
+```{r, echo=FALSE}
+ggplot(scores, aes(PC1, PC2)) +
+  geom_point(color = "grey70", size = 0.6, alpha = 0.4) +
+  geom_segment(data = loadings,
+               aes(x = 0, y = 0,
+                   xend = PC1 * scale_factor,
+                   yend = PC2 * scale_factor,
+                   color = Ticker),
+               arrow = arrow(length = unit(0.2, "cm")),
+               linewidth = 0.9) +
+  geom_label(data = loadings,
+             aes(x = PC1 * scale_factor * 1.12,
+                 y = PC2 * scale_factor * 1.12,
+                 label = Ticker, color = Ticker),
+             size = 3.2, fontface = "bold", fill = "white", label.size = 0) +
+  scale_color_manual(values = TICKER_COLORS) +
+  labs(
+    title    = "PCA Biplot — PC1 vs PC2",
+    subtitle = "Grey dots = daily observations  ·  Arrows = ticker loadings",
+    x        = paste0("PC1 (", round(var_df$PropVar[1], 1), "% variance)"),
+    y        = paste0("PC2 (", round(var_df$PropVar[2], 1), "% variance)")
+  ) +
+  guides(color = "none") +
+  theme_minimal(base_size = 12) +
+  mytheme +
+  theme(plot.title = element_text(face = "bold"))
+
+```
+
+```{r, echo=FALSE}
+ggplot(load_long, aes(x = PC, y = Ticker, fill = Loading)) +
+  geom_tile(color = "white", linewidth = 0.4) +
+  geom_text(aes(label = round(Loading, 2)), size = 3.2) +
+  scale_fill_gradient2(
+    low      = "#d73027",
+    mid      = "white",
+    high     = "#4575b4",
+    midpoint = 0,
+    name     = "Loading"
+  ) +
+  labs(
+    title    = "PCA Loadings — PC1 through PC5",
+    subtitle = "Each cell shows how strongly a ticker contributes to each principal component",
+    x        = NULL, y = NULL
+  ) +
+  theme_minimal(base_size = 12) +
+  mytheme +
+  theme(
+    plot.title  = element_text(face = "bold"),
+    axis.text.y = element_text(face = "bold"),
+    panel.grid  = element_blank()
+  )
+```
+
+#### Result Findings (PCA):
+
+- **PC1 (The Market Factor):** All values are solidly positive (blue), ranging from 0.20 to 0.36. This mathematical proof confirms that PC1 represents a rising tide lifting all stocks simultaneously (overall market or tech-sector direction).
+
+- **PC2 (The SMCI Component):** **SMCI** dominates this component with an exceptionally high loading of **0.73**. This isolates the specific, independent upward volatility unique to SMCI seen in the previous biplot.
+
+- **PC3 (The EQIX Contrast):** **EQIX** has a heavy negative loading (**-0.67**), moving inversely to stocks like **TSLA (0.40)**. This component captures days when data center infrastructure (EQIX) decoupled from electric vehicles/growth tech.
+
+- **PC4 (The TSLA Outlier):** **TSLA** holds an extreme negative weight of **-0.75**, showing that PC4 isolates trading days where Tesla's performance diverged completely from the broader tech basket.
+
+- **PC5 (SMCI vs. ORCL):** This component captures a specific structural split between **SMCI (0.58)** and **ORCL (-0.55)**.
+
+Principal Component Analysis (PCA) successfully reduced the dimensionality of the 11-stock portfolio dataset while preserving structural information. The **Scree Plot** establishes that the first six principal components capture over 80% of the total dataset variance, with the first component (PC1) alone explaining 47.6%. This dominant PC1 axis functions mathematically as a macroeconomic "market factor," as the **Loadings Heatmap** and **Biplot** reveal uniformly positive weights (0.20 to 0.36) across all tickers, indicating synchronized sector-wide movements. Subsequent components isolate unique, asset-specific risk and volatility decoupled from the broader market. Specifically, PC2 isolates idiosyncratic variance unique to **SMCI** (loading of 0.73), while PC3 and PC4 capture sharp, independent divergences in **EQIX** (-0.67) and **TSLA** (-0.75), respectively. Ultimately, this PCA framework simplifies the 11 original variables into a more compact set of orthogonal components that cleanly separate systematic market trends from unique individual stock anomalies.
+
+### K-Means Clustering
+
+```{r, echo=FALSE}
+fviz_nbclust(km_features, kmeans, method = "silhouette", k.max = 6) +
+  labs(title = "Optimal k:  Silhouette Method",
+       subtitle = "Pick k at the peak average silhouette width") +
+  theme_minimal(base_size = 12) +
+  mytheme
+```
+
+```{r, echo=FALSE}
+km_fit_4 <- kmeans(km_features, centers = 4, nstart = 25)
+# km_fit
+fviz_cluster(
+  km_fit, 
+  data = km_features, 
+  geom = c("point", "text"), 
+  ellipse.type = "convex",
+  stand = FALSE,        # Explicitly set to avoid internal scaling conflicts
+  show.clust.cent = TRUE
+) + 
+  scale_color_manual(values = c("#d73027", "#4575b4", "#1a9850")) +
+  scale_fill_manual(values = c("#d73027", "#4575b4", "#1a9850")) +
+  labs(
+    title = "k-means clustering of ai stocks (k = 3)",
+    subtitle = "axes = first two principal components of scaled return features"
+  ) +
+  theme_minimal(base_size = 12) + 
+  mytheme + 
+  theme(plot.title = element_text(face = "bold"))
+```
+
+#### Result Findings (K-Means):
+
+Within these results, it was found that 4 k-means would be the ideal number of clusters for this data, and I would agree. While posting the data with only 3 clusters, the fourth cluster would be Oracle, due to it's eccentricity in terms of both dimensions. This is interesting due to Oracle being a near-invisible hand, one that has had a very silent control over a larger portion of the data infrastructure space. As for the three current clusters, their descriptions are as follows:
+
+Group 1:
+
+- Unicorn & Aggressive Leader
+
+  Nvidia is a very aggressive leader in the AI space, being the backbone of card production for a majority of data centers, consumer, and AI company usage.
+
+Group 2:
+
+- AI Infrastructure
+
+  These companies consist of large compute being taken on in order to produce a highly viable AI model, one that create the most accurate results, and perform as high as possible of every metric of reasoning, comprehension, general understanding, efficiency, and a few other relevant metrics.
+
+Group 3:
+
+- Blue Oceans
+
+- Companies in this section created large fields that would keep them in their own space, and have had significant levels of funds to keep them afloat due to competition having such a large gap to close. These companies are largely free to do with their cash flows, and have chosen to create a large section of their companies, dedicated with building and maintaining their AI models.
+
+## 6. Discussion / Implications
+
+With the results of the model, the predictive nature has a lot of false positives in it's supervised learning models, but does a great job at identifying company types and their key behaviors based on their market performance. The use of unsupervised and supervised machine learning models allow us to create an active strategy design in terms of being able to predict the most correlated stock's movement, Nvidia.
+
+While clustering maps historical structural boundaries, it assumes static market conditions. To project this portfolio into the future, we must test how these data-driven groups hold up under random, volatile market conditions.
+
+The next section uses a **Monte Carlo Simulation** to run 10,000 randomized forward trials. This simulation leverages the exact covariance matrix and loading vectors established in our PCA step. By modeling random paths, we can transition from historical cluster descriptions to probabilistic future forecasting. This allows us to quantify the exact probability of achieving specific return targets while actively managing risk exposure across our three distinct stock clusters.
+
+```{r,echo=FALSE}
+ggplot() +
+  # ── Historical price (green) ─────────────────────────────────────────────
+  geom_line(data  = hist_tail,
+            aes(x = Date, y = AdjClose),
+            color = NVDA_COLOR, linewidth = 0.65, alpha = 0.9) +
+
+  # ── 100 sample paths ─────────────────────────────────────────────────────
+  geom_line(data  = sim_long,
+            aes(x = Date, y = Price, group = Sim),
+            color = "steelblue", alpha = 0.05, linewidth = 0.3) +
+
+  # ── 90% CI band ──────────────────────────────────────────────────────────
+  geom_ribbon(data = mc_df,
+              aes(x = Date, ymin = Q05, ymax = Q95),
+              fill = "#4575b4", alpha = 0.18) +
+
+  # ── IQR band ─────────────────────────────────────────────────────────────
+  geom_ribbon(data = mc_df,
+              aes(x = Date, ymin = Q25, ymax = Q75),
+              fill = "#4575b4", alpha = 0.30) +
+
+  # ── Median path ──────────────────────────────────────────────────────────
+  geom_line(data  = mc_df,
+            aes(x = Date, y = Med),
+            color = "navy", linewidth = 1.0, linetype = "dashed") +
+
+  # ── Forecast origin marker ───────────────────────────────────────────────
+  geom_vline(xintercept = as.numeric(last_date),
+             linetype = "dotted", color = "grey40", linewidth = 0.7) +
+
+  # ── Actual 2026 price (orange, on top) ───────────────────────────────────
+  geom_line(data  = actual_2026,
+            aes(x = Date, y = AdjClose, color = "Actual 2026"),
+            linewidth = 1.1) +
+  geom_point(data = tail(actual_2026, 1),
+             aes(x = Date, y = AdjClose),
+             color = "#F97316", size = 3.5, shape = 21,
+             fill = "white", stroke = 1.8) +
+
+  # ── Annotate the last actual price ───────────────────────────────────────
+  geom_label(data = tail(actual_2026, 1),
+             aes(x     = Date,
+                 y     = AdjClose,
+                 label = paste0("$", round(AdjClose, 2), "\n",
+                                format(Date, "%b %d"))),
+             nudge_x    = 3,
+             nudge_y    = last_price * 0.04,
+             size       = 3,
+             fontface   = "bold",
+             color      = "#F97316",
+             fill       = "white",
+             label.size = 0.3) +
+
+  # ── Manual colour legend entry for actual line ────────────────────────────
+  scale_color_manual(
+    name   = NULL,
+    values = c("Actual 2026" = "#F97316"),
+    labels = paste0("Actual NVDA close\n(", actual_coverage, ")")
+  ) +
+
+  scale_y_continuous(labels = dollar_format()) +
+  scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") +
+
+  labs(
+    title    = paste0(focal_ticker,
+                      " — Monte Carlo GBM Simulation vs Actual 2026 Close"),
+    subtitle = paste0(
+      "Simulation calibrated on 2014–2024 daily returns  ·  ",
+      "n = ", n_sims, " paths  ·  h = ", h, " trading days\n",
+      "Dark band = IQR  ·  Light band = 5th–95th pct  ·  ",
+      "Orange = actual 2026 close"
+    ),
+    caption  = paste0("Data via Yahoo Finance / quantmod  ·  Fetched: ",
+                      Sys.Date()),
+    x = NULL, y = "Price (Adj Close)"
+  ) +
+  theme_minimal(base_size = 12) +
+  mytheme +
+  theme(
+    axis.text.x     = element_text(angle = 45, hjust = 1),
+    plot.title      = element_text(face = "bold"),
+    legend.position = "bottom",
+    legend.text     = element_text(size = 10)
+  )
+```
+
+```{r, echo=FALSE}
+ggplot(diag_df, aes(x = Date, y = Pct_Rank)) +
+  geom_hline(yintercept = c(5, 25, 50, 75, 95),
+             linetype = "dashed",
+             color    = c("red", "#4575b4", "navy", "#4575b4", "red"),
+             alpha    = 0.5, linewidth = 0.5) +
+  geom_ribbon(aes(ymin = 25, ymax = 75), fill = "#4575b4", alpha = 0.10) +
+  geom_ribbon(aes(ymin = 5,  ymax = 95), fill = "#4575b4", alpha = 0.06) +
+  geom_line(color = "#F97316", linewidth = 1.1) +
+  geom_point(aes(color = In_90_Band), size = 2.5) +
+  scale_color_manual(values = c("TRUE" = "#F97316", "FALSE" = "red"),
+                     labels = c("TRUE" = "Inside 90% band",
+                                "FALSE" = "Outside 90% band"),
+                     name   = NULL) +
+  scale_y_continuous(limits = c(0, 100),
+                     breaks = c(0, 5, 25, 50, 75, 95, 100),
+                     labels = function(x) paste0(x, "th")) +
+  scale_x_date(date_breaks = "1 week", date_labels = "%b %d") +
+  labs(
+    title    = paste0(focal_ticker,
+                      " Actual Price — Percentile Rank Within MC Distribution"),
+    subtitle = paste0(
+      "50th pct = on median path  ·  Shaded = IQR and 90% band\n",
+      "Orange = actual price, red dots = outside model 90% band"
+    ),
+    x = NULL, y = "Percentile Rank"
+  ) +
+  theme_minimal(base_size = 12) +
+  mytheme +
+  theme(axis.text.x     = element_text(angle = 45, hjust = 1),
+        plot.title      = element_text(face = "bold"),
+        legend.position = "bottom")
+
+```
+
+## 7. Conclusion
+
+The overall output of this predictive modeling has been a very resourceful learning curve. The results of the Supervised and Unsupervised Learning models allowed the data to be sifted through, uncovering trends in the data such as seasonal and clustered groupings of companies. While the supervised learning produced sub-par results, with accuracy ranging between 47% to 54%, the ability to uncover trends in the data was the most meaningful part of this machine learning analysis. Being able to filter noise from general trends is a significant part of the data, allowing further models to be implemented, and to then break off more noise into potentially a well-structured analysis.
+
+## 8. References
+
+- **R Package & Data Source:**\
+  Ryan, J. A., & Ulrich, J. M. (2025). *quantmod: Quantitative Financial Modelling Framework* (R package version 0.4.26). CRAN. Data retrieved from Yahoo Finance.
+
+<!-- -->
+
+- **Newsletter / Podcast:**\
+  Seeking Alpha. (2025, December 26). Wall Street Breakfast: Three forces that defined 2025. *Seeking Alpha*. [**Seeking Alpha**](https://seekingalpha.com/article/4855853-wall-street-breakfast-podcast-three-forces-that-defined-2025).
+
+- **Media / Publication:**\
+  How Money Works. (n.d.). *How Money Works*. YouTube Channel.
+
+- **Article:**\
+  Smith, N. (2025, October 22). Time to worry about AI's circular deals. 
+
+  *Asia Times*. [**Asia Times**](https://asiatimes.com/2025/10/time-to-worry-about-ais-circular-deals/).
+
+- **Artificial Intelligence**
+
+  Anthropic. (2026). *Claude 3.5 Sonnet* \[Large language model\]. https://claude.ai\
+  \
+  Google. (2026). *Gemini 1.5 Pro* \[Large language model\]. [**https://gemini.google.com**](https://gemini.google.com/app)
